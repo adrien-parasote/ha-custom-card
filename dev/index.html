@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>&lt;my-element> Demo</title>
+    <script type="module" src="components/dashboard-card.js"></script>
+    <style>
+      html {
+        height: 100%;
+        width: 100%;
+      }
+      body {
+        margin: 0;
+        height: 100%;
+        display: flex;
+        flex-direction: row;
+      }
+      .ha-side-bar {
+        width: 56px;
+        background-color: #1c1c1c;
+        height: 100%;
+        border-right: 1px solid rgba(225, 225, 225, .12);
+      }
+      .lovelace-panel {
+        height: 100%;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+      }
+      .lovelace-header {
+        height: 56px;
+        color: white;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 4;
+        background-color: #101e24;
+      }
+      .lovelace-view {
+        display: flex;
+        min-height: 100vh;
+        box-sizing: border-box;
+        position: relative;
+        background-color: rgb(17, 17, 17);
+        padding: 60px 4px 4px 4px;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="ha-side-bar"></div>
+    <div class="lovelace-panel">
+      <div class="lovelace-header">HEADER</div>
+      <div class="lovelace-view">
+        <dashboard-card></dashboard-card>
+      </div>
+    </div>
+  </body>
+</html>
