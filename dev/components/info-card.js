@@ -1,6 +1,5 @@
 import { LitElement, html, css } from "https://unpkg.com/lit-element@3.2.1/lit-element.js?module";
 
-// TODO Change path
 import styles from '../css/custom.css' with { type: 'css' }; 
 
 export class InfoCard extends LitElement {
@@ -16,7 +15,6 @@ export class InfoCard extends LitElement {
     
         .icon {
           position: relative;
-          // TODO remove
           ha-icon {
               width: 30px !important; 
               height: 30px !important;
@@ -73,8 +71,6 @@ export class InfoCard extends LitElement {
   }
 
   render() {
-    // TODO : icon + value / unit
-    // TODO : <ha-icon icon="${this.icon}"></ha-icon>
     return html`
         <div class="row">
             <div class="column">

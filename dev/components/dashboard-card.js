@@ -7,7 +7,12 @@ import "./people-info.js";
 import "./sci-fi-card.js";
 import "./toast-card.js";
 
-// TODO remove/update
+const VERSION = "DEV";
+console.info(
+  `DASHBOARD-CARD Version: ${VERSION}`,
+  'color: rgb(105, 211, 251); font-weight: bold; background: black'
+);
+
 const SVG_PATH = "images/control_panel.svg";
 const CONFIG = {
     "people": [
@@ -101,26 +106,7 @@ const CONFIG = {
         }
     ]
 };
-/*
-- icon: mdi:umbrella-beach-outline
-    title: École
-    entity: binary_sensor.ecole_aujourdhui
-  - icon: mdi:stove
-    entity: sensor.clou_pellet_quantity
-    unit: "%"
-  - entity: counter.pellet_stock
-  - icon: mdi:gas-station-outline
-    entity: sensor.intermarche
-    secondary: e10_maj
-    value: e10_prix
-  - icon: mdi:gas-station-outline
-    entity: sensor.super_u
-    secondary: e10_maj
-    value: e10_prix
-    */
 
-
-// TODO Change path
 import styles from '../css/custom.css' with { type: 'css' }; 
 
 export class DashboardCard extends LitElement {
@@ -168,7 +154,6 @@ export class DashboardCard extends LitElement {
     };
   }
   
-  // TODO : Remove
   constructor() {
     super();
     this.setConfig(CONFIG);
@@ -243,8 +228,6 @@ export class DashboardCard extends LitElement {
     const entity = this.config.actions[e.detail.id]
     const services = entity.tap_action.service.split('.');
     const toast = this.shadowRoot.querySelector("toast-card");
-    // TODO : uncomment
-    // this.hass.callService(services[0], services[1], entity.tap_action.service_data);
     toast.show('"'.concat(entity.title, '"', " action en cours"));
   }
   
@@ -252,14 +235,6 @@ export class DashboardCard extends LitElement {
     return html`
         <div class="column row-gap">
             ${this.config.info.map((e) => {
-                /* TODO
-                const entity = this.hass.states[info.entity];
-                const icon = info.icon || entity.attributes.icon;
-                const title = info.title || entity.attributes.friendly_name;
-                const secondary = info.secondary ? entity.attributes[info.secondary] : new Date(entity.last_updated).toLocaleString('fr-FR', {year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', hour12: false, minute:'2-digit', second:'2-digit'})
-                const value = info.value ? entity.attributes[info.value] : entity.state;
-                const unit = info.unit || '';
-    */          
                 const icon = e.icon;
                 const title = e.title;
                 const secondary = e.secondary;

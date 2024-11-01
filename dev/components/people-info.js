@@ -1,7 +1,8 @@
 import { LitElement, html, css } from "https://unpkg.com/lit-element@3.2.1/lit-element.js?module";
 
-// TODO Change path
 import styles from '../css/custom.css' with { type: 'css' }; 
+
+const DEFAULT_IMG = "./images/people.png";
 
 export class PeopleInfo extends LitElement {
   static styles = [
@@ -39,7 +40,7 @@ export class PeopleInfo extends LitElement {
   
   constructor() {
     super();    
-    this.img = this.img ? this.img : "./images/people.png";
+    this.img = this.img ? this.img : DEFAULT_IMG;
     this.firstName = this.firstName ? this.firstName : "Punk";
     this.location = this.location ? this.location : "Spaceship";
   }

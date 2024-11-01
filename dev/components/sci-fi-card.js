@@ -1,6 +1,5 @@
 import { LitElement, html, css } from "https://unpkg.com/lit-element@3.2.1/lit-element.js?module";
 
-// TODO Change path
 import styles from '../css/custom.css' with { type: 'css' }; 
 
 export class SciFiCard extends LitElement {
