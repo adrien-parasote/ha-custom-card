@@ -1,0 +1,26 @@
+{
+  "version": "0.2",
+  "description": "HA custom dashboard",
+  "main": "prod/components/dashboard-card.js",
+  "module": "prod/components/dashboard-card.js",
+  "type": "module",
+  "scripts": {
+    "lint": "lit-analyzer prod/components/dashboard-card.js && eslint '**/*.js'",
+    "format": "prettier dev/components/*.js prod/components/*.js --write",
+    "serve": "es-dev-server --node-resolve --watch"
+  },
+  "keywords": [],
+  "dependencies": {
+    "lit": "3.2.1"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "3.1.0",
+    "@eslint/js": "9.13.0",
+    "babel-eslint": "10.1.0",
+    "es-dev-server": "2.1.0",
+    "eslint": "9.13.0",
+    "globals": "15.11.0",
+    "lit-analyzer": "2.0.3",
+    "prettier": "3.3.3"
+  }
+}
