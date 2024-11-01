@@ -53,6 +53,7 @@ export class InfoCard extends LitElement {
       .primary-info,
       .secondary-info {
         align-items: center;
+        text-align: center;
         padding: 0;
       }
     `,

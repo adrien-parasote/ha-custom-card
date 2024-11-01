@@ -11,7 +11,7 @@ import styles from './common-styles.js'
 const SVG_PATH = '../local/custom/images/control_panel.svg';
 
 // Version
-const VERSION = '0.5';
+const VERSION = '0.6';
 
 export class DashboardCard extends LitElement {
   static get styles() {
@@ -60,7 +60,12 @@ export class DashboardCard extends LitElement {
       }
       .control-img {
         width: var(--control-img-size);
+        min-width: var(--control-img-size);
+        max-width: var(--control-img-size);
         height: var(--control-img-size);
+      }
+      object {
+        color-scheme: auto;
       }
       .people {
         align-self: center;
@@ -109,7 +114,7 @@ export class DashboardCard extends LitElement {
       <toast-card></toast-card>
       <div class="content column">
         <div class="row">
-            <div class="control-img"><img src="${SVG_PATH}"></img></div>
+            <div class="control-img"><object type="image/svg+xml" data="${SVG_PATH}"></object></div>
             <div class="column grow-1 row-gap-bottom">
                 <sci-fi-card type="normal">${this.__drawPeople()}</sci-fi-card>
                 <sci-fi-card type="alert" style="margin-top: auto;">${this.__drawActions()}</sci-fi-card>
