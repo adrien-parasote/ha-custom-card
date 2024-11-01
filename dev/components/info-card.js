@@ -3,6 +3,10 @@ import {LitElement, html, css} from 'lit';
 import styles from '../css/custom.css' with {type: 'css'};
 
 const VERSION = 'DEV';
+console.info(
+  `%cINFO-CARD Version: ${VERSION}`,
+  'color: rgb(105, 211, 251); font-weight: bold; background: black',
+);
 
 export class InfoCard extends LitElement {
   static styles = [
@@ -73,10 +77,6 @@ export class InfoCard extends LitElement {
     this.secondary = this.secondary ? this.secondary : 'Secondary';
     this.state = this.state ? this.state : 'State';
     this.unit = this.unit ? this.unit : 'State';
-    console.info(
-      `%cINFO-CARD Version: ${VERSION}`,
-      'color: rgb(105, 211, 251); font-weight: bold; background: black',
-    );
   }
 
   render() {

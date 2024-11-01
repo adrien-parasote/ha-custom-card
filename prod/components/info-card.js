@@ -9,6 +9,10 @@ import styles from '/local/custom/css/custom.css' with {type: 'css'};
 
 // Version
 const VERSION = '1.0';
+console.info(
+  `%cINFO-CARD Version: ${VERSION}`,
+  'color: rgb(105, 211, 251); font-weight: bold; background: black',
+);
 
 export class InfoCard extends LitElement {
   static styles = [
@@ -75,10 +79,6 @@ export class InfoCard extends LitElement {
     this.secondary = this.secondary ? this.secondary : 'Secondary';
     this.state = this.state ? this.state : 'State';
     this.unit = this.unit ? this.unit : '';
-    console.info(
-      `%cINFO-CARD Version: ${VERSION}`,
-      'color: rgb(105, 211, 251); font-weight: bold; background: black',
-    );
   }
 
   render() {

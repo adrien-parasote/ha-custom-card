@@ -3,6 +3,10 @@ import {LitElement, html, css} from 'lit';
 import styles from '../css/custom.css' with {type: 'css'};
 
 const VERSION = 'DEV';
+console.info(
+  `%cACTION-CARD Version: ${VERSION}`,
+  'color: rgb(105, 211, 251); font-weight: bold; background: black',
+);
 
 export class ActionCard extends LitElement {
   static styles = [
@@ -91,10 +95,6 @@ export class ActionCard extends LitElement {
     this.id = this.id ? this.id : null;
     this.icon = this.icon ? this.icon : 'mdi:cursor-default';
     this.title = this.title ? this.title : 'Default title';
-    console.info(
-      `%cACTION-CARD Version: ${VERSION}`,
-      'color: rgb(105, 211, 251); font-weight: bold; background: black',
-    );
   }
 
   render() {

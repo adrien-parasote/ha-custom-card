@@ -9,6 +9,10 @@ import styles from '/local/custom/css/custom.css' with {type: 'css'};
 
 // Version
 const VERSION = '1.0';
+console.info(
+  `%cACTION-CARD Version: ${VERSION}`,
+  'color: rgb(105, 211, 251); font-weight: bold; background: black',
+);
 
 export class ActionCard extends LitElement {
   static styles = [
@@ -97,10 +101,6 @@ export class ActionCard extends LitElement {
     this.id = this.id ? this.id : null;
     this.icon = this.icon ? this.icon : 'mdi:cursor-default';
     this.title = this.title ? this.title : 'Default title';
-    console.info(
-      `%cACTION-CARD Version: ${VERSION}`,
-      'color: rgb(105, 211, 251); font-weight: bold; background: black',
-    );
   }
 
   render() {

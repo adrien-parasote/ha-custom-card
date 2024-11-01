@@ -9,6 +9,10 @@ import styles from '/local/custom/css/custom.css' with {type: 'css'};
 
 // Version
 const VERSION = '1.0';
+console.info(
+  `%cSCI-FI-CARD Version: ${VERSION}`,
+  'color: rgb(105, 211, 251); font-weight: bold; background: black',
+);
 
 export class SciFiCard extends LitElement {
   static styles = [
@@ -51,10 +55,6 @@ export class SciFiCard extends LitElement {
   constructor() {
     super();
     this.type = this.type ? this.type : '';
-    console.info(
-      `%cSCI-FI-CARD Version: ${VERSION}`,
-      'color: rgb(105, 211, 251); font-weight: bold; background: black',
-    );
   }
 
   render() {

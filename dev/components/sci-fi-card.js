@@ -3,6 +3,10 @@ import {LitElement, html, css} from 'lit';
 import styles from '../css/custom.css' with {type: 'css'};
 
 const VERSION = 'DEV';
+console.info(
+  `%cSCI-FI-CARD Version: ${VERSION}`,
+  'color: rgb(105, 211, 251); font-weight: bold; background: black',
+);
 
 export class SciFiCard extends LitElement {
   static styles = [
@@ -45,10 +49,6 @@ export class SciFiCard extends LitElement {
   constructor() {
     super();
     this.type = this.type ? this.type : '';
-    console.info(
-      `%cSCI-FI-CARD Version: ${VERSION}`,
-      'color: rgb(105, 211, 251); font-weight: bold; background: black',
-    );
   }
 
   render() {

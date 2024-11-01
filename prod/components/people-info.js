@@ -12,6 +12,10 @@ const DEFAULT_IMG = '/local/custom/images/people.png';
 
 // Version
 const VERSION = '1.0';
+console.info(
+  `%cPEOPLE-CARD Version: ${VERSION}`,
+  'color: rgb(105, 211, 251); font-weight: bold; background: black',
+);
 
 export class PeopleInfo extends LitElement {
   static styles = [
@@ -54,10 +58,6 @@ export class PeopleInfo extends LitElement {
     this.img = this.img ? this.img : DEFAULT_IMG;
     this.firstName = this.firstName ? this.firstName : 'Punk';
     this.location = this.location ? this.location : 'Spaceship';
-    console.info(
-      `%cPEOPLE-CARD Version: ${VERSION}`,
-      'color: rgb(105, 211, 251); font-weight: bold; background: black',
-    );
   }
 
   render() {
