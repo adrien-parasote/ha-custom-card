@@ -5,7 +5,7 @@ import {
 } from 'https://unpkg.com/lit-element@3.2.1/lit-element.js?module';
 
 // Custom CSS
-import styles from '/local/custom/css/custom.css' with {type: 'css'};
+import styles from './common-styles.js'
 
 // Version
 const VERSION = '1.0';
@@ -18,46 +18,48 @@ export class InfoCard extends LitElement {
   static styles = [
     styles,
     css`
-      :host {
-        .icon-container {
-          padding: 5px;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-
-          .icon {
-            position: relative;
+      :host {}
+      .icon-container {
+        padding: 5px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .icon {
+          position: relative;
+          ha-icon {
+            width: 30px !important;
+            height: 30px !important;
           }
         }
-        .text-muted {
-          padding: 5px;
-          border-top: 1px solid var(--color-darkblue-opacity);
-          font-size: var(--font-size-small);
-          min-width: 100px;
-          text-align: center;
-        }
-        .before,
-        .after {
-          border-top: 1px solid var(--color-darkblue-opacity);
-          border-bottom: 1px solid var(--color-darkblue-opacity);
-          width: 15px;
-          content: '';
-        }
-        .before {
-          border-left: 1px solid var(--color-darkblue-opacity);
-        }
-        .after {
-          border-right: 1px solid var(--color-darkblue-opacity);
-        }
-        .info {
-          margin: auto;
-        }
-        .info,
-        .primary-info,
-        .secondary-info {
-          align-items: center;
-          padding: 0;
-        }
+      .text-muted {
+        padding: 5px;
+        border-top: 1px solid var(--color-darkblue-opacity);
+        font-size: var(--font-size-small);
+        min-width: 100px;
+        text-align: center;
+      }
+      .before,
+      .after {
+        border-top: 1px solid var(--color-darkblue-opacity);
+        border-bottom: 1px solid var(--color-darkblue-opacity);
+        width: 15px;
+        content: '';
+      }
+      .before {
+        border-left: 1px solid var(--color-darkblue-opacity);
+      }
+      .after {
+        border-right: 1px solid var(--color-darkblue-opacity);
+      }
+      .info {
+        margin: auto;
+      }
+      .info,
+      .primary-info,
+      .secondary-info {
+        align-items: center;
+        padding: 0;
       }
     `,
   ];

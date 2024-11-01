@@ -5,7 +5,7 @@ import {
 } from 'https://unpkg.com/lit-element@3.2.1/lit-element.js?module';
 
 // Custom CSS
-import styles from '/local/custom/css/custom.css' with {type: 'css'};
+import styles from './common-styles.js'
 
 // Images
 const DEFAULT_IMG = '/local/custom/images/people.png';

@@ -5,7 +5,7 @@ import {
 } from 'https://unpkg.com/lit-element@3.2.1/lit-element.js?module';
 
 // Custom CSS
-import styles from '/local/custom/css/custom.css' with {type: 'css'};
+import styles from './common-styles.js'
 
 // Version
 const VERSION = '1.0';
@@ -32,8 +32,8 @@ export class ActionCard extends LitElement {
         z-index: 0;
         color: var(--action-color);
         text-shadow: none;
-
-        :before {
+      }
+      .column:before {
           content: '';
           position: absolute;
           z-index: -2;
@@ -57,9 +57,17 @@ export class ActionCard extends LitElement {
             linear-gradient(var(--color-brass), var(--color-brass)),
             linear-gradient(var(--color-lightyellow), var(--color-lightyellow)),
             linear-gradient(var(--color-brass), var(--color-brass));
-          animation: rotate 4s linear infinite;
-        }
-        :after {
+          
+          -webkit-animation-name: rotate;
+          -webkit-animation-duration: 4s;
+          -webkit-animation-timing-function: linear;
+          -webkit-animation-iteration-count: infinite;
+          animation-name: rotate;
+          animation-duration: 4s;
+          animation-timing-function: linear;
+          animation-iteration-count: infinite;
+      }
+      .column:after {
           content: '';
           position: absolute;
           z-index: -1;
@@ -69,21 +77,22 @@ export class ActionCard extends LitElement {
           height: calc(100% - 6px);
           background-color: var(--action-background-color);
           border-radius: var(--border-radius);
-        }
-        :hover {
+      }
+      .column:hover {
           cursor: pointer;
           font-weight: bold;
           color: white;
-        }
-        :hover:after {
-          background-color: var(--color-darkyellow);
-        }
       }
-
+      .column:hover:after {
+          background-color: var(--color-darkyellow);
+      }
+      @-webkit-keyframes rotate {
+        from { -webkit-transform: rotate(0deg); }
+        to { -webkit-transform: rotate(360deg); }
+      }
       @keyframes rotate {
-        100% {
-          transform: rotate(1turn);
-        }
+        from {transform:rotate(0deg);}
+        to {transform:rotate(360deg);}
       }
     `,
   ];

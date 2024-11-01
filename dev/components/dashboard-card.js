@@ -84,10 +84,11 @@ const CONFIG = {
   ],
 };
 
-import styles from '../css/custom.css' with {type: 'css'};
+import styles from './common-styles.js'
 
 export class DashboardCard extends LitElement {
-  static styles = [
+  static get styles() {
+   return [
     styles,
     css`
       :host {
@@ -123,34 +124,26 @@ export class DashboardCard extends LitElement {
           100% 3px,
           27px 27px,
           27px 27px;
-
-        & > div {
-          height: 100%;
-        }
-        .second-row {
-          margin-top: 13px;
-        }
-        .control-img {
-          width: var(--control-img-size);
-          height: var(--control-img-size);
-        }
-        .people {
-          align-self: center;
-        }
-        .actions {
-          align-self: center;
-          color: var(--action-color);
-        }
+      }
+      .content {
+        height: 100%;
+      }
+      .second-row {
+        margin-top: 13px;
+      }
+      .control-img {
+        width: var(--control-img-size);
+        height: var(--control-img-size);
+      }
+      .people {
+        align-self: center;
+      }
+      .actions {
+        align-self: center;
+        color: var(--action-color);
       }
     `,
-  ];
-
-  static get properties() {
-    return {
-      hass: {},
-      config: {},
-    };
-  }
+  ]};
 
   constructor() {
     super();
@@ -181,7 +174,7 @@ export class DashboardCard extends LitElement {
   render() {
     return html`
       <toast-card></toast-card>
-      <div class="column">
+      <div class="content column">
         <div class="row">
             <div class="control-img"><img src="${SVG_PATH}"></img></div>
             <div class="column grow-1 row-gap-bottom">

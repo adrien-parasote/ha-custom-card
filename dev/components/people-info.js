@@ -1,6 +1,6 @@
 import {LitElement, html, css} from 'lit';
 
-import styles from '../css/custom.css' with {type: 'css'};
+import styles from './common-styles.js'
 
 const DEFAULT_IMG = '/dev/images/people.png';
 

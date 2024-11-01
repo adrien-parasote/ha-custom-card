@@ -1,6 +1,6 @@
 import {LitElement, html, css} from 'lit';
 
-import styles from '../css/custom.css' with {type: 'css'};
+import styles from './common-styles.js'
 
 const VERSION = 'DEV';
 
@@ -47,46 +47,56 @@ export class ToastCard extends LitElement {
         animation:
           fadein 2.5s,
           fadeout 2.5;
-
-        .toast-header {
-          background-color: var(--color-darkblue-opacity);
-          padding: 5px 10px;
-          border-bottom: 1px solid var(--color-darkblue);
-          display: flex;
-          flex-direction: row;
-          align-items: center;
-
-          > div {
-            text-transform: uppercase;
-            text-shadow: none;
-            font-weight: bold;
-            flex-grow: 1;
-          }
-        }
-        .toast-btn-close {
-          color: var(--color-lightblue);
-          text-shadow: 0px 0px 5px var(--color-darkblue);
-          font-weight: bold;
-          box-sizing: content-box;
-          border: none;
-          background: transparent;
-          cursor: pointer;
-        }
-        .toast-body {
-          color: var(--toast-body-color);
-          padding: 10px;
-          word-wrap: break-word;
-          text-shadow: none;
-        }
+      }
+      .toast-header {
+        background-color: var(--color-darkblue-opacity);
+        padding: 5px 10px;
+        border-bottom: 1px solid var(--color-darkblue);
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+      }
+      .toast-header > div {
+        text-transform: uppercase;
+        text-shadow: none;
+        font-weight: bold;
+        flex-grow: 1;
+      }
+      .toast-btn-close {
+        color: var(--color-lightblue);
+        text-shadow: 0px 0px 5px var(--color-darkblue);
+        font-weight: bold;
+        box-sizing: content-box;
+        border: none;
+        background: transparent;
+        cursor: pointer;
+      }
+      .toast-body {
+        color: var(--toast-body-color);
+        padding: 10px;
+        word-wrap: break-word;
+        text-shadow: none;
       }
       .toast.show {
         visibility: visible;
-        -webkit-animation:
-          fadein 0.5s,
-          fadeout 0.5s 2.5s;
-        animation:
-          fadein 0.5s,
-          fadeout 0.5s 2.5s;
+        -webkit-animation-name: fadeIn 0.5s ease-in forwards, fadeOut 3.5s 1s ease-out forwards;
+        animation: fadeIn 0.5s ease-in forwards, fadeOut 3.5s 1s ease-out forwards;
+      }
+      @-webkit-keyframes fadeIn {  
+        from { opacity:0; }  
+        to { opacity:1; }  
+      }
+      @keyframes fadeIn {  
+        from { opacity:0; }  
+        to { opacity:1; }  
+      }
+      @-webkit-keyframes fadeOut {  
+        from { opacity:1; }  
+        to { opacity:0; }  
+      }
+      @keyframes fadeOut {  
+        from { opacity:1; }  
+        to { opacity:0; }  
       }
     `,
   ];
@@ -121,7 +131,7 @@ export class ToastCard extends LitElement {
     toast.classList.add('show');
     setTimeout(function () {
       toast.classList.remove('show');
-    }, 3000);
+    }, 4000);
   }
 }
 

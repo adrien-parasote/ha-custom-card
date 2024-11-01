@@ -1,6 +1,6 @@
 import {LitElement, html, css} from 'lit';
 
-import styles from '../css/custom.css' with {type: 'css'};
+import styles from './common-styles.js'
 
 const VERSION = 'DEV';
 console.info(
@@ -12,50 +12,48 @@ export class InfoCard extends LitElement {
   static styles = [
     styles,
     css`
-      :host {
-        .icon-container {
-          padding: 5px;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-
-          .icon {
-            position: relative;
-            ha-icon {
-              width: 30px !important;
-              height: 30px !important;
-            }
+      :host {}
+      .icon-container {
+        padding: 5px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .icon {
+          position: relative;
+          ha-icon {
+            width: 30px !important;
+            height: 30px !important;
           }
         }
-        .text-muted {
-          padding: 5px;
-          border-top: 1px solid var(--color-darkblue-opacity);
-          font-size: var(--font-size-small);
-          min-width: 100px;
-          text-align: center;
-        }
-        .before,
-        .after {
-          border-top: 1px solid var(--color-darkblue-opacity);
-          border-bottom: 1px solid var(--color-darkblue-opacity);
-          width: 15px;
-          content: '';
-        }
-        .before {
-          border-left: 1px solid var(--color-darkblue-opacity);
-        }
-        .after {
-          border-right: 1px solid var(--color-darkblue-opacity);
-        }
-        .info {
-          margin: auto;
-        }
-        .info,
-        .primary-info,
-        .secondary-info {
-          align-items: center;
-          padding: 0;
-        }
+      .text-muted {
+        padding: 5px;
+        border-top: 1px solid var(--color-darkblue-opacity);
+        font-size: var(--font-size-small);
+        min-width: 100px;
+        text-align: center;
+      }
+      .before,
+      .after {
+        border-top: 1px solid var(--color-darkblue-opacity);
+        border-bottom: 1px solid var(--color-darkblue-opacity);
+        width: 15px;
+        content: '';
+      }
+      .before {
+        border-left: 1px solid var(--color-darkblue-opacity);
+      }
+      .after {
+        border-right: 1px solid var(--color-darkblue-opacity);
+      }
+      .info {
+        margin: auto;
+      }
+      .info,
+      .primary-info,
+      .secondary-info {
+        align-items: center;
+        padding: 0;
       }
     `,
   ];
@@ -82,25 +80,25 @@ export class InfoCard extends LitElement {
   render() {
     return html`
       <div class="row">
-        <div class="column">
-          <div class="icon-container">
-            <div class="icon">
-              <span class="corner-border-top"></span>
-              <div
-                icon="${this.icon}"
-                style="width: 30px !important; height: 30px !important;"
-              ></div>
-              <span class="corner-border-bottom"></span>
+      <div class="column">
+        <div class="icon-container">
+          <div class="icon">
+            <span class="corner-border-top"></span>
+            <div
+            icon="${this.icon}"
+            style="width: 30px !important; height: 30px !important;">
             </div>
+            <span class="corner-border-bottom"></span>
           </div>
-          <div class="text-muted">${this.secondary}</div>
         </div>
-        <span class="before"></span>
-        <div class="column grow-1 info row-gap">
-          <div class="primary-info">${this.title}</div>
-          <div class="secondary-info">${this.state} ${this.unit}</div>
-        </div>
-        <span class="after"></span>
+        <div class="text-muted">${this.secondary}</div>
+      </div>
+      <span class="before"></span>
+      <div class="column grow-1 info row-gap">
+        <div class="primary-info">${this.title}</div>
+        <div class="secondary-info">${this.state} ${this.unit}</div>
+      </div>
+      <span class="after"></span>
       </div>
     `;
   }
