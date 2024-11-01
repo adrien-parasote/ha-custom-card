@@ -14,8 +14,7 @@ export class PeopleInfo extends LitElement {
   static styles = [
     styles,
     css`
-      :host {
-      }
+      :host {}
       .avatar {
         border: 1px solid var(--color-darkblue);
         box-shadow: 0 0 5px 1px var(--color-darkblue);
@@ -25,15 +24,15 @@ export class PeopleInfo extends LitElement {
         width: v.ar(--icon-size);
         position: relative;
         align-items: center;
-
-        img {
-          width: 100%;
-          height: 100%;
-          border-radius: 50%;
-        }
-        .avatar-info {
-          align-self: center;
-        }
+      }
+      img {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+      }
+      .avatar-info {
+        align-self: center;
+        margin: auto;
       }
     `,
   ];
