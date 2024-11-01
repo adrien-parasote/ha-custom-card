@@ -9,9 +9,10 @@ import "./toast-card.js";
 
 const VERSION = "DEV";
 console.info(
-  `DASHBOARD-CARD Version: ${VERSION}`,
-  'color: rgb(105, 211, 251); font-weight: bold; background: black'
+  `%cDASHBOARD-CARD Version: ${VERSION}`,
+  "color: rgb(105, 211, 251); font-weight: bold; background: black"
 );
+
 
 const SVG_PATH = "images/control_panel.svg";
 const CONFIG = {
