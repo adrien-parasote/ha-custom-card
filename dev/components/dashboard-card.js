@@ -54,101 +54,117 @@ const CONFIG = {
       icon: 'an icon',
       title: 'École',
       entity: 'entity',
-      secondary: 'Il y a 1h',
-      value: 'On',
+      secondary: '01/11/2024 14:18:33',
+      data: {
+        value: 'On',
+      },
     },
     {
       icon: 'an icon',
       title: 'Quantité pellet poêle',
       secondary: 'Il y a 1 heure',
-      value: '85%',
+      data: {
+        value: '85',
+        unit: '%',
+        render_type: 'graph',
+      },
     },
     {
       icon: 'an icon',
       title: 'Sac pellet en stock',
       secondary: 'Il y a 12 heures',
-      value: '61',
+      data: {
+        value: '40',
+        unit: 'sac',
+        threshold: 0.2,
+        render_type: 'graph',
+      },
     },
     {
       icon: 'an icon',
       title: 'Intermarché',
       secondary: 'E10',
-      value: '1.559 $',
+      data: {
+        value: '1.559 $',
+      },
     },
     {
       icon: 'an icon',
       title: 'Super U',
       secondary: 'E10',
-      value: '1.359 $',
+      data: {
+        value: '1.559 $',
+      },
     },
   ],
 };
 
-import styles from './common-styles.js'
+import styles from './common-styles.js';
 
 export class DashboardCard extends LitElement {
   static get styles() {
-   return [
-    styles,
-    css`
-      :host {
-        --control-img-size: 150px;
+    return [
+      styles,
+      css`
+        :host {
+          --control-img-size: 150px;
 
-        width: 100%;
-        padding: 20px;
-        background: radial-gradient(black 1px, transparent 2px),
-          radial-gradient(black 1px, transparent 2px),
-          linear-gradient(rgb(0, 0, 0) 2px, transparent 0),
-          linear-gradient(
-            45deg,
-            transparent 18px,
-            transparent 18px,
-            var(--color-darkblue-opacity) 18px,
-            var(--color-darkblue-opacity) 19px,
-            transparent 19px,
-            transparent 27px
-          ),
-          linear-gradient(
-            -45deg,
-            transparent 18px,
-            transparent 18px,
-            var(--color-darkblue-opacity) 18px,
-            var(--color-darkblue-opacity) 19px,
-            transparent 19px,
-            transparent 27px
-          ),
-          rgb(0, 0, 0);
-        background-size:
-          27px 27px,
-          27px 27px,
-          100% 3px,
-          27px 27px,
-          27px 27px;
-      }
-      .content {
-        height: 100%;
-      }
-      .second-row {
-        margin-top: 13px;
-      }
-      .control-img {
-        width: var(--control-img-size);
-        min-width: var(--control-img-size);
-        max-width: var(--control-img-size);
-        height: var(--control-img-size);
-      }
-      object {
-        color-scheme: auto;
-      }
-      .people {
-        align-self: center;
-      }
-      .actions {
-        align-self: center;
-        color: var(--action-color);
-      }
-    `,
-  ]};
+          width: 100%;
+          padding: 20px;
+          background: radial-gradient(black 1px, transparent 2px),
+            radial-gradient(black 1px, transparent 2px),
+            linear-gradient(rgb(0, 0, 0) 2px, transparent 0),
+            linear-gradient(
+              45deg,
+              transparent 18px,
+              transparent 18px,
+              var(--color-darkblue-opacity) 18px,
+              var(--color-darkblue-opacity) 19px,
+              transparent 19px,
+              transparent 27px
+            ),
+            linear-gradient(
+              -45deg,
+              transparent 18px,
+              transparent 18px,
+              var(--color-darkblue-opacity) 18px,
+              var(--color-darkblue-opacity) 19px,
+              transparent 19px,
+              transparent 27px
+            ),
+            rgb(0, 0, 0);
+          background-size:
+            27px 27px,
+            27px 27px,
+            100% 3px,
+            27px 27px,
+            27px 27px;
+        }
+        .content {
+          height: 100%;
+        }
+        .second-row {
+          margin-top: 13px;
+        }
+        .control-img {
+          width: var(--control-img-size);
+          min-width: var(--control-img-size);
+          max-width: var(--control-img-size);
+          height: var(--control-img-size);
+        }
+        object {
+          color-scheme: auto;
+        }
+        .people {
+          align-self: center;
+        }
+        .actions {
+          align-self: center;
+          color: var(--action-color);
+        }
+      `,
+    ];
+  }
 
   constructor() {
     super();
@@ -181,18 +197,20 @@ export class DashboardCard extends LitElement {
       <toast-card></toast-card>
       <div class="content column">
         <div class="row">
-            <div class="control-img"><object type="image/svg+xml" data="${SVG_PATH}"></object></div>
-            <div class="column grow-1 row-gap-bottom">
-                <sci-fi-card type="normal">${this.__drawPeople()}</sci-fi-card>
-                <sci-fi-card type="alert" style="margin-top: auto;">${this.__drawActions()}</sci-fi-card>
-            </div>
-            <div class="column row-gap grow-3">
-                HOUR/WEATHER
-            </div>
+          <div class="control-img">
+            <object type="image/svg+xml" data="${SVG_PATH}"></object>
+          </div>
+          <div class="column grow-1 row-gap-bottom">
+            <sci-fi-card type="normal">${this.__drawPeople()}</sci-fi-card>
+            <sci-fi-card type="alert" style="margin-top: auto;"
+              >${this.__drawActions()}</sci-fi-card
+            >
+          </div>
+          <div class="column row-gap grow-3">HOUR/WEATHER</div>
         </div>
         <div class="row column-gap grow-1 second-row">
-            <sci-fi-card type="normal">${this.__drawinfo()}</sci-fi-card>
-            <sci-fi-card type="normal" class="grow-1">HOUSE</sci-fi-card>
+          <sci-fi-card type="normal">${this.__drawinfo()}</sci-fi-card>
+          <div class="grow-1">house</div>
         </div>
       </div>
     `;
@@ -238,14 +256,21 @@ export class DashboardCard extends LitElement {
           const icon = e.icon;
           const title = e.title;
           const secondary = e.secondary;
-          const value = e.value;
-          const unit = '';
+          const value = e.data.value;
+          const unit = e.data.unit ? e.data.unit : '';
+          const render_type = e.data.render_type
+            ? e.data.render_type
+            : 'default';
+          const threshold = e.data.threshold ? e.data.threshold : 0.4;
+
           return html`<info-card
             icon="${icon}"
             title="${title}"
             secondary="${secondary}"
             state="${value}"
             unit="${unit}"
+            renderType="${render_type}"
+            threshold="${threshold}"
           ></info-card>`;
         })}
       </div>

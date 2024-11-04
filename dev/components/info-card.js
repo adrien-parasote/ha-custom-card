@@ -1,6 +1,6 @@
 import {LitElement, html, css} from 'lit';
 
-import styles from './common-styles.js'
+import styles from './common-styles.js';
 
 const VERSION = 'DEV';
 console.info(
@@ -12,7 +12,6 @@ export class InfoCard extends LitElement {
   static styles = [
     styles,
     css`
-      :host {}
       .icon-container {
         padding: 5px;
         display: flex;
@@ -20,12 +19,12 @@ export class InfoCard extends LitElement {
         align-items: center;
       }
       .icon {
-          position: relative;
-          ha-icon {
-            width: 30px !important;
-            height: 30px !important;
-          }
+        position: relative;
+        ha-icon {
+          width: 30px !important;
+          height: 30px !important;
         }
+      }
       .text-muted {
         padding: 5px;
         border-top: 1px solid var(--color-darkblue-opacity);
@@ -56,6 +55,10 @@ export class InfoCard extends LitElement {
         text-align: center;
         padding: 0;
       }
+      .primary-info {
+        padding: 0 5px 5px 5px;
+        width: 130px;
+      }
     `,
   ];
 
@@ -66,6 +69,7 @@ export class InfoCard extends LitElement {
       secondary: {style: String},
       state: {style: String},
       unit: {style: String},
+      renderType: {style: String},
     };
   }
 
@@ -75,33 +79,51 @@ export class InfoCard extends LitElement {
     this.title = this.title ? this.title : 'Default title';
     this.secondary = this.secondary ? this.secondary : 'Secondary';
     this.state = this.state ? this.state : 'State';
-    this.unit = this.unit ? this.unit : 'State';
+    this.unit = this.unit ? this.unit : '';
+    this.renderType = this.renderType ? this.renderType : 'default';
   }
 
   render() {
     return html`
       <div class="row">
-      <div class="column">
-        <div class="icon-container">
-          <div class="icon">
-            <span class="corner-border-top"></span>
-            <div
-            icon="${this.icon}"
-            style="width: 30px !important; height: 30px !important;">
+        <div class="column">
+          <div class="icon-container">
+            <div class="icon">
+              <span class="corner-border-top"></span>
+              <div
+                icon="${this.icon}"
+                style="width: 30px !important; height: 30px !important;"
+              ></div>
+              <span class="corner-border-bottom"></span>
             </div>
-            <span class="corner-border-bottom"></span>
           </div>
+          <div class="primary-info">${this.title}</div>
+          <div class="text-muted">${this.secondary}</div>
         </div>
-        <div class="text-muted">${this.secondary}</div>
-      </div>
-      <span class="before"></span>
-      <div class="column grow-1 info row-gap">
-        <div class="primary-info">${this.title}</div>
-        <div class="secondary-info">${this.state} ${this.unit}</div>
-      </div>
-      <span class="after"></span>
+        <span class="before"></span>
+        ${this.__renderInfo()}
+        <span class="after"></span>
       </div>
     `;
+  }
+
+  __renderInfo() {
+    if (this.renderType == 'default') {
+      return html`<div class="column grow-1 info">
+        <div class="secondary-info">${this.state}</div>
+        <div class="secondary-info">${this.unit}</div>
+      </div>`;
+    } else {
+      const text = this.state + ' ' + this.unit;
+      return html`
+        <representation-bar
+          class="column grow-1"
+          text="${text}"
+          val="${parseFloat(this.state)}"
+          height="70px"
+        ></representation-bar>
+      `;
+    }
   }
 }
 
