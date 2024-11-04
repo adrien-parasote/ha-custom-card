@@ -128,6 +128,14 @@ export class InfoCard extends LitElement {
             size="70px"
           ></representation-bar>
         `;
+      case "circle":
+        return html`
+          <representation-circle
+            class="column grow-1"
+            on="${this.state}"
+            size="70px"
+          ></representation-circle>
+        `;
       default:
         return html`<div class="column grow-1 info">
           <div class="secondary-info">${this.state}</div>

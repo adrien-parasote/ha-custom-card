@@ -56,7 +56,8 @@ const CONFIG = {
       entity: "entity",
       secondary: "01/11/2024 14:18:33",
       data: {
-        value: "On",
+        value: "on",
+        render_type: "circle"
       },
     },
     {
