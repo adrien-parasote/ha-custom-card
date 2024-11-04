@@ -61,7 +61,7 @@ export class InfoCard extends LitElement {
         text-align: center;
         padding: 0;
       }
-      .primary-info {
+      .title {
         padding: 0 5px 5px 5px;
         width: 130px;
       }
@@ -76,6 +76,7 @@ export class InfoCard extends LitElement {
       state: { style: String },
       unit: { style: String },
       renderType: { style: String },
+      text: { style: String },
     };
   }
 
@@ -87,6 +88,7 @@ export class InfoCard extends LitElement {
     this.state = this.state ? this.state : "State";
     this.unit = this.unit ? this.unit : "";
     this.renderType = this.renderType ? this.renderType : "default";
+    this.text = this.text ? this.text : "";
   }
 
   render() {
@@ -100,7 +102,7 @@ export class InfoCard extends LitElement {
               <span class="corner-border-bottom"></span>
             </div>
           </div>
-          <div class="primary-info">${this.title}</div>
+          <div class="primary-info title">${this.title}</div>
           <div class="text-muted">${this.secondary}</div>
         </div>
         <span class="before"></span>
@@ -111,21 +113,27 @@ export class InfoCard extends LitElement {
   }
 
   __renderInfo() {
-    if (this.renderType == "default") {
-      return html`<div class="column grow-1 info">
-        <div class="secondary-info">${this.state}</div>
-        <div class="secondary-info">${this.unit}</div>
-      </div>`;
-    } else {
-      const text = this.state + " " + this.unit;
-      return html`
-        <representation-bar
-          class="column grow-1"
-          text="${text}"
-          val="${parseFloat(this.state)}"
-          size="70px"
-        ></representation-bar>
-      `;
+    switch (this.renderType) {
+      case "text":
+        return html`<div class="column grow-1 info">
+          <div class="primary-info">${this.text}</div>
+          <div class="secondary-info">${this.state}</div>
+        </div>`;
+      case "graph":
+        const text = this.state + " " + this.unit;
+        return html`
+          <representation-bar
+            class="column grow-1"
+            text="${text}"
+            val="${parseFloat(this.state)}"
+            size="70px"
+          ></representation-bar>
+        `;
+      default:
+        return html`<div class="column grow-1 info">
+          <div class="secondary-info">${this.state}</div>
+          <div class="secondary-info">${this.unit}</div>
+        </div>`;
     }
   }
 }

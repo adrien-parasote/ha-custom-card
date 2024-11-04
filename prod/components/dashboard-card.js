@@ -201,6 +201,7 @@ export class DashboardCard extends LitElement {
               : entity.state}"
             unit="${data.unit ? data.unit : ""}"
             renderType="${data.render_type ? data.render_type : "default"}"
+            text="${data.text ? data.text : ""}"
             threshold="${data.threshold ? data.threshold : 0.4}"
           ></info-card>`;
         })}
