@@ -44,8 +44,12 @@ export class RepresentationCircle extends LitElement {
         }
       }
       @keyframes spin {
-        from { transform: rotate(0deg); }
-        to { transform: rotate(360deg); }
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
       }
     `,
   ];
@@ -53,13 +57,13 @@ export class RepresentationCircle extends LitElement {
   static get properties() {
     return {
       on: { type: String },
-      size: { type: String }
+      size: { type: String },
     };
   }
 
   constructor() {
     super();
-    this.on = this.on ? this.on : 'false';
+    this.on = this.on ? this.on : "false";
     this.size = this.size ? this.size : "100%";
   }
 
@@ -77,7 +81,9 @@ export class RepresentationCircle extends LitElement {
   }
 
   __buildCircle() {
-    const color = ["on", true, "true"].includes(this.on) ? "lightblue" : "darkblue-opacity";
+    const color = ["on", true, "true"].includes(this.on)
+      ? "lightblue"
+      : "darkblue-opacity";
     const show = ["on", true, "true"].includes(this.on) ? "show" : "hide";
     return svg`
       <circle 

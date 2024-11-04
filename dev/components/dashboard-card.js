@@ -57,7 +57,7 @@ const CONFIG = {
       secondary: "01/11/2024 14:18:33",
       data: {
         value: "on",
-        render_type: "circle"
+        render_type: "circle",
       },
     },
     {
