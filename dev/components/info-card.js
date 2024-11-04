@@ -1,11 +1,13 @@
-import {LitElement, html, css} from 'lit';
+import { LitElement, html, css } from "lit";
 
-import styles from './common-styles.js';
+// Custom CSS
+import styles from "./common-styles.js";
 
-const VERSION = 'DEV';
+// Version
+const VERSION = "DEV";
 console.info(
   `%cINFO-CARD Version: ${VERSION}`,
-  'color: rgb(105, 211, 251); font-weight: bold; background: black',
+  "color: rgb(105, 211, 251); font-weight: bold; background: black",
 );
 
 export class InfoCard extends LitElement {
@@ -37,7 +39,7 @@ export class InfoCard extends LitElement {
         border-top: 1px solid var(--color-darkblue-opacity);
         border-bottom: 1px solid var(--color-darkblue-opacity);
         width: 15px;
-        content: '';
+        content: "";
       }
       .before {
         border-left: 1px solid var(--color-darkblue-opacity);
@@ -64,23 +66,23 @@ export class InfoCard extends LitElement {
 
   static get properties() {
     return {
-      icon: {style: String},
-      title: {style: String},
-      secondary: {style: String},
-      state: {style: String},
-      unit: {style: String},
-      renderType: {style: String},
+      icon: { style: String },
+      title: { style: String },
+      secondary: { style: String },
+      state: { style: String },
+      unit: { style: String },
+      renderType: { style: String },
     };
   }
 
   constructor() {
     super();
-    this.icon = this.icon ? this.icon : 'mdi:cursor-default';
-    this.title = this.title ? this.title : 'Default title';
-    this.secondary = this.secondary ? this.secondary : 'Secondary';
-    this.state = this.state ? this.state : 'State';
-    this.unit = this.unit ? this.unit : '';
-    this.renderType = this.renderType ? this.renderType : 'default';
+    this.icon = this.icon ? this.icon : "mdi:cursor-default";
+    this.title = this.title ? this.title : "Default title";
+    this.secondary = this.secondary ? this.secondary : "Secondary";
+    this.state = this.state ? this.state : "State";
+    this.unit = this.unit ? this.unit : "";
+    this.renderType = this.renderType ? this.renderType : "default";
   }
 
   render() {
@@ -108,13 +110,13 @@ export class InfoCard extends LitElement {
   }
 
   __renderInfo() {
-    if (this.renderType == 'default') {
+    if (this.renderType == "default") {
       return html`<div class="column grow-1 info">
         <div class="secondary-info">${this.state}</div>
         <div class="secondary-info">${this.unit}</div>
       </div>`;
     } else {
-      const text = this.state + ' ' + this.unit;
+      const text = this.state + " " + this.unit;
       return html`
         <representation-bar
           class="column grow-1"
@@ -127,4 +129,4 @@ export class InfoCard extends LitElement {
   }
 }
 
-window.customElements.define('info-card', InfoCard);
+window.customElements.define("info-card", InfoCard);

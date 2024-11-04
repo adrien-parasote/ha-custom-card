@@ -1,8 +1,10 @@
-import {LitElement, html, css} from 'lit';
+import { LitElement, html, css } from "lit";
 
-import styles from './common-styles.js'
+// Custom CSS
+import styles from "./common-styles.js";
 
-const VERSION = 'DEV';
+// Version
+const VERSION = "DEV";
 
 export class ToastCard extends LitElement {
   static styles = [
@@ -18,26 +20,6 @@ export class ToastCard extends LitElement {
         position: fixed;
         bottom: 10px;
         left: 60px;
-      }
-      @-webkit-keyframes fadein, @keyframes fadein {
-        from {
-          bottom: 0;
-          opacity: 0;
-        }
-        to {
-          bottom: 30px;
-          opacity: 1;
-        }
-      }
-      @-webkit-keyframes fadeout, @keyframes fadeout {
-        from {
-          bottom: 30px;
-          opacity: 1;
-        }
-        to {
-          bottom: 0;
-          opacity: 0;
-        }
       }
       .toast {
         visibility: hidden;
@@ -79,40 +61,60 @@ export class ToastCard extends LitElement {
       }
       .toast.show {
         visibility: visible;
-        -webkit-animation-name: fadeIn 0.5s ease-in forwards, fadeOut 3.5s 1s ease-out forwards;
-        animation: fadeIn 0.5s ease-in forwards, fadeOut 3.5s 1s ease-out forwards;
+        -webkit-animation-name:
+          fadeIn 0.5s ease-in forwards,
+          fadeOut 3.5s 1s ease-out forwards;
+        animation:
+          fadeIn 0.5s ease-in forwards,
+          fadeOut 3.5s 1s ease-out forwards;
       }
-      @-webkit-keyframes fadeIn {  
-        from { opacity:0; }  
-        to { opacity:1; }  
+      @-webkit-keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
       }
-      @keyframes fadeIn {  
-        from { opacity:0; }  
-        to { opacity:1; }  
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
       }
-      @-webkit-keyframes fadeOut {  
-        from { opacity:1; }  
-        to { opacity:0; }  
+      @-webkit-keyframes fadeOut {
+        from {
+          opacity: 1;
+        }
+        to {
+          opacity: 0;
+        }
       }
-      @keyframes fadeOut {  
-        from { opacity:1; }  
-        to { opacity:0; }  
+      @keyframes fadeOut {
+        from {
+          opacity: 1;
+        }
+        to {
+          opacity: 0;
+        }
       }
     `,
   ];
 
   static get properties() {
     return {
-      msg: {type: String},
+      msg: { type: String },
     };
   }
 
   constructor() {
     super();
-    this.msg = this.msg ? this.msg : '';
+    this.msg = this.msg ? this.msg : "";
     console.info(
       `%cTOAST-CARD Version: ${VERSION}`,
-      'color: rgb(105, 211, 251); font-weight: bold; background: black',
+      "color: rgb(105, 211, 251); font-weight: bold; background: black",
     );
   }
 
@@ -127,12 +129,12 @@ export class ToastCard extends LitElement {
 
   show(msg) {
     this.msg = msg;
-    const toast = this.shadowRoot.querySelector('.toast');
-    toast.classList.add('show');
+    const toast = this.shadowRoot.querySelector(".toast");
+    toast.classList.add("show");
     setTimeout(function () {
-      toast.classList.remove('show');
+      toast.classList.remove("show");
     }, 4000);
   }
 }
 
-window.customElements.define('toast-card', ToastCard);
+window.customElements.define("toast-card", ToastCard);

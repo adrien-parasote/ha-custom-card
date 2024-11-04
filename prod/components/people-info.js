@@ -2,26 +2,27 @@ import {
   LitElement,
   html,
   css,
-} from 'https://unpkg.com/lit-element@3.2.1/lit-element.js?module';
+} from "https://unpkg.com/lit-element@3.2.1/lit-element.js?module";
 
 // Custom CSS
-import styles from './common-styles.js'
+import styles from "./common-styles.js";
 
 // Images
-const DEFAULT_IMG = '/local/custom/images/people.png';
+const DEFAULT_IMG = "/local/custom/images/people.png";
 
 // Version
-const VERSION = '1.0';
+const VERSION = "1.0";
 console.info(
   `%cPEOPLE-CARD Version: ${VERSION}`,
-  'color: rgb(105, 211, 251); font-weight: bold; background: black',
+  "color: rgb(105, 211, 251); font-weight: bold; background: black",
 );
 
 export class PeopleInfo extends LitElement {
   static styles = [
     styles,
     css`
-      :host {}
+      :host {
+      }
       .avatar {
         border: 1px solid var(--color-darkblue);
         box-shadow: 0 0 5px 1px var(--color-darkblue);
@@ -46,17 +47,17 @@ export class PeopleInfo extends LitElement {
 
   static get properties() {
     return {
-      img: {type: String},
-      firstName: {type: String},
-      location: {type: String},
+      img: { type: String },
+      firstName: { type: String },
+      location: { type: String },
     };
   }
 
   constructor() {
     super();
     this.img = this.img ? this.img : DEFAULT_IMG;
-    this.firstName = this.firstName ? this.firstName : 'Punk';
-    this.location = this.location ? this.location : 'Spaceship';
+    this.firstName = this.firstName ? this.firstName : "Punk";
+    this.location = this.location ? this.location : "Spaceship";
   }
 
   render() {
@@ -74,4 +75,4 @@ export class PeopleInfo extends LitElement {
   }
 }
 
-window.customElements.define('people-info', PeopleInfo);
+window.customElements.define("people-info", PeopleInfo);

@@ -1,11 +1,13 @@
-import {LitElement, html, css, svg} from 'lit';
+import { LitElement, html, css, svg } from "lit";
 
-import styles from './common-styles.js';
+// Custom CSS
+import styles from "./common-styles.js";
 
-const VERSION = 'DEV';
+// Version
+const VERSION = "DEV";
 console.info(
   `%cREPRESENTATION-BAR Version: ${VERSION}`,
-  'color: rgb(105, 211, 251); font-weight: bold; background: black',
+  "color: rgb(105, 211, 251); font-weight: bold; background: black",
 );
 
 export class RepresentationBar extends LitElement {
@@ -34,20 +36,20 @@ export class RepresentationBar extends LitElement {
 
   static get properties() {
     return {
-      val: {type: Number},
-      max: {type: Number},
-      text: {type: String},
-      threshold: {type: Number},
-      height: {type: String},
+      val: { type: Number },
+      max: { type: Number },
+      text: { type: String },
+      threshold: { type: Number },
+      height: { type: String },
     };
   }
 
   constructor() {
     super();
-    this.text = this.text ? this.text : '';
+    this.text = this.text ? this.text : "";
     this.val = this.val ? this.val : 0;
     this.max = this.max ? this.val : 100;
-    this.height = this.height ? this.height : '100%';
+    this.height = this.height ? this.height : "100%";
   }
 
   render() {
@@ -78,11 +80,10 @@ export class RepresentationBar extends LitElement {
   __buildRow(nb, disable, warning) {
     const yPos = 5 + nb * 10;
     const color = disable
-      ? 'darkblue-opacity'
+      ? "darkblue-opacity"
       : warning
-        ? 'amber'
-        : 'lightblue';
-    // filter: url(&quot;#drop-shadow-filter-${color}&quot;);
+        ? "amber"
+        : "lightblue";
     return svg`
       <path style="
           fill: none; 
@@ -96,4 +97,4 @@ export class RepresentationBar extends LitElement {
   }
 }
 
-window.customElements.define('representation-bar', RepresentationBar);
+window.customElements.define("representation-bar", RepresentationBar);

@@ -1,49 +1,49 @@
-import {LitElement, html, css} from 'lit';
+import { LitElement, html, css } from "lit";
 
-const VERSION = 'DEV';
-const SVG_PATH = '/dev/images/control_panel.svg';
+const VERSION = "DEV";
+const SVG_PATH = "/dev/images/control_panel.svg";
 const CONFIG = {
-  people: ['person.adrien', 'person.virginie'],
+  people: ["person.adrien", "person.virginie"],
   actions: [
     {
-      icon: 'mdi:bell-ring-outline',
-      title: 'Call kids',
+      icon: "mdi:bell-ring-outline",
+      title: "Call kids",
       tap_action: {
-        service: 'automation.trigger',
+        service: "automation.trigger",
         service_data: {
-          entity_id: 'automation.call_kids',
+          entity_id: "automation.call_kids",
         },
       },
     },
     {
-      icon: 'mdi:door',
-      title: 'Clean entry',
+      icon: "mdi:door",
+      title: "Clean entry",
       tap_action: {
-        service: 'xiaomi_miio.vacuum_clean_segment',
+        service: "xiaomi_miio.vacuum_clean_segment",
         service_data: {
-          entity_id: 'vacuum.dobby',
+          entity_id: "vacuum.dobby",
           segments: [17],
         },
       },
     },
     {
-      icon: 'mdi:broom',
-      title: 'Clean daily',
+      icon: "mdi:broom",
+      title: "Clean daily",
       tap_action: {
-        service: 'xiaomi_miio.vacuum_clean_segment',
+        service: "xiaomi_miio.vacuum_clean_segment",
         service_data: {
-          entity_id: 'vacuum.dobby',
+          entity_id: "vacuum.dobby",
           segments: [17, 18],
         },
       },
     },
     {
-      icon: 'mdi:silverware-fork-knife',
-      title: 'Clean kitchen',
+      icon: "mdi:silverware-fork-knife",
+      title: "Clean kitchen",
       tap_action: {
-        service: 'xiaomi_miio.vacuum_clean_segment',
+        service: "xiaomi_miio.vacuum_clean_segment",
         service_data: {
-          entity_id: 'vacuum.dobby',
+          entity_id: "vacuum.dobby",
           segments: [17, 18],
         },
       },
@@ -51,55 +51,55 @@ const CONFIG = {
   ],
   info: [
     {
-      icon: 'an icon',
-      title: 'École',
-      entity: 'entity',
-      secondary: '01/11/2024 14:18:33',
+      icon: "an icon",
+      title: "École",
+      entity: "entity",
+      secondary: "01/11/2024 14:18:33",
       data: {
-        value: 'On',
+        value: "On",
       },
     },
     {
-      icon: 'an icon',
-      title: 'Quantité pellet poêle',
-      secondary: 'Il y a 1 heure',
+      icon: "an icon",
+      title: "Quantité pellet poêle",
+      secondary: "Il y a 1 heure",
       data: {
-        value: '85',
-        unit: '%',
-        render_type: 'graph',
+        value: "85",
+        unit: "%",
+        render_type: "graph",
       },
     },
     {
-      icon: 'an icon',
-      title: 'Sac pellet en stock',
-      secondary: 'Il y a 12 heures',
+      icon: "an icon",
+      title: "Sac pellet en stock",
+      secondary: "Il y a 12 heures",
       data: {
-        value: '40',
-        unit: 'sac',
+        value: "40",
+        unit: "sac",
         threshold: 0.2,
-        render_type: 'graph',
+        render_type: "graph",
       },
     },
     {
-      icon: 'an icon',
-      title: 'Intermarché',
-      secondary: 'E10',
+      icon: "an icon",
+      title: "Intermarché",
+      secondary: "E10",
       data: {
-        value: '1.559 $',
+        value: "1.559 $",
       },
     },
     {
-      icon: 'an icon',
-      title: 'Super U',
-      secondary: 'E10',
+      icon: "an icon",
+      title: "Super U",
+      secondary: "E10",
       data: {
-        value: '1.559 $',
+        value: "1.559 $",
       },
     },
   ],
 };
 
-import styles from './common-styles.js';
+import styles from "./common-styles.js";
 
 export class DashboardCard extends LitElement {
   static get styles() {
@@ -171,19 +171,19 @@ export class DashboardCard extends LitElement {
     this.setConfig(CONFIG);
     console.info(
       `%cDASHBOARD-CARD Version: ${VERSION}`,
-      'color: rgb(105, 211, 251); font-weight: bold; background: black',
+      "color: rgb(105, 211, 251); font-weight: bold; background: black",
     );
   }
 
   setConfig(config) {
     if (!config.people) {
-      throw new Error('You need to define people');
+      throw new Error("You need to define people");
     }
     if (!config.actions) {
-      throw new Error('You need to define actions');
+      throw new Error("You need to define actions");
     }
     if (!config.info) {
-      throw new Error('You need to define info');
+      throw new Error("You need to define info");
     }
     this.config = config;
   }
@@ -244,33 +244,23 @@ export class DashboardCard extends LitElement {
 
   __actionTapped(e) {
     const entity = this.config.actions[e.detail.id];
-    const services = entity.tap_action.service.split('.');
-    const toast = this.shadowRoot.querySelector('toast-card');
-    toast.show('"'.concat(entity.title, '"', ' action en cours'));
+    const services = entity.tap_action.service.split(".");
+    const toast = this.shadowRoot.querySelector("toast-card");
+    toast.show('"'.concat(entity.title, '"', " action en cours"));
   }
 
   __drawinfo() {
     return html`
       <div class="column row-gap">
         ${this.config.info.map((e) => {
-          const icon = e.icon;
-          const title = e.title;
-          const secondary = e.secondary;
-          const value = e.data.value;
-          const unit = e.data.unit ? e.data.unit : '';
-          const render_type = e.data.render_type
-            ? e.data.render_type
-            : 'default';
-          const threshold = e.data.threshold ? e.data.threshold : 0.4;
-
           return html`<info-card
-            icon="${icon}"
-            title="${title}"
-            secondary="${secondary}"
-            state="${value}"
-            unit="${unit}"
-            renderType="${render_type}"
-            threshold="${threshold}"
+            icon="${e.icon}"
+            title="${e.title}"
+            secondary="${e.secondary}"
+            state="${e.data.value}"
+            unit="${e.data.unit ? e.data.unit : ""}"
+            renderType="${e.data.render_type ? e.data.render_type : "default"}"
+            threshold="${e.data.threshold ? e.data.threshold : 0.4}"
           ></info-card>`;
         })}
       </div>
@@ -278,4 +268,4 @@ export class DashboardCard extends LitElement {
   }
 }
 
-window.customElements.define('dashboard-card', DashboardCard);
+window.customElements.define("dashboard-card", DashboardCard);

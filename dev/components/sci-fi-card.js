@@ -1,11 +1,13 @@
-import {LitElement, html, css} from 'lit';
+import { LitElement, html, css } from "lit";
 
-import styles from './common-styles.js'
+// Custom CSS
+import styles from "./common-styles.js";
 
-const VERSION = 'DEV';
+// Version
+const VERSION = "DEV";
 console.info(
   `%cSCI-FI-CARD Version: ${VERSION}`,
-  'color: rgb(105, 211, 251); font-weight: bold; background: black',
+  "color: rgb(105, 211, 251); font-weight: bold; background: black",
 );
 
 export class SciFiCard extends LitElement {
@@ -42,17 +44,17 @@ export class SciFiCard extends LitElement {
 
   static get properties() {
     return {
-      type: {type: String},
+      type: { type: String },
     };
   }
 
   constructor() {
     super();
-    this.type = this.type ? this.type : '';
+    this.type = this.type ? this.type : "";
   }
 
   render() {
-    const cls = this.type && this.type != 'alert' ? '' : '-alert';
+    const cls = this.type && this.type != "alert" ? "" : "-alert";
     return html`
       <div class="column card${cls}">
         <span class="corner-border-top${cls}"></span>
@@ -65,4 +67,4 @@ export class SciFiCard extends LitElement {
   }
 }
 
-window.customElements.define('sci-fi-card', SciFiCard);
+window.customElements.define("sci-fi-card", SciFiCard);
