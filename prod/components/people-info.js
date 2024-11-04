@@ -21,8 +21,6 @@ export class PeopleInfo extends LitElement {
   static styles = [
     styles,
     css`
-      :host {
-      }
       .avatar {
         border: 1px solid var(--color-darkblue);
         box-shadow: 0 0 5px 1px var(--color-darkblue);
@@ -34,7 +32,7 @@ export class PeopleInfo extends LitElement {
         align-items: center;
       }
       img {
-        width: 100%;
+        width: auto;
         height: 100%;
         border-radius: 50%;
       }

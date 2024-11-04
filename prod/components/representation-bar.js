@@ -1,10 +1,15 @@
-import { LitElement, html, css, svg } from "lit";
+import {
+  LitElement,
+  html,
+  css,
+  svg,
+} from "https://unpkg.com/lit-element@3.2.1/lit-element.js?module";
 
 // Custom CSS
 import styles from "./common-styles.js";
 
 // Version
-const VERSION = "DEV";
+const VERSION = "1.0";
 console.info(
   `%cREPRESENTATION-BAR Version: ${VERSION}`,
   "color: rgb(105, 211, 251); font-weight: bold; background: black",

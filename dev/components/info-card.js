@@ -122,7 +122,7 @@ export class InfoCard extends LitElement {
           class="column grow-1"
           text="${text}"
           val="${parseFloat(this.state)}"
-          height="70px"
+          size="70px"
         ></representation-bar>
       `;
     }
