@@ -62,7 +62,7 @@ const CONFIG = {
     {
       icon: "an icon",
       title: "Quantité pellet poêle",
-      secondary: "Il y a 1 heure",
+      secondary: "01/11/2024 14:18:33",
       data: {
         value: "85",
         unit: "%",
@@ -72,7 +72,7 @@ const CONFIG = {
     {
       icon: "an icon",
       title: "Sac pellet en stock",
-      secondary: "Il y a 12 heures",
+      secondary: "01/11/2024 14:18:33",
       data: {
         value: "40",
         unit: "sac",
@@ -83,17 +83,21 @@ const CONFIG = {
     {
       icon: "an icon",
       title: "Intermarché",
-      secondary: "E10",
+      secondary: "01/11/2024 14:18:33",
       data: {
         value: "1.559 $",
+        text: "E10",
+        render_type: "text",
       },
     },
     {
       icon: "an icon",
       title: "Super U",
-      secondary: "E10",
+      secondary: "01/11/2024 14:18:33",
       data: {
         value: "1.559 $",
+        text: "E10",
+        render_type: "text",
       },
     },
   ],
@@ -260,6 +264,7 @@ export class DashboardCard extends LitElement {
             state="${e.data.value}"
             unit="${e.data.unit ? e.data.unit : ""}"
             renderType="${e.data.render_type ? e.data.render_type : "default"}"
+            text="${e.data.text ? e.data.text : ""}"
             threshold="${e.data.threshold ? e.data.threshold : 0.4}"
           ></info-card>`;
         })}
