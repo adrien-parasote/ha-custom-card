@@ -55,7 +55,10 @@ export class RepresentationBar extends LitElement {
   render() {
     return html`
       <div class="column">
-        <div class="svg-container" style="height: ${this.size};width: ${this.size};">
+        <div
+          class="svg-container"
+          style="height: ${this.size};width: ${this.size};"
+        >
           <svg width="100%" viewBox="0 0 100 200" style="background: none;">
             ${this.__buildRows()}
           </svg>
