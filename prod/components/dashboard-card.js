@@ -4,6 +4,14 @@ import {
   css,
 } from "https://unpkg.com/lit-element@3.2.1/lit-element.js?module";
 
+// Custom components import
+import "./action-card.js";
+import "./info-card.js";
+import "./people-info.js";
+import "./sci-fi-card.js";
+import "./toast-card.js";
+import "./weather-clock-card.js";
+
 // Custom CSS
 import styles from "./common-styles.js";
 
@@ -11,7 +19,7 @@ import styles from "./common-styles.js";
 const SVG_PATH = "../local/custom/images/control_panel.svg";
 
 // Version
-const VERSION = "0.7";
+const VERSION = "0.8";
 
 export class DashboardCard extends LitElement {
   static get styles() {
@@ -78,13 +86,6 @@ export class DashboardCard extends LitElement {
     ];
   }
 
-  static get properties() {
-    return {
-      hass: {},
-      config: {},
-    };
-  }
-
   constructor() {
     super();
     console.info(
@@ -124,7 +125,9 @@ export class DashboardCard extends LitElement {
               >${this.__drawActions()}</sci-fi-card
             >
           </div>
-          <div class="column row-gap grow-3">HOUR/WEATHER</div>
+          <div class="row column-gap grow-3">
+            <weather-clock-card></weather-clock-card>
+          </div>
         </div>
         <div class="row column-gap grow-1 second-row">
           <sci-fi-card type="normal">${this.__drawinfo()}</sci-fi-card>

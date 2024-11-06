@@ -6,7 +6,7 @@ import styles from "./common-styles.js";
 // Version
 const VERSION = "DEV";
 console.info(
-  `%cCIRCLE-SVG Version: ${VERSION}`,
+  `%cWEATHER-CLOCK-CARD Version: ${VERSION}`,
   "color: rgb(105, 211, 251); font-weight: bold; background: black",
 );
 

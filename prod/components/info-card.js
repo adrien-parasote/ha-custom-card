@@ -4,6 +4,10 @@ import {
   css,
 } from "https://unpkg.com/lit-element@3.2.1/lit-element.js?module";
 
+// Custom components import
+import "./representation-bar.js";
+import "./representation-circle.js";
+
 // Custom CSS
 import styles from "./common-styles.js";
 
@@ -33,23 +37,23 @@ export class InfoCard extends LitElement {
       }
       .text-muted {
         padding: 5px;
-        border-top: 1px solid var(--color-darkblue-opacity);
+        border-top: 1px solid var(--color-darkblue);
         font-size: var(--font-size-small);
         min-width: 100px;
         text-align: center;
       }
       .before,
       .after {
-        border-top: 1px solid var(--color-darkblue-opacity);
-        border-bottom: 1px solid var(--color-darkblue-opacity);
+        border-top: 1px solid var(--color-darkblue);
+        border-bottom: 1px solid var(--color-darkblue);
         width: 15px;
         content: "";
       }
       .before {
-        border-left: 1px solid var(--color-darkblue-opacity);
+        border-left: 1px solid var(--color-darkblue);
       }
       .after {
-        border-right: 1px solid var(--color-darkblue-opacity);
+        border-right: 1px solid var(--color-darkblue);
       }
       .info {
         margin: auto;
