@@ -1,110 +1,23 @@
 import { LitElement, html, css } from "lit";
 
-const VERSION = "DEV";
-const SVG_PATH = "/dev/images/control_panel.svg";
-const CONFIG = {
-  people: ["person.adrien", "person.virginie"],
-  actions: [
-    {
-      icon: "mdi:bell-ring-outline",
-      title: "Call kids",
-      tap_action: {
-        service: "automation.trigger",
-        service_data: {
-          entity_id: "automation.call_kids",
-        },
-      },
-    },
-    {
-      icon: "mdi:door",
-      title: "Clean entry",
-      tap_action: {
-        service: "xiaomi_miio.vacuum_clean_segment",
-        service_data: {
-          entity_id: "vacuum.dobby",
-          segments: [17],
-        },
-      },
-    },
-    {
-      icon: "mdi:broom",
-      title: "Clean daily",
-      tap_action: {
-        service: "xiaomi_miio.vacuum_clean_segment",
-        service_data: {
-          entity_id: "vacuum.dobby",
-          segments: [17, 18],
-        },
-      },
-    },
-    {
-      icon: "mdi:silverware-fork-knife",
-      title: "Clean kitchen",
-      tap_action: {
-        service: "xiaomi_miio.vacuum_clean_segment",
-        service_data: {
-          entity_id: "vacuum.dobby",
-          segments: [17, 18],
-        },
-      },
-    },
-  ],
-  info: [
-    {
-      icon: "an icon",
-      title: "École",
-      entity: "entity",
-      secondary: "01/11/2024 14:18:33",
-      data: {
-        value: "on",
-        render_type: "circle",
-      },
-    },
-    {
-      icon: "an icon",
-      title: "Quantité pellet poêle",
-      secondary: "01/11/2024 14:18:33",
-      data: {
-        value: "85",
-        unit: "%",
-        render_type: "graph",
-      },
-    },
-    {
-      icon: "an icon",
-      title: "Sac pellet en stock",
-      secondary: "01/11/2024 14:18:33",
-      data: {
-        value: "40",
-        unit: "sac",
-        threshold: 0.2,
-        render_type: "graph",
-      },
-    },
-    {
-      icon: "an icon",
-      title: "Intermarché",
-      secondary: "01/11/2024 14:18:33",
-      data: {
-        value: "1.559 $",
-        text: "E10",
-        render_type: "text",
-      },
-    },
-    {
-      icon: "an icon",
-      title: "Super U",
-      secondary: "01/11/2024 14:18:33",
-      data: {
-        value: "1.559 $",
-        text: "E10",
-        render_type: "text",
-      },
-    },
-  ],
-};
+// Custom components import
+import "./action-card.js";
+import "./info-card.js";
+import "./people-info.js";
+import "./sci-fi-card.js";
+import "./toast-card.js";
+import "./weather-clock-card.js";
 
+import config from "./dev-config.js";
+
+// Custom CSS
 import styles from "./common-styles.js";
+
+// Images
+const SVG_PATH = "/dev/images/control_panel.svg";
+
+// Version
+const VERSION = "DEV";
 
 export class DashboardCard extends LitElement {
   static get styles() {
@@ -173,7 +86,7 @@ export class DashboardCard extends LitElement {
 
   constructor() {
     super();
-    this.setConfig(CONFIG);
+    this.setConfig(config);
     console.info(
       `%cDASHBOARD-CARD Version: ${VERSION}`,
       "color: rgb(105, 211, 251); font-weight: bold; background: black",
@@ -211,7 +124,9 @@ export class DashboardCard extends LitElement {
               >${this.__drawActions()}</sci-fi-card
             >
           </div>
-          <div class="column row-gap grow-3">HOUR/WEATHER</div>
+          <div class="row column-gap grow-3">
+            <weather-clock-card></weather-clock-card>
+          </div>
         </div>
         <div class="row column-gap grow-1 second-row">
           <sci-fi-card type="normal">${this.__drawinfo()}</sci-fi-card>

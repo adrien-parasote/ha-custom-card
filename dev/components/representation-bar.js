@@ -20,11 +20,12 @@ export class RepresentationBar extends LitElement {
       }
       .svg-container {
         display: flex;
-        flex-direction: row;
       }
-      svg {
-        overflow: hidden;
-        display: block;
+      path {
+        fill: none;
+        stroke-width: 5px;
+        filter: drop-shadow(0px 0px 5px var(--color-darkblue));
+        -webkit-filter: drop-shadow(0px 0px 5px var(--color-darkblue));
       }
       .text {
         text-align: center;
@@ -88,14 +89,7 @@ export class RepresentationBar extends LitElement {
         ? "amber"
         : "lightblue";
     return svg`
-      <path style="
-          fill: none; 
-          stroke: var(--color-${color});
-          stroke-width: 5px; 
-          stroke-linecap: round; 
-          filter: drop-shadow(var(--color-${color}) 0px 0px 5px);"
-        d="M 5 ${yPos} L 95 ${yPos}"
-      ></path>
+      <path style="stroke: var(--color-${color});" d="M 5 ${yPos} L 95 ${yPos}"></path>
     `;
   }
 }

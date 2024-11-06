@@ -28,9 +28,13 @@ export class RepresentationCircle extends LitElement {
         overflow: hidden;
         display: block;
       }
+      circle {
+        filter: url("#drop-shadow-filter-blue");
+      }
       .dot {
         transform-origin: 150px 150px;
         animation: spin 5s infinite linear;
+        fill: white;
       }
       .hide {
         display: none;
@@ -74,6 +78,28 @@ export class RepresentationCircle extends LitElement {
         style="height: ${this.size};width: ${this.size};"
       >
         <svg width="100%" viewBox="0 0 300 300" style="background: none;">
+          <defs>
+            <filter
+              id="drop-shadow-filter-blue"
+              color-interpolation-filters="sRGB"
+              x="-50%"
+              y="-50%"
+              width="200%"
+              height="200%"
+            >
+              <feGaussianBlur in="SourceAlpha" stdDeviation="5" />
+              <feOffset dx="0" dy="0" />
+              <feComponentTransfer result="offsetblur">
+                <feFuncA id="spread-ctrl" type="linear" slope="1" />
+              </feComponentTransfer>
+              <feFlood flood-color="var(--color-lightblue)" />
+              <feComposite in2="offsetblur" operator="in" />
+              <feMerge>
+                <feMergeNode />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
+            </filter>
+          </defs>
           ${this.__buildCircle()}
         </svg>
       </div>
@@ -86,28 +112,14 @@ export class RepresentationCircle extends LitElement {
       : "darkblue-opacity";
     const show = ["on", true, "true"].includes(this.on) ? "show" : "hide";
     return svg`
-      <circle 
-        cx="150"
-        cy="150" 
-        r="60"
-        style="
+      <circle cx="150" cy="150" r="60" style="
           fill: var(--color-${color}); 
           stroke: var(--color-darkblue);
           stroke-width: 10px; 
           stroke-linecap: round;
-          filter: drop-shadow(var(--color-${color}) 0px 0px 5px);
-        "
-      />
-      <circle class="dot ${show}" r="15" cx="50" cy="150" style="
-        fill: white; 
-        stroke-width: none; 
-        filter: drop-shadow(var(--color-${color}) 0px 0px 5px);
-      "/> 
-      <circle class="dot ${show}" r="15" cx="250" cy="150" style="
-        fill: white; 
-        stroke-width: none; 
-        filter: drop-shadow(var(--color-${color}) 0px 0px 5px);
-      "/>   
+      "/>
+      <circle class="dot ${show}" r="15" cx="50" cy="150"/> 
+      <circle class="dot ${show}" r="15" cx="250" cy="150"/>   
     `;
   }
 }
