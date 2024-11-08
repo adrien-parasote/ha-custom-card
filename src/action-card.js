@@ -18,7 +18,16 @@ export class ActionCard extends LitElement {
   static styles = [
     styles,
     css`
-      :host {
+      .column {
+        align-items: center
+      }
+      .title-action {
+        text-align: center;    
+        color: var(--color-amber);
+        text-shadow: 0px 0px 5px var(--color-amber);
+        font-size: x-small;
+      }
+      .action {
         align-items: center;
         text-align: center;
         padding: 5px;
@@ -33,7 +42,7 @@ export class ActionCard extends LitElement {
         color: var(--action-color);
         text-shadow: none;
       }
-      .column:before {
+      .action:before {
         content: "";
         position: absolute;
         z-index: -2;
@@ -67,7 +76,7 @@ export class ActionCard extends LitElement {
         animation-timing-function: linear;
         animation-iteration-count: infinite;
       }
-      .column:after {
+      .action:after {
         content: "";
         position: absolute;
         z-index: -1;
@@ -78,12 +87,12 @@ export class ActionCard extends LitElement {
         background-color: var(--action-background-color);
         border-radius: var(--border-radius);
       }
-      .column:hover {
+      .action:hover {
         cursor: pointer;
         font-weight: bold;
         color: white;
       }
-      .column:hover:after {
+      .action:hover:after {
         background-color: var(--color-darkyellow);
       }
       @-webkit-keyframes rotate {
@@ -122,8 +131,8 @@ export class ActionCard extends LitElement {
 
   render() {
     return html`
-      <div class="column" @click=${(e) => this.__tapped(e)}>
-        <ha-icon icon="${this.icon}"></ha-icon>
+      <div class="column row-gap" @click=${(e) => this.__tapped(e)}>
+        <ha-icon class="action" icon="${this.icon}"></ha-icon>
         <div class="title-action">${this.title}</div>
       </div>
     `;

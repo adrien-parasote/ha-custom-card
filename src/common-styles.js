@@ -18,7 +18,7 @@ export default css`
     --font-size-normal: 14px;
     --font-size-small: small;
     --border-radius: 10px;
-    --action-size: 50px;
+    --action-size: 24px;
     --action-color: rgb(139, 128, 0);
     --action-background-color: rgb(255, 255, 240);
     --toast-background-color: rgb(0, 0, 0);
