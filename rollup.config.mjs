@@ -2,7 +2,7 @@ import json from '@rollup/plugin-json';
 import terser from '@rollup/plugin-terser';
 import resolve from '@rollup/plugin-node-resolve';
 import replace from '@rollup/plugin-replace';
-
+import minifyHTML from 'rollup-plugin-minify-html-literals';
 
 export default {
 	input: 'dist/dashboard-card.js',
@@ -19,6 +19,7 @@ export default {
 	plugins: [
 		replace({preventAssignment: false, 'Reflect.decorate': 'undefined'}),
 		resolve(),
+		minifyHTML.default(),
 		terser({
 			ecma: 2021,
 			module: true,
