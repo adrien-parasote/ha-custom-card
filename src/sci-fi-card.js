@@ -2,7 +2,7 @@ import {
   LitElement,
   html,
   css,
-} from "https://unpkg.com/lit-element@3.2.1/lit-element.js?module";
+} from "lit";
 
 // Custom CSS
 import styles from "./common-styles.js";
@@ -18,7 +18,7 @@ export class SciFiCard extends LitElement {
   static styles = [
     styles,
     css`
-      :host {        
+      :host {
         width: fit-content;
       }
       .card,

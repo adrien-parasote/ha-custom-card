@@ -10,9 +10,9 @@ export const TOAST_CARD_VERSION = "DEV";
 export const WEATHER_CLOCK_CARD_VERSION = "DEV";
 
 /****** IMAGE PATH *******/
-const IMG_PATH = "/images"
-export const SVG_FOLDER_PATH = IMG_PATH+"/svg/";
-export const SVG_CONTROL_PANEL_PATH = SVG_FOLDER_PATH+"control_panel.svg";
+const IMG_PATH = "/images";
+export const SVG_FOLDER_PATH = IMG_PATH + "/svg/";
+export const SVG_CONTROL_PANEL_PATH = SVG_FOLDER_PATH + "control_panel.svg";
 
 /****** DEV HASS *******/
 export const hass = {

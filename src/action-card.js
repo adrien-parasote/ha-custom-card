@@ -2,13 +2,13 @@ import {
   LitElement,
   html,
   css,
-} from "https://unpkg.com/lit-element@3.2.1/lit-element.js?module";
+} from "lit";
 
 // Custom CSS
 import styles from "./common-styles.js";
 
 // Version
-import { ACTION_CARD_VERSION }  from "./config.js";
+import { ACTION_CARD_VERSION } from "./config.js";
 console.info(
   `%cACTION-CARD Version: ${ACTION_CARD_VERSION}`,
   "color: rgb(105, 211, 251); font-weight: bold; background: black",

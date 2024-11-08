@@ -2,7 +2,7 @@ import {
   LitElement,
   html,
   css,
-} from "https://unpkg.com/lit-element@3.2.1/lit-element.js?module";
+} from "lit";
 
 // Custom components import
 import "./representation-bar.js";

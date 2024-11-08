@@ -1,13 +1,15 @@
+import { components_version } from '../package.json';
+
 /****** COMPONENTS VERSION *******/
-export const ACTION_CARD_VERSION = "1.0";
-export const DASHBOARD_CARD_VERSION = "1.0";
-export const INFO_CARD_VERSION = "1.0";
-export const PEOPLE_INFO_VERSION = "1.0";
-export const REPRESENTATION_BAR_VERSION = "1.0";
-export const REPRESENTATION_CIRCLE_VERSION = "1.0";
-export const SCI_FI_CARD_VERSION = "1.0";
-export const TOAST_CARD_VERSION = "1.0";
-export const WEATHER_CLOCK_CARD_VERSION = "1.0";
+export const ACTION_CARD_VERSION = components_version["action_card"];
+export const DASHBOARD_CARD_VERSION = components_version["dashboard_card"];
+export const INFO_CARD_VERSION = components_version["info_card"];
+export const PEOPLE_INFO_VERSION = components_version["people_info"];
+export const REPRESENTATION_BAR_VERSION = components_version["representation_bar"];
+export const REPRESENTATION_CIRCLE_VERSION = components_version["representation_circle"];
+export const SCI_FI_CARD_VERSION = components_version["sci_fi_card"];
+export const TOAST_CARD_VERSION = components_version["toast_card"];
+export const WEATHER_CLOCK_CARD_VERSION = components_version["weather_clock_card"];
 
 /****** IMAGE PATH *******/
 const IMG_PATH = "../local/custom/images"

@@ -2,7 +2,7 @@ import {
   LitElement,
   html,
   css,
-} from "https://unpkg.com/lit-element@3.2.1/lit-element.js?module";
+} from "lit";
 
 // Custom CSS
 import styles from "./common-styles.js";
@@ -50,7 +50,7 @@ export class PeopleInfo extends LitElement {
 
   constructor() {
     super();
-    this.img = this.img ? this.img : '';
+    this.img = this.img ? this.img : "";
     this.firstName = this.firstName ? this.firstName : "Punk";
     this.location = this.location ? this.location : "Spaceship";
   }

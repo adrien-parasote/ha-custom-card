@@ -2,11 +2,11 @@ import {
   LitElement,
   html,
   css,
-} from "https://unpkg.com/lit-element@3.2.1/lit-element.js?module";
+} from "lit";
 
 // Custom import
 import weatherIconsMap from "./weather-icons.js";
-import {SVG_FOLDER_PATH} from "./config.js";
+import { SVG_FOLDER_PATH } from "./config.js";
 
 // Custom CSS
 import styles from "./common-styles.js";
@@ -22,7 +22,7 @@ export class WeatherClockCard extends LitElement {
   static styles = [
     styles,
     css`
-      :host{
+      :host {
         --weather-icon-size: 75px;
       }
       .svg-container {
@@ -75,14 +75,16 @@ export class WeatherClockCard extends LitElement {
       .weather-container {
         align-self: self-end;
       }
-      .clock-container:after, .weather-container:after {
+      .clock-container:after,
+      .weather-container:after {
         border-top: 1px solid var(--color-darkblue);
         border-bottom: 1px solid var(--color-darkblue);
         border-right: 1px solid var(--color-darkblue);
         width: 15px;
         content: "";
       }
-      .clock-container:before, .weather-container:before {
+      .clock-container:before,
+      .weather-container:before {
         border-top: 1px solid var(--color-darkblue);
         border-bottom: 1px solid var(--color-darkblue);
         border-left: 1px solid var(--color-darkblue);
@@ -415,14 +417,17 @@ export class WeatherClockCard extends LitElement {
   }
 
   __getWeatherCard() {
-    const imgPath = SVG_FOLDER_PATH+weatherIconsMap[this.weather][this.dayType];
+    const imgPath =
+      SVG_FOLDER_PATH + weatherIconsMap[this.weather][this.dayType];
     return html`
       <div class="weather-container row">
         <div class="column">
           <div class="control-img">
             <object type="image/svg+xml" data="${imgPath}"></object>
           </div>
-          <div class="temperature">${this.temperature} ${this.temperature_unit}</div>
+          <div class="temperature">
+            ${this.temperature} ${this.temperature_unit}
+          </div>
         </div>
       </div>
     `;

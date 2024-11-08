@@ -2,7 +2,7 @@ import {
   LitElement,
   html,
   css,
-} from "https://unpkg.com/lit-element@3.2.1/lit-element.js?module";
+} from "lit";
 
 // Custom components import
 import "./action-card.js";
@@ -85,8 +85,8 @@ export class DashboardCard extends LitElement {
 
   constructor() {
     super();
-    if(DASHBOARD_CARD_VERSION == "DEV"){
-      import('./config.js') .then(({hass, config}) => {
+    if (DASHBOARD_CARD_VERSION == "DEV") {
+      import("./config.js").then(({ hass, config }) => {
         this.hass = hass;
         this.setConfig(config);
         this.requestUpdate();
@@ -125,13 +125,16 @@ export class DashboardCard extends LitElement {
   }
 
   render() {
-    if(this.hass == undefined)return html``; 
+    if (this.hass == undefined) return html``;
     return html`
       <toast-card></toast-card>
       <div class="content column">
         <div class="row">
           <div class="control-img">
-            <object type="image/svg+xml" data="${SVG_CONTROL_PANEL_PATH}"></object>
+            <object
+              type="image/svg+xml"
+              data="${SVG_CONTROL_PANEL_PATH}"
+            ></object>
           </div>
           <div class="column grow-1 row-gap-bottom">
             <sci-fi-card type="normal"> ${this.__drawPeople()}</sci-fi-card>
@@ -229,17 +232,20 @@ export class DashboardCard extends LitElement {
   }
 
   __isDay() {
-    return this.hass.states[this.config.sun].state == "above_horizon"? "day" : "night";
+    return this.hass.states[this.config.sun].state == "above_horizon"
+      ? "day"
+      : "night";
   }
 
   __drawWeatherClock() {
     return html`
-        <weather-clock-card
-          work="${this.hass.states[this.config.work_day].state}"
-          dayType="${this.__isDay()}"
-          weather="${this.hass.states[this.config.weather].state}"
-          temperature="${this.hass.states[this.config.weather].attributes.temperature}"
-        ></weather-clock-card>
+      <weather-clock-card
+        work="${this.hass.states[this.config.work_day].state}"
+        dayType="${this.__isDay()}"
+        weather="${this.hass.states[this.config.weather].state}"
+        temperature="${this.hass.states[this.config.weather].attributes
+          .temperature}"
+      ></weather-clock-card>
     `;
   }
 }

@@ -1,28 +1,37 @@
 {
-  "version": "0.2",
+  "version": "1.0",
+  "components_version": {
+    "action_card": "1.0",
+    "dashboard_card": "1.0",
+    "info_card": "1.0",
+    "people_info": "1.0",
+    "representation_bar": "1.0",
+    "representation_circle": "1.0",
+    "sci_fi_card": "1.0",
+    "toast_card": "1.0",
+    "weather_clock_card": "1.0"
+  },
   "description": "HA custom dashboard",
-  "main": "prod/components/dashboard-card.js",
-  "module": "prod/components/dashboard-card.js",
+  "main": "src/dashboard-card.js",
   "type": "module",
   "scripts": {
-    "lint": "npm run lint:lit-analyzer && npm run lint:eslint",
-    "lint:eslint": "eslint 'dev/**/*.js' 'prod/**/*.js'",
-    "lint:lit-analyzer": "lit-analyzer 'dev/**/*.js' 'prod/**/*.js'", 
-    "format": "prettier dev/components/*.js prod/components/*.js --write",
-    "serve": "es-dev-server --node-resolve --watch"
+    "format": "prettier src/*.js --write",
+    "serve": "es-dev-server --node-resolve --watch",
+    "prepare-prod": "rm dist/*.js && cp src/*.js dist/ && rm dist/config.js && cp src/config.js.PROD dist/config.js",
+    "clean-up": "rm dist/*.js && mv dashboard-card.min.js dist/dashboard-card.min.js",
+    "build": "npm run prepare-prod && rollup -c && npm run clean-up"
   },
   "keywords": [],
   "dependencies": {
     "lit": "3.2.1"
   },
   "devDependencies": {
-    "@eslint/eslintrc": "3.1.0",
-    "@eslint/js": "9.13.0",
-    "babel-eslint": "10.1.0",
-    "es-dev-server": "2.1.0",
-    "eslint": "9.13.0",
-    "globals": "15.11.0",
-    "lit-analyzer": "2.0.3",
-    "prettier": "3.3.3"
+    "@rollup/plugin-json": "6.1.0",
+    "@rollup/plugin-node-resolve": "15.3.0",
+    "@rollup/plugin-replace": "6.0.1",
+    "@rollup/plugin-terser": "0.4.4",
+    "es-dev-server": "1.55.1",
+    "prettier": "3.3.3",
+    "rollup": "2.79.2"
   }
 }
