@@ -11,6 +11,7 @@ import "./people-info.js";
 import "./sci-fi-card.js";
 import "./toast-card.js";
 import "./weather-clock-card.js";
+import "./house-card.js";
 
 import { DASHBOARD_CARD_VERSION, SVG_CONTROL_PANEL_PATH } from "./config.js";
 
@@ -150,7 +151,7 @@ export class DashboardCard extends LitElement {
           <!--<sci-fi-card type="normal">-->
           ${this.__drawinfo()}
           <!--</sci-fi-card>-->
-          <div class="grow-1">house</div>
+          <div class="grow-1">${this.__drawHouse()}</div>
         </div>
       </div>
     `;
@@ -247,6 +248,10 @@ export class DashboardCard extends LitElement {
           .temperature}"
       ></weather-clock-card>
     `;
+  }
+
+  __drawHouse(){
+    return html`<house-card></house-card>`;
   }
 }
 

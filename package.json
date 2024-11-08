@@ -9,7 +9,8 @@
     "representation_circle": "1.0",
     "sci_fi_card": "1.0",
     "toast_card": "1.0",
-    "weather_clock_card": "1.0"
+    "weather_clock_card": "1.0",
+    "house_card": "1.0"
   },
   "description": "HA custom dashboard",
   "main": "src/dashboard-card.js",

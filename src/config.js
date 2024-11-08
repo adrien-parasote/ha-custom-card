@@ -8,6 +8,7 @@ export const REPRESENTATION_CIRCLE_VERSION = "DEV";
 export const SCI_FI_CARD_VERSION = "DEV";
 export const TOAST_CARD_VERSION = "DEV";
 export const WEATHER_CLOCK_CARD_VERSION = "DEV";
+export const HOUSE_CARD_VERSION = "DEV";
 
 /****** IMAGE PATH *******/
 const IMG_PATH = "/images";

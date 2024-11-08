@@ -10,6 +10,8 @@ export const REPRESENTATION_CIRCLE_VERSION = components_version["representation_
 export const SCI_FI_CARD_VERSION = components_version["sci_fi_card"];
 export const TOAST_CARD_VERSION = components_version["toast_card"];
 export const WEATHER_CLOCK_CARD_VERSION = components_version["weather_clock_card"];
+export const HOUSE_CARD_VERSION = components_version["house_card"];
+
 
 /****** IMAGE PATH *******/
 const IMG_PATH = "../local/custom/images"
