@@ -26,16 +26,26 @@ export class RepresentationBar extends LitElement {
       .svg-container {
         display: flex;
       }
-      path {
+      .path {
         fill: none;
         stroke-width: 5px;
         filter: drop-shadow(0px 0px 5px var(--color-darkblue));
         -webkit-filter: drop-shadow(0px 0px 5px var(--color-darkblue));
       }
+      .path-warning {
+        fill: none;
+        stroke-width: 5px;
+        filter: drop-shadow(0px 0px 5px var(--color-amber));
+        -webkit-filter: drop-shadow(0px 0px 5px var(--color-amber));
+      }
       .text {
         text-align: center;
         text-shadow: 0px 0px 5px var(--color-darkblue);
         font-weight: bold;
+      }
+      .warning {
+        color: var(--color-amber);
+        text-shadow: 0px 0px 5px var(--color-amber);
       }
     `,
   ];
@@ -47,6 +57,7 @@ export class RepresentationBar extends LitElement {
       text: { type: String },
       threshold: { type: Number },
       size: { type: String },
+      _warning: { type: Boolean },
     };
   }
 
@@ -56,6 +67,7 @@ export class RepresentationBar extends LitElement {
     this.val = this.val ? this.val : 0;
     this.max = this.max ? this.val : 100;
     this.size = this.size ? this.size : "100%";
+    this._warning = this._warning ? this._warning : false;
   }
 
   render() {
@@ -69,7 +81,7 @@ export class RepresentationBar extends LitElement {
             ${this.__buildRows()}
           </svg>
         </div>
-        <div class="text">${this.text}</div>
+        <div class="text ${this._warning ? "warning" : ""}">${this.text}</div>
       </div>
     `;
   }
@@ -77,24 +89,21 @@ export class RepresentationBar extends LitElement {
   __buildRows() {
     const nb_colored = Math.floor((this.val * 20) / this.max);
     const rows = Array.from(Array(20).keys());
+    this._warning = this.val / this.max < this.threshold;
     return svg`${rows.map((nb) => {
-      return this.__buildRow(
-        nb,
-        nb <= 20 - nb_colored,
-        this.val / this.max < this.threshold,
-      );
+      return this.__buildRow(nb, nb <= 20 - nb_colored);
     })}`;
   }
 
-  __buildRow(nb, disable, warning) {
+  __buildRow(nb, disable) {
     const yPos = 5 + nb * 10;
     const color = disable
       ? "darkblue-opacity"
-      : warning
+      : this._warning
         ? "amber"
         : "lightblue";
     return svg`
-      <path style="stroke: var(--color-${color});" d="M 5 ${yPos} L 95 ${yPos}"></path>
+      <path style="stroke: var(--color-${color});" d="M 5 ${yPos} L 95 ${yPos}" class="path${this._warning ? "-warning" : ""}"/>
     `;
   }
 }

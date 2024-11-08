@@ -1,4 +1,4 @@
-import { css } from "lit";
+import { css } from "https://unpkg.com/lit-element@3.2.1/lit-element.js?module";
 
 export default css`
   :host {
@@ -25,6 +25,7 @@ export default css`
     --toast-border-btn-radius: 5px;
     --toast-body-color: white;
     --gap-size: 10px;
+    --card-border-width: 1px;
     display: flex;
     flex-direction: column;
     font-family: "Titillium Web", sans-serif;
@@ -59,11 +60,10 @@ export default css`
   .column-gap {
     column-gap: var(--gap-size);
   }
-  /*
-.center {
-  text-align: center;
-}
-/************* INFO *************/
+  object {
+    color-scheme: auto;
+  }
+  /************* INFO *************/
   .primary-info {
     padding-left: 5px;
     font-weight: bold;
@@ -76,7 +76,7 @@ export default css`
     text-shadow: none;
     color: var(--color-muted) !important;
   }
-
+  /************* CORNER *************/
   .corner-border-top:before,
   .corner-border-top:after,
   .corner-border-bottom:before,

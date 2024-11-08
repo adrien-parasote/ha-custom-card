@@ -9,7 +9,7 @@ import {
 import styles from "./common-styles.js";
 
 // Version
-const VERSION = "1.0";
+const VERSION = "DEV";
 console.info(
   `%cREPRESENTATION-CIRCLE Version: ${VERSION}`,
   "color: rgb(105, 211, 251); font-weight: bold; background: black",

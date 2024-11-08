@@ -1,10 +1,11 @@
-import { LitElement, html, css } from "lit";
+import {
+  LitElement,
+  html,
+  css,
+} from "https://unpkg.com/lit-element@3.2.1/lit-element.js?module";
 
 // Custom CSS
 import styles from "./common-styles.js";
-
-// Images
-const DEFAULT_IMG = "/dev/images/people.png";
 
 // Version
 const VERSION = "DEV";
@@ -49,7 +50,7 @@ export class PeopleInfo extends LitElement {
 
   constructor() {
     super();
-    this.img = this.img ? this.img : DEFAULT_IMG;
+    this.img = this.img ? this.img : '';
     this.firstName = this.firstName ? this.firstName : "Punk";
     this.location = this.location ? this.location : "Spaceship";
   }

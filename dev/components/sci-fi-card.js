@@ -1,4 +1,8 @@
-import { LitElement, html, css } from "lit";
+import {
+  LitElement,
+  html,
+  css,
+} from "https://unpkg.com/lit-element@3.2.1/lit-element.js?module";
 
 // Custom CSS
 import styles from "./common-styles.js";
@@ -14,30 +18,26 @@ export class SciFiCard extends LitElement {
   static styles = [
     styles,
     css`
-      :host {
-        --card-border-width: 1px;
+      :host {        
         width: fit-content;
       }
       .card,
       .card-alert {
-        border-style: solid;
-        border-width: var(--card-border-width) 0;
-        border-color: var(--color-darkblue-opacity);
         position: relative;
-        background: var(--color-lightblue-opacity);
-        box-shadow: 0 0 5px 1px var(--color-darkblue);
         padding: 5px;
       }
       .card-alert {
-        border-color: var(--color-darkyellow-opacity);
-        background: var(--color-lightyellow-opacity);
-        box-shadow: 0 0 5px 1px var(--color-darkyellow);
-        text-shadow: 0px 0px 5px var(--color-darkyellow);
         color: var(--color-darkyellow);
         padding: 0;
       }
       .card-content {
         padding: 5px;
+      }
+      .corner-border-top:before,
+      .corner-border-top:after,
+      .corner-border-bottom:before,
+      .corner-border-bottom:after {
+        border-color: var(--color-lightblue);
       }
     `,
   ];

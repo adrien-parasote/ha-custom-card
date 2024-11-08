@@ -5,7 +5,9 @@
   "module": "prod/components/dashboard-card.js",
   "type": "module",
   "scripts": {
-    "lint": "lit-analyzer prod/components/dashboard-card.js && eslint '**/*.js'",
+    "lint": "npm run lint:lit-analyzer && npm run lint:eslint",
+    "lint:eslint": "eslint 'dev/**/*.js' 'prod/**/*.js'",
+    "lint:lit-analyzer": "lit-analyzer 'dev/**/*.js' 'prod/**/*.js'", 
     "format": "prettier dev/components/*.js prod/components/*.js --write",
     "serve": "es-dev-server --node-resolve --watch"
   },

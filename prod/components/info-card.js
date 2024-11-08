@@ -23,7 +23,7 @@ export class InfoCard extends LitElement {
     styles,
     css`
       .icon-container {
-        padding: 5px;
+        padding: 10px 5px 5px 5px;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -42,8 +42,12 @@ export class InfoCard extends LitElement {
         min-width: 100px;
         text-align: center;
       }
+      .content {
+        margin: 5px 0;
+      }
       .before,
       .after {
+        margin: 5px 0;
         border-top: 1px solid var(--color-darkblue);
         border-bottom: 1px solid var(--color-darkblue);
         width: 15px;
@@ -74,13 +78,14 @@ export class InfoCard extends LitElement {
 
   static get properties() {
     return {
-      icon: { style: String },
-      title: { style: String },
-      secondary: { style: String },
-      state: { style: String },
-      unit: { style: String },
-      renderType: { style: String },
-      text: { style: String },
+      icon: { type: String },
+      title: { type: String },
+      secondary: { type: String },
+      state: { type: String },
+      unit: { type: String },
+      renderType: { type: String },
+      text: { type: String },
+      threshold: { type: Number },
     };
   }
 
@@ -107,7 +112,7 @@ export class InfoCard extends LitElement {
             </div>
           </div>
           <div class="primary-info title">${this.title}</div>
-          <div class="text-muted">${this.secondary}</div>
+          <div class="text-muted grow-1">${this.secondary}</div>
         </div>
         <span class="before"></span>
         ${this.__renderInfo()}
@@ -119,7 +124,7 @@ export class InfoCard extends LitElement {
   __renderInfo() {
     switch (this.renderType) {
       case "text":
-        return html`<div class="column grow-1 info">
+        return html`<div class="content column grow-1 info">
           <div class="primary-info">${this.text}</div>
           <div class="secondary-info">${this.state}</div>
         </div>`;
@@ -127,22 +132,23 @@ export class InfoCard extends LitElement {
         const text = this.state + " " + this.unit;
         return html`
           <representation-bar
-            class="column grow-1"
+            class="content column grow-1"
             text="${text}"
             val="${parseFloat(this.state)}"
+            threshold="${this.threshold}"
             size="70px"
           ></representation-bar>
         `;
       case "circle":
         return html`
           <representation-circle
-            class="column grow-1"
+            class="content column grow-1"
             on="${this.state}"
             size="70px"
           ></representation-circle>
         `;
       default:
-        return html`<div class="column grow-1 info">
+        return html`<div class="content column grow-1 info">
           <div class="secondary-info">${this.state}</div>
           <div class="secondary-info">${this.unit}</div>
         </div>`;

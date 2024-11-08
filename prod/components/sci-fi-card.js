@@ -19,29 +19,25 @@ export class SciFiCard extends LitElement {
     styles,
     css`
       :host {
-        --card-border-width: 1px;
         width: fit-content;
       }
       .card,
       .card-alert {
-        border-style: solid;
-        border-width: var(--card-border-width) 0;
-        border-color: var(--color-darkblue-opacity);
         position: relative;
-        background: var(--color-lightblue-opacity);
-        box-shadow: 0 0 5px 1px var(--color-darkblue);
         padding: 5px;
       }
       .card-alert {
-        border-color: var(--color-darkyellow-opacity);
-        background: var(--color-lightyellow-opacity);
-        box-shadow: 0 0 5px 1px var(--color-darkyellow);
-        text-shadow: 0px 0px 5px var(--color-darkyellow);
         color: var(--color-darkyellow);
         padding: 0;
       }
       .card-content {
         padding: 5px;
+      }
+      .corner-border-top:before,
+      .corner-border-top:after,
+      .corner-border-bottom:before,
+      .corner-border-bottom:after {
+        border-color: var(--color-lightblue);
       }
     `,
   ];

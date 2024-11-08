@@ -7,13 +7,10 @@ import {
 // Custom CSS
 import styles from "./common-styles.js";
 
-// Images
-const DEFAULT_IMG = "/local/custom/images/people.png";
-
 // Version
 const VERSION = "1.0";
 console.info(
-  `%cPEOPLE-CARD Version: ${VERSION}`,
+  `%cPEOPLE-INFO Version: ${VERSION}`,
   "color: rgb(105, 211, 251); font-weight: bold; background: black",
 );
 
@@ -53,7 +50,7 @@ export class PeopleInfo extends LitElement {
 
   constructor() {
     super();
-    this.img = this.img ? this.img : DEFAULT_IMG;
+    this.img = this.img ? this.img : '';
     this.firstName = this.firstName ? this.firstName : "Punk";
     this.location = this.location ? this.location : "Spaceship";
   }

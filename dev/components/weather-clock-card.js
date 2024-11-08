@@ -1,7 +1,17 @@
-import { LitElement, html, css } from "lit";
+import {
+  LitElement,
+  html,
+  css,
+} from "https://unpkg.com/lit-element@3.2.1/lit-element.js?module";
+
+// Custom import
+import weatherIconsMap from "./weather-icons.js";
 
 // Custom CSS
 import styles from "./common-styles.js";
+
+// Images
+const SVG_FOLDER_PATH = "/images/svg/";
 
 // Version
 const VERSION = "DEV";
@@ -14,9 +24,12 @@ export class WeatherClockCard extends LitElement {
   static styles = [
     styles,
     css`
+      :host{
+        --weather-icon-size: 75px;
+      }
       .svg-container {
-        width: 150px;
-        height: 150px;
+        width: 125px;
+        height: 125px;
       }
       svg {
         stroke: var(--color-darkblue);
@@ -50,25 +63,95 @@ export class WeatherClockCard extends LitElement {
         fill: none;
         filter: url("#drop-shadow-filter-darkblue");
       }
+      .details {
+        stroke-width: 6px;
+      }
       .bubble {
         fill: white;
         stroke-width: 0;
+      }
+      .clock-container,
+      .weather-container {
+        height: fit-content;
+      }
+      .weather-container {
+        align-self: self-end;
+      }
+      .clock-container:after, .weather-container:after {
+        border-top: 1px solid var(--color-darkblue);
+        border-bottom: 1px solid var(--color-darkblue);
+        border-right: 1px solid var(--color-darkblue);
+        width: 15px;
+        content: "";
+      }
+      .clock-container:before, .weather-container:before {
+        border-top: 1px solid var(--color-darkblue);
+        border-bottom: 1px solid var(--color-darkblue);
+        border-left: 1px solid var(--color-darkblue);
+        width: 15px;
+        content: "";
+      }
+      .clock {
+        padding: 10px;
+      }
+      .temperature {
+        padding: 10px;
+        padding-top: 0;
+        text-align: right;
+      }
+      .hour {
+        font-size: 50px;
+      }
+      .date,
+      .rest {
+        color: var(--color-muted);
+        text-shadow: none;
+      }
+      .rest {
+        text-align: end;
+      }
+      .control-img {
+        width: var(--weather-icon-size);
+        min-width: var(--weather-icon-size);
+        max-width: var(--weather-icon-size);
+        height: var(--weather-icon-size);
       }
     `,
   ];
 
   static get properties() {
-    return {};
+    return {
+      _date: { type: Object },
+      work: { type: String },
+      weather: { type: String },
+      dayType: { type: String }, // day or night,
+      temperature: { type: Number },
+      temperature_unit: { type: String },
+    };
   }
 
   constructor() {
     super();
+    // Clock
+    this._date = new Date();
+    this.work = this.work ? this.work : "off";
+    // Weather
+    this.weather = this.weather ? this.weather : "snowy";
+    this.dayType = this.dayType ? this.dayType : "day";
+    this.temperature = this.temperature ? this.temperature : 0.0;
+    this.temperature_unit = this.temperature_unit
+      ? this.temperature_unit
+      : "°C";
+
+    setInterval(() => {
+      this._date = new Date();
+    }, 1000);
   }
 
   render() {
     return html`
       <div class="row">
-        <div>CLOCK</div>
+        ${this.__getDateCard()}
         <div class="svg-container">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -270,9 +353,80 @@ export class WeatherClockCard extends LitElement {
               <!-- Outer thin ring -->
               <circle class="outer-thin-ring" cx="500" cy="500" r="395" />
             </g>
+            <g>
+              <!-- info paths -->
+              <path class="path details" d="M 0 200 L 150 200 L 200 250 " />
+              <path class="path details" d="M 800 750 L 840 800 L 1000 800 " />
+            </g>
           </svg>
         </div>
-        <div>WEATHER</div>
+        ${this.__getWeatherCard()}
+      </div>
+    `;
+  }
+
+  __getHour() {
+    const options = {
+      minimumIntegerDigits: 2,
+      useGrouping: false,
+    };
+    return [
+      this._date.getHours().toLocaleString("fr-FR", options),
+      this._date.getMinutes().toLocaleString("fr-FR", options),
+    ].join(":");
+  }
+
+  __getDate() {
+    const options = {
+      minimumIntegerDigits: 2,
+      useGrouping: false,
+    };
+    const daysOfWeek = [
+      "Dimanche",
+      "Lundi",
+      "Mardi",
+      "Mercredi",
+      "Jeudi",
+      "Vendredi",
+      "Samedi",
+    ];
+    return [
+      [daysOfWeek[this._date.getDay()], ","].join(""),
+      [
+        this._date.getDate().toLocaleString("fr-FR", options),
+        this._date.getMonth().toLocaleString("fr-FR", options),
+        this._date.getFullYear().toLocaleString("fr-FR", options),
+      ].join("."),
+    ].join(" ");
+  }
+
+  _isWorkingDay() {
+    return this.work == "on";
+  }
+
+  __getDateCard() {
+    return html`
+      <div class="clock-container row">
+        <div class="column clock">
+          <div class="rest">${this._isWorkingDay() ? "Travail" : "Repos"}</div>
+          <div class="hour">${this.__getHour()}</div>
+          <div class="date">${this.__getDate()}</div>
+        </div>
+      </div>
+    `;
+  }
+
+  __getWeatherCard() {
+    const imgPath = SVG_FOLDER_PATH+weatherIconsMap[this.weather][this.dayType];
+    console.log(imgPath)
+    return html`
+      <div class="weather-container row">
+        <div class="column">
+          <div class="control-img">
+            <object type="image/svg+xml" data="${imgPath}"></object>
+          </div>
+          <div class="temperature">${this.temperature} ${this.temperature_unit}</div>
+        </div>
       </div>
     `;
   }

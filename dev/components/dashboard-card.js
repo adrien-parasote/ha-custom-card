@@ -1,4 +1,8 @@
-import { LitElement, html, css } from "lit";
+import {
+  LitElement,
+  html,
+  css,
+} from "https://unpkg.com/lit-element@3.2.1/lit-element.js?module";
 
 // Custom components import
 import "./action-card.js";
@@ -8,13 +12,13 @@ import "./sci-fi-card.js";
 import "./toast-card.js";
 import "./weather-clock-card.js";
 
-import config from "./dev-config.js";
+import { hass, config } from "./dev-config.js";
 
 // Custom CSS
 import styles from "./common-styles.js";
 
 // Images
-const SVG_PATH = "/dev/images/control_panel.svg";
+const SVG_PATH = "/images/control_panel.svg";
 
 // Version
 const VERSION = "DEV";
@@ -70,15 +74,16 @@ export class DashboardCard extends LitElement {
           max-width: var(--control-img-size);
           height: var(--control-img-size);
         }
-        object {
-          color-scheme: auto;
-        }
-        .people {
-          align-self: center;
+        .info-content {
+          padding-top: 20px;
+          border-left: var(--card-border-width) solid var(--color-darkblue);
         }
         .actions {
           align-self: center;
           color: var(--action-color);
+        }
+        .weather-clock {
+          justify-content: center;
         }
       `,
     ];
@@ -86,6 +91,7 @@ export class DashboardCard extends LitElement {
 
   constructor() {
     super();
+    this.hass = hass;
     this.setConfig(config);
     console.info(
       `%cDASHBOARD-CARD Version: ${VERSION}`,
@@ -103,6 +109,15 @@ export class DashboardCard extends LitElement {
     if (!config.info) {
       throw new Error("You need to define info");
     }
+    if (!config.work_day) {
+      throw new Error("You need to define a workday entity");
+    }
+    if (!config.sun) {
+      throw new Error("You need to define a sun entity");
+    }
+    if (!config.weather) {
+      throw new Error("You need to define a weather entity");
+    }
     this.config = config;
   }
 
@@ -119,17 +134,19 @@ export class DashboardCard extends LitElement {
             <object type="image/svg+xml" data="${SVG_PATH}"></object>
           </div>
           <div class="column grow-1 row-gap-bottom">
-            <sci-fi-card type="normal">${this.__drawPeople()}</sci-fi-card>
-            <sci-fi-card type="alert" style="margin-top: auto;"
-              >${this.__drawActions()}</sci-fi-card
-            >
+            <sci-fi-card type="normal"> ${this.__drawPeople()}</sci-fi-card>
+            <sci-fi-card type="alert" style="margin-top: auto;">
+              ${this.__drawActions()}
+            </sci-fi-card>
           </div>
-          <div class="row column-gap grow-3">
-            <weather-clock-card></weather-clock-card>
+          <div class="row column-gap grow-3 weather-clock">
+            ${this.__drawWeatherClock()}
           </div>
         </div>
         <div class="row column-gap grow-1 second-row">
-          <sci-fi-card type="normal">${this.__drawinfo()}</sci-fi-card>
+          <!--<sci-fi-card type="normal">-->
+          ${this.__drawinfo()}
+          <!--</sci-fi-card>-->
           <div class="grow-1">house</div>
         </div>
       </div>
@@ -138,10 +155,14 @@ export class DashboardCard extends LitElement {
 
   __drawPeople() {
     return html`
-      <div class="row column-gap people">
-        ${this.config.people.map((person) => {
-          // TODO : img / firstName / location;
-          return html`<people-info></people-info>`;
+      <div class="row column-gap">
+        ${this.config.people.map((personEntity) => {
+          const person = this.hass.states[personEntity];
+          return html`<people-info
+            img="${person.attributes.entity_picture}"
+            firstName="${person.attributes.friendly_name}"
+            location="${person.state}"
+          ></people-info>`;
         })}
       </div>
     `;
@@ -166,25 +187,59 @@ export class DashboardCard extends LitElement {
     const entity = this.config.actions[e.detail.id];
     const services = entity.tap_action.service.split(".");
     const toast = this.shadowRoot.querySelector("toast-card");
+    this.hass.callService(
+      services[0],
+      services[1],
+      entity.tap_action.service_data,
+    );
     toast.show('"'.concat(entity.title, '"', " action en cours"));
   }
 
   __drawinfo() {
     return html`
-      <div class="column row-gap">
-        ${this.config.info.map((e) => {
+      <div class="column info-content">
+        ${this.config.info.map((info) => {
+          const entity = this.hass.states[info.entity];
+          const data = info.data ? info.data : {};
           return html`<info-card
-            icon="${e.icon}"
-            title="${e.title}"
-            secondary="${e.secondary}"
-            state="${e.data.value}"
-            unit="${e.data.unit ? e.data.unit : ""}"
-            renderType="${e.data.render_type ? e.data.render_type : "default"}"
-            text="${e.data.text ? e.data.text : ""}"
-            threshold="${e.data.threshold ? e.data.threshold : 0.4}"
+            icon="${info.icon || entity.attributes.icon}"
+            title="${info.title || entity.attributes.friendly_name}"
+            secondary="${info.secondary
+              ? entity.attributes[info.secondary]
+              : new Date(entity.last_updated).toLocaleString("fr-FR", {
+                  year: "numeric",
+                  month: "2-digit",
+                  day: "2-digit",
+                  hour: "2-digit",
+                  hour12: false,
+                  minute: "2-digit",
+                  second: "2-digit",
+                })}"
+            state="${data.value
+              ? entity.attributes[info.data.value]
+              : entity.state}"
+            unit="${data.unit ? data.unit : ""}"
+            renderType="${data.render_type ? data.render_type : "default"}"
+            text="${data.text ? data.text : ""}"
+            threshold="${data.threshold ? data.threshold : 0.4}"
           ></info-card>`;
         })}
       </div>
+    `;
+  }
+
+  __isDay() {
+    return this.hass.states[this.config.sun].state == "above_horizon"? "day" : "night";
+  }
+
+  __drawWeatherClock() {
+    return html`
+        <weather-clock-card
+          work="${this.hass.states[this.config.work_day].state}"
+          dayType="${this.__isDay()}"
+          weather="${this.hass.states[this.config.weather].state}"
+          temperature="${this.hass.states[this.config.weather].attributes.temperature}"
+        ></weather-clock-card>
     `;
   }
 }
