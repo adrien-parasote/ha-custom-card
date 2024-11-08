@@ -1,5 +1,20 @@
-import { state } from "lit/decorators.js";
+/****** COMPONENTS VERSION *******/
+export const ACTION_CARD_VERSION = "DEV";
+export const DASHBOARD_CARD_VERSION = "DEV";
+export const INFO_CARD_VERSION = "DEV";
+export const PEOPLE_INFO_VERSION = "DEV";
+export const REPRESENTATION_BAR_VERSION = "DEV";
+export const REPRESENTATION_CIRCLE_VERSION = "DEV";
+export const SCI_FI_CARD_VERSION = "DEV";
+export const TOAST_CARD_VERSION = "DEV";
+export const WEATHER_CLOCK_CARD_VERSION = "DEV";
 
+/****** IMAGE PATH *******/
+const IMG_PATH = "/images"
+export const SVG_FOLDER_PATH = IMG_PATH+"/svg/";
+export const SVG_CONTROL_PANEL_PATH = SVG_FOLDER_PATH+"control_panel.svg";
+
+/****** DEV HASS *******/
 export const hass = {
   states: {
     person1: {
@@ -82,6 +97,7 @@ export const hass = {
   },
 };
 
+/****** DEV CONFIG *******/
 export const config = {
   people: ["person1", "person2"],
   actions: [

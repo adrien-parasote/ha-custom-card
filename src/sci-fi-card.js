@@ -8,9 +8,9 @@ import {
 import styles from "./common-styles.js";
 
 // Version
-const VERSION = "DEV";
+import { SCI_FI_CARD_VERSION } from "./config.js";
 console.info(
-  `%cSCI-FI-CARD Version: ${VERSION}`,
+  `%cSCI-FI-CARD Version: ${SCI_FI_CARD_VERSION}`,
   "color: rgb(105, 211, 251); font-weight: bold; background: black",
 );
 

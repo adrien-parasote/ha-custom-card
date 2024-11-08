@@ -9,9 +9,9 @@ import {
 import styles from "./common-styles.js";
 
 // Version
-const VERSION = "DEV";
+import { REPRESENTATION_CIRCLE_VERSION } from "./config.js";
 console.info(
-  `%cREPRESENTATION-CIRCLE Version: ${VERSION}`,
+  `%cREPRESENTATION-CIRCLE Version: ${REPRESENTATION_CIRCLE_VERSION}`,
   "color: rgb(105, 211, 251); font-weight: bold; background: black",
 );
 

@@ -9,9 +9,9 @@ import {
 import styles from "./common-styles.js";
 
 // Version
-const VERSION = "DEV";
+import { REPRESENTATION_BAR_VERSION } from "./config.js";
 console.info(
-  `%cREPRESENTATION-BAR Version: ${VERSION}`,
+  `%cREPRESENTATION-BAR Version: ${REPRESENTATION_BAR_VERSION}`,
   "color: rgb(105, 211, 251); font-weight: bold; background: black",
 );
 

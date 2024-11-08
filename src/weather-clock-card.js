@@ -6,17 +6,15 @@ import {
 
 // Custom import
 import weatherIconsMap from "./weather-icons.js";
+import {SVG_FOLDER_PATH} from "./config.js";
 
 // Custom CSS
 import styles from "./common-styles.js";
 
-// Images
-const SVG_FOLDER_PATH = "/images/svg/";
-
 // Version
-const VERSION = "DEV";
+import { WEATHER_CLOCK_CARD_VERSION } from "./config.js";
 console.info(
-  `%cWEATHER-CLOCK-CARD Version: ${VERSION}`,
+  `%cWEATHER-CLOCK-CARD Version: ${WEATHER_CLOCK_CARD_VERSION}`,
   "color: rgb(105, 211, 251); font-weight: bold; background: black",
 );
 
@@ -418,7 +416,6 @@ export class WeatherClockCard extends LitElement {
 
   __getWeatherCard() {
     const imgPath = SVG_FOLDER_PATH+weatherIconsMap[this.weather][this.dayType];
-    console.log(imgPath)
     return html`
       <div class="weather-container row">
         <div class="column">

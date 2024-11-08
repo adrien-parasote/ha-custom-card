@@ -12,16 +12,10 @@ import "./sci-fi-card.js";
 import "./toast-card.js";
 import "./weather-clock-card.js";
 
-import { hass, config } from "./dev-config.js";
+import { DASHBOARD_CARD_VERSION, SVG_CONTROL_PANEL_PATH } from "./config.js";
 
 // Custom CSS
 import styles from "./common-styles.js";
-
-// Images
-const SVG_PATH = "/images/control_panel.svg";
-
-// Version
-const VERSION = "DEV";
 
 export class DashboardCard extends LitElement {
   static get styles() {
@@ -91,10 +85,15 @@ export class DashboardCard extends LitElement {
 
   constructor() {
     super();
-    this.hass = hass;
-    this.setConfig(config);
+    if(DASHBOARD_CARD_VERSION == "DEV"){
+      import('./config.js') .then(({hass, config}) => {
+        this.hass = hass;
+        this.setConfig(config);
+        this.requestUpdate();
+      });
+    }
     console.info(
-      `%cDASHBOARD-CARD Version: ${VERSION}`,
+      `%cDASHBOARD-CARD Version: ${DASHBOARD_CARD_VERSION}`,
       "color: rgb(105, 211, 251); font-weight: bold; background: black",
     );
   }
@@ -126,12 +125,13 @@ export class DashboardCard extends LitElement {
   }
 
   render() {
+    if(this.hass == undefined)return html``; 
     return html`
       <toast-card></toast-card>
       <div class="content column">
         <div class="row">
           <div class="control-img">
-            <object type="image/svg+xml" data="${SVG_PATH}"></object>
+            <object type="image/svg+xml" data="${SVG_CONTROL_PANEL_PATH}"></object>
           </div>
           <div class="column grow-1 row-gap-bottom">
             <sci-fi-card type="normal"> ${this.__drawPeople()}</sci-fi-card>

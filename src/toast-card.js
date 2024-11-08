@@ -8,7 +8,7 @@ import {
 import styles from "./common-styles.js";
 
 // Version
-const VERSION = "DEV";
+import { TOAST_CARD_VERSION } from "./config.js";
 
 export class ToastCard extends LitElement {
   static styles = [
@@ -117,7 +117,7 @@ export class ToastCard extends LitElement {
     super();
     this.msg = this.msg ? this.msg : "";
     console.info(
-      `%cTOAST-CARD Version: ${VERSION}`,
+      `%cTOAST-CARD Version: ${TOAST_CARD_VERSION}`,
       "color: rgb(105, 211, 251); font-weight: bold; background: black",
     );
   }

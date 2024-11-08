@@ -8,9 +8,9 @@ import {
 import styles from "./common-styles.js";
 
 // Version
-const VERSION = "DEV";
+import { PEOPLE_INFO_VERSION } from "./config.js";
 console.info(
-  `%cPEOPLE-INFO Version: ${VERSION}`,
+  `%cPEOPLE-INFO Version: ${PEOPLE_INFO_VERSION}`,
   "color: rgb(105, 211, 251); font-weight: bold; background: black",
 );
 

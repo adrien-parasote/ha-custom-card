@@ -12,9 +12,9 @@ import "./representation-circle.js";
 import styles from "./common-styles.js";
 
 // Version
-const VERSION = "DEV";
+import { INFO_CARD_VERSION } from "./config.js";
 console.info(
-  `%cINFO-CARD Version: ${VERSION}`,
+  `%cINFO-CARD Version: ${INFO_CARD_VERSION}`,
   "color: rgb(105, 211, 251); font-weight: bold; background: black",
 );
 
@@ -107,10 +107,7 @@ export class InfoCard extends LitElement {
           <div class="icon-container">
             <div class="icon">
               <span class="corner-border-top"></span>
-              <div
-                icon="${this.icon}"
-                style="width: 30px !important; height: 30px !important;"
-              ></div>
+              <ha-icon icon="${this.icon}" style="padding:5px;"></ha-icon>
               <span class="corner-border-bottom"></span>
             </div>
           </div>
