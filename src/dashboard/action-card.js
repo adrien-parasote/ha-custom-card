@@ -1,8 +1,4 @@
-import {
-  LitElement,
-  html,
-  css,
-} from "lit";
+import { LitElement, html, css } from "lit";
 
 // Custom CSS
 import styles from "./common-styles.js";
@@ -19,10 +15,10 @@ export class ActionCard extends LitElement {
     styles,
     css`
       .column {
-        align-items: center
+        align-items: center;
       }
       .title-action {
-        text-align: center;    
+        text-align: center;
         color: var(--color-amber);
         text-shadow: 0px 0px 5px var(--color-amber);
         font-size: x-small;

@@ -16,14 +16,16 @@
   "main": "src/dashboard-card.js",
   "type": "module",
   "scripts": {
-    "format": "prettier src/*.js --write",
+    "format": "prettier src/*.js src/*/*.js --write",
     "serve": "es-dev-server --node-resolve --watch",
-    "prepare-prod": "rm dist/*.js && cp src/*.js dist/ && rm dist/config.js && cp src/config.js.PROD dist/config.js",
-    "clean-up": "rm dist/*.js && mv dashboard-card.min.js dist/dashboard-card.min.js",
-    "build": "npm run prepare-prod && rollup -c && npm run clean-up"
+    "test": "cp src/common-styles.js dist/ && cp src/$npm_config_package/* dist/",
+    "prepare-prod": "cp src/common-styles.js dist/ && cp src/$npm_config_package/* dist/package && rm dist/package/config.js && mv dist/package/config.js.PROD dist/package/config.js",
+    "clean-up": "rm dist/*.js && rm dist/package/*.js && mv main.min.js dist/cards/$npm_config_package.min.js",
+    "build": "npm run prepare-prod --package=$npm_config_package  && rollup -c && npm run clean-up"
   },
   "keywords": [],
   "dependencies": {
+    "@mdi/js": "7.4.47",
     "lit": "3.2.1"
   },
   "devDependencies": {

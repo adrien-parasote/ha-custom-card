@@ -1,8 +1,4 @@
-import {
-  LitElement,
-  html,
-  css,
-} from "lit";
+import { LitElement, html, css } from "lit";
 
 // Custom import
 import weatherIconsMap from "./weather-icons.js";

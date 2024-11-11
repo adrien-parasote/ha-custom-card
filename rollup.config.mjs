@@ -5,9 +5,9 @@ import replace from '@rollup/plugin-replace';
 import minifyHTML from 'rollup-plugin-minify-html-literals';
 
 export default {
-	input: 'dist/dashboard-card.js',
+	input: 'dist/package/main.js',
 	output: {
-		file: 'dashboard-card.min.js',
+		file: 'main.min.js',
 		name: 'version',
 		format: 'iife'
 	},

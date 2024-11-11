@@ -40,7 +40,7 @@ export const hass = {
         icon: "Ecole",
       },
       last_updated: "01/11/2024 14:18:33",
-      state: "on",
+      state: "off",
     },
     "sensor.clou_pellet_quantity": {
       last_updated: "01/11/2024 14:18:33",

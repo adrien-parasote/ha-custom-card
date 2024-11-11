@@ -1,8 +1,4 @@
-import {
-  LitElement,
-  html,
-  css,
-} from "lit";
+import { LitElement, html, css } from "lit";
 
 // Custom components import
 import "./representation-bar.js";

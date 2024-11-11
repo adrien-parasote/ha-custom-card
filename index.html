@@ -3,7 +3,8 @@
   <head>
     <meta charset="utf-8">
     <title>HA TESTS</title>
-    <script type="module" src="src/dashboard-card.js"></script>
+    <script type="module" src="src/dashboard/dashboard-card.js"></script>
+    <script type="module" src="src/people-card/main.js"></script>
     <style>
       html {
         height: 100%;
@@ -20,6 +21,23 @@
         background-color: #1c1c1c;
         height: 100%;
         border-right: 1px solid rgba(225, 225, 225, .12);
+        color: white;
+        ul {
+          list-style-type: none;
+          margin: 0;
+          padding: 0;
+          padding-top: 56px;
+          width: 60px;
+        }
+        li {
+          display: block;
+          padding: 5px 0;
+          color: white;
+        }
+        li:hover { 
+          cursor: pointer;
+          color: blue;
+        }
       }
       .lovelace-panel {
         height: 100%;
@@ -36,7 +54,7 @@
         z-index: 4;
         background-color: #101e24;
       }
-      .lovelace-view {
+      .lovelace-view > div {
         display: flex;
         min-height: 100vh;
         box-sizing: border-box;
@@ -45,14 +63,36 @@
         padding: 60px 4px 4px 4px;
         color: white;
       }
+      .hide {
+        visibility: hidden;
+        display: none !important;
+      }
     </style>
+    <script>
+      function switchVisible(e) {
+        document.querySelector(".lovelace-view").querySelectorAll("div").forEach(function(el){
+          el.id == e.attributes.target.value ? el.className = "" : el.className = "hide";
+        });
+      }
+    </script>
   </head>
   <body>
-    <div class="ha-side-bar"></div>
+    <div class="ha-side-bar">
+      <ul>
+        <li onclick="switchVisible(this)" target="default">Default</li>
+        <li onclick="switchVisible(this)" target="people-card">people-card</li>
+      </ul>
+    </div>
     <div class="lovelace-panel">
       <div class="lovelace-header">HEADER</div>
       <div class="lovelace-view">
-        <dashboard-card></dashboard-card>
+        <div id="default" class="hide">
+          <dashboard-card></dashboard-card>
+        </div>
+        <div  id="people-card">
+          <people-card></people-card>
+        </div>
+        
       </div>
     </div>
   </body>

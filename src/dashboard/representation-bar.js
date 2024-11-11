@@ -1,9 +1,4 @@
-import {
-  LitElement,
-  html,
-  css,
-  svg,
-} from "lit";
+import { LitElement, html, css, svg } from "lit";
 
 // Custom CSS
 import styles from "./common-styles.js";

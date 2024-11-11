@@ -1,8 +1,4 @@
-import {
-  LitElement,
-  html,
-  css,
-} from "lit";
+import { LitElement, html, css } from "lit";
 
 // Custom components import
 import "./action-card.js";
@@ -250,7 +246,7 @@ export class DashboardCard extends LitElement {
     `;
   }
 
-  __drawHouse(){
+  __drawHouse() {
     return html`<house-card></house-card>`;
   }
 }
