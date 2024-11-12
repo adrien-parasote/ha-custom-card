@@ -1,9 +1,9 @@
 import { LitElement, html, css } from "lit";
 
+import './../utils/base-card.js'
+
 import { VERSION } from "./config.js";
 import { mdiHomeOutline, mdiHomeOffOutline } from "@mdi/js";
-
-console.log(mdiHomeOutline);
 
 // Custom CSS
 import styles from "./../common-styles.js";
@@ -27,9 +27,6 @@ export class PeopleCard extends LitElement {
         }
         .column-gap {
           column-gap: calc(var(--gap-size) * 2);
-        }
-        .card {
-          padding: 10px;
         }
         .avatar {
           border: 1px solid var(--secondary-color);
@@ -99,15 +96,11 @@ export class PeopleCard extends LitElement {
   render() {
     if (this.hass == undefined) return html``;
     return html`
-      <div class="column card">
-        <span class="corner-border-top"></span>
-        <div class="card-content row column-gap">
-          ${this.config.people.map((personEntity) => {
-            return this.__renderPerson(personEntity);
-          })}
-        </div>
-        <span class="corner-border-bottom"></span>
-      </div>
+      <base-card class="column">
+        ${this.config.people.map((personEntity) => {
+          return this.__renderPerson(personEntity);
+        })}
+      </base-card>
     `;
   }
 
