@@ -1,17 +1,15 @@
 import { components_version } from '../package.json';
 
 /****** COMPONENTS VERSION *******/
-export const ACTION_CARD_VERSION = components_version["action_card"];
-export const DASHBOARD_CARD_VERSION = components_version["dashboard_card"];
-export const INFO_CARD_VERSION = components_version["info_card"];
-export const PEOPLE_INFO_VERSION = components_version["people_info"];
-export const REPRESENTATION_BAR_VERSION = components_version["representation_bar"];
-export const REPRESENTATION_CIRCLE_VERSION = components_version["representation_circle"];
-export const SCI_FI_CARD_VERSION = components_version["sci_fi_card"];
-export const TOAST_CARD_VERSION = components_version["toast_card"];
-export const WEATHER_CLOCK_CARD_VERSION = components_version["weather_clock_card"];
-export const HOUSE_CARD_VERSION = components_version["house_card"];
-
+export const ACTION_CARD_VERSION = components_version["action-card"];
+export const DASHBOARD_CARD_VERSION = components_version["dashboard-card"];
+export const INFO_CARD_VERSION = components_version["info-card"];
+export const PEOPLE_INFO_VERSION = components_version["people-info"];
+export const REPRESENTATION_BAR_VERSION = components_version["representation-bar"];
+export const REPRESENTATION_CIRCLE_VERSION = components_version["representation-circle"];
+export const SCI_FI_CARD_VERSION = components_version["sci_fi-card"];
+export const TOAST_CARD_VERSION = components_version["toast-card"];
+export const WEATHER_CLOCK_CARD_VERSION = components_version["weather-clock-card"];
 
 /****** IMAGE PATH *******/
 const IMG_PATH = "../local/custom/images"

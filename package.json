@@ -1,16 +1,16 @@
 {
   "version": "1.0",
   "components_version": {
-    "action_card": "1.0",
-    "dashboard_card": "1.0",
-    "info_card": "1.0",
-    "people_info": "1.0",
-    "representation_bar": "1.0",
-    "representation_circle": "1.0",
-    "sci_fi_card": "1.0",
-    "toast_card": "1.0",
-    "weather_clock_card": "1.0",
-    "house_card": "1.0"
+    "action-card": "1.0",
+    "dashboard-card": "1.0",
+    "info-card": "1.0",
+    "people-info": "1.0",
+    "representation-bar": "1.0",
+    "representation-circle": "1.0",
+    "sci-fi-card": "1.0",
+    "toast-card": "1.0",
+    "weather-clock-card": "1.0",
+    "people-card": "1.0"
   },
   "description": "HA custom dashboard",
   "main": "src/dashboard-card.js",
