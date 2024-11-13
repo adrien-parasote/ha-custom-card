@@ -1,6 +1,7 @@
 import { LitElement, html, css } from "lit";
 
 import './../utils/base-card.js'
+import { renderSvgIcon } from "./../utils/icon-svg.js"
 
 import { VERSION } from "./config.js";
 import { mdiHomeOutline, mdiHomeOffOutline } from "@mdi/js";
@@ -8,7 +9,7 @@ import { mdiHomeOutline, mdiHomeOffOutline } from "@mdi/js";
 // Custom CSS
 import styles from "./../common-styles.js";
 
-// Constante
+// Constant
 const STATE_HOME = "home";
 
 export class PeopleCard extends LitElement {
@@ -96,7 +97,7 @@ export class PeopleCard extends LitElement {
   render() {
     if (this.hass == undefined) return html``;
     return html`
-      <base-card class="column">
+      <base-card content-display="row" gap>
         ${this.config.people.map((personEntity) => {
           return this.__renderPerson(personEntity);
         })}
@@ -111,13 +112,12 @@ export class PeopleCard extends LitElement {
         <div class="avatar">
           <img src="${entity.attributes.entity_picture}" />
           <div class="icon-container">
-            <svg class="icon" viewBox="0 0 24 24">
-              <path
-                d="${entity.state == STATE_HOME
+            ${renderSvgIcon(
+                entity.state == STATE_HOME
                   ? mdiHomeOutline
-                  : mdiHomeOffOutline}"
-              />
-            </svg>
+                  : mdiHomeOffOutline
+                )
+              }
           </div>
         </div>
         <div class="column avatar-info">${entity.attributes.friendly_name}</div>

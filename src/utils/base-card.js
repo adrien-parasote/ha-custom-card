@@ -13,7 +13,7 @@ export class BaseCard extends LitElement {
           padding: 5px;
         }
         .card-content {
-          padding: 10px;
+          padding: 5px;
         }
         .corner-border-top:before,
         .corner-border-top:after,
@@ -23,9 +23,9 @@ export class BaseCard extends LitElement {
           border-width: 0;
           border-color: var(--secondary-color);
           content: "";
-          height: 5px;
+          height: 10px;
           position: absolute;
-          width: 5px;
+          width: 10px;
         }
         .corner-border-top::before {
           border-left-width: var(--card-border-width);
@@ -55,11 +55,34 @@ export class BaseCard extends LitElement {
     ];
   }
 
+  static get properties() {
+    return {
+      contentDisplay: { type: String, attribute: "content-display"},
+      gap: { type: Boolean }
+    };
+  }
+
+  constructor() {
+    super();
+    this.contentDisplay = (this.contentDisplay && ['row', 'column'].includes(this.contentDisplay)) ? this.contentDisplay : "row";
+    this.gap = this.gap ? true : false;
+  }
+
   render() {
+    const display = {
+      row: {
+        true: "row column-gap",
+        false: "row",
+      },
+      column: {
+        true: "column row-gap",
+        false: "column",
+      }
+    }
     return html`
       <div class="column card">
         <span class="corner-border-top"></span>
-        <div class="card-content row column-gap">
+        <div class="card-content ${display[this.contentDisplay][this.gap]}">
           <slot></slot>
         </div>
         <span class="corner-border-bottom"></span>
