@@ -1,7 +1,7 @@
 import { LitElement, html, css } from "lit";
 
-import './../utils/base-card.js'
-import { renderSvgIcon } from "./../utils/icon-svg.js"
+import "./../utils/base-card.js";
+import { renderSvgIcon } from "./../utils/icon-svg.js";
 
 import { VERSION } from "./config.js";
 import { mdiHomeOutline, mdiHomeOffOutline } from "@mdi/js";
@@ -113,11 +113,8 @@ export class PeopleCard extends LitElement {
           <img src="${entity.attributes.entity_picture}" />
           <div class="icon-container">
             ${renderSvgIcon(
-                entity.state == STATE_HOME
-                  ? mdiHomeOutline
-                  : mdiHomeOffOutline
-                )
-              }
+              entity.state == STATE_HOME ? mdiHomeOutline : mdiHomeOffOutline,
+            )}
           </div>
         </div>
         <div class="column avatar-info">${entity.attributes.friendly_name}</div>

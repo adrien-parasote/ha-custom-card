@@ -15,6 +15,9 @@ export class BaseCard extends LitElement {
         .card-content {
           padding: 5px;
         }
+        .card-wrap {
+          padding: 5px;
+        }
         .corner-border-top:before,
         .corner-border-top:after,
         .corner-border-bottom:before,
@@ -57,15 +60,26 @@ export class BaseCard extends LitElement {
 
   static get properties() {
     return {
-      contentDisplay: { type: String, attribute: "content-display"},
-      gap: { type: Boolean }
+      contentDisplay: { type: String, attribute: "content-display" },
+      gap: { type: Boolean },
+      wrap: { type: Boolean },
+      width: { type: String },
+      height: { type: String },
+      alignItem: { type: String, attribute: "align-item" },
     };
   }
 
   constructor() {
     super();
-    this.contentDisplay = (this.contentDisplay && ['row', 'column'].includes(this.contentDisplay)) ? this.contentDisplay : "row";
+    this.contentDisplay =
+      this.contentDisplay && ["row", "column"].includes(this.contentDisplay)
+        ? this.contentDisplay
+        : "row";
     this.gap = this.gap ? true : false;
+    this.wrap = this.wrap ? true : false;
+    this.width = this.width ? this.width : "inherit";
+    this.height = this.height ? this.height : "inherit";
+    this.alignItem = this.alignItem ? this.alignItem : "unset";
   }
 
   render() {
@@ -77,12 +91,23 @@ export class BaseCard extends LitElement {
       column: {
         true: "column row-gap",
         false: "column",
-      }
-    }
+      },
+      wrap: {
+        true: "flex-wrap",
+        false: "",
+      },
+    };
     return html`
       <div class="column card">
         <span class="corner-border-top"></span>
-        <div class="card-content ${display[this.contentDisplay][this.gap]}">
+        <div
+          class="
+          card-content 
+          ${display[this.contentDisplay][this.gap]} 
+          ${display["wrap"][this.wrap]}"
+          style="width: ${this.width};height: ${this.height};align-items: ${this
+            .alignItem}"
+        >
           <slot></slot>
         </div>
         <span class="corner-border-bottom"></span>

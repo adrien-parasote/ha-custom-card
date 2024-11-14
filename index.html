@@ -5,6 +5,7 @@
     <title>HA TESTS</title>
     <script type="module" src="src/dashboard/dashboard-card.js"></script>
     <script type="module" src="src/people-card/main.js"></script>
+    <script type="module" src="src/earth-card/main.js"></script>
     <style>
       html {
         height: 100%;
@@ -67,6 +68,24 @@
         visibility: hidden;
         display: none !important;
       }
+      #components {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+
+        & > div {
+          display: flex;
+          flex-direction: column;
+          align-self: center;
+        }
+        .title {
+          text-align: center;
+          padding: 5px;
+          margin-bottom: 10px;
+          text-transform: uppercase;
+          border-bottom: 1px solid white;
+        }
+      }
     </style>
     <script>
       function switchVisible(e) {
@@ -80,7 +99,7 @@
     <div class="ha-side-bar">
       <ul>
         <li onclick="switchVisible(this)" target="default">Default</li>
-        <li onclick="switchVisible(this)" target="people-card">people-card</li>
+        <li onclick="switchVisible(this)" target="components">Components</li>
       </ul>
     </div>
     <div class="lovelace-panel">
@@ -89,8 +108,15 @@
         <div id="default" class="hide">
           <dashboard-card></dashboard-card>
         </div>
-        <div  id="people-card">
-          <people-card></people-card>
+        <div id="components">
+          <div>
+            <div class="title">People Card</div>
+            <people-card></people-card>
+          </div>
+          <div>
+            <div class="title">Earth card</div>
+            <earth-card></earth-card>
+          </div>
         </div>
         
       </div>

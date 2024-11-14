@@ -7,8 +7,10 @@ export default css`
     --secondary-color: rgb(102, 156, 210);
     --secondary-color-opacity: rgba(102, 156, 210, 0.5);
     --color-muted: rgb(170, 170, 170);
+    --color-active-icon: rgb(255, 193, 7);
 
     --font-size-normal: 14px;
+    --font-size-small: 12px;
     --icon-size: 36px;
     --gap-size: 10px;
 
@@ -37,6 +39,9 @@ export default css`
   }
   .column-gap {
     column-gap: var(--gap-size);
+  }
+  .flex-wrap {
+    flex-wrap: wrap;
   }
   .text-muted {
     text-shadow: none;

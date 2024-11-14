@@ -10,7 +10,9 @@
     "sci-fi-card": "1.0",
     "toast-card": "1.0",
     "weather-clock-card": "1.0",
-    "people-card": "1.0"
+
+    "people-card": "1.0",
+    "earth-card": "1.0"
   },
   "description": "HA custom dashboard",
   "main": "src/dashboard-card.js",
@@ -18,9 +20,12 @@
   "scripts": {
     "format": "prettier src/*.js src/*/*.js --write",
     "serve": "es-dev-server --node-resolve --watch",
-    "test": "cp src/common-styles.js dist/ && cp src/$npm_config_package/* dist/",
-    "prepare-prod": "cp src/common-styles.js dist/ && cp src/$npm_config_package/* dist/package && rm dist/package/config.js && mv dist/package/config.js.PROD dist/package/config.js",
-    "clean-up": "rm dist/*.js && rm dist/package/*.js && mv main.min.js dist/cards/$npm_config_package.min.js",
+    "build-tree": "mkdir temp temp/utils temp/package temp/package/svg",
+    "copy-style": "cp src/common-styles.js temp/",
+    "copy-utils": "cp src/utils/*.js temp/utils",
+    "copy-package": "cp -R src/$npm_config_package/* temp/package && rm temp/package/config.js && mv temp/package/config.js.PROD temp/package/config.js",
+    "prepare-prod": "npm run build-tree && npm run copy-style && npm run copy-utils && npm run copy-package",
+    "clean-up": "rm -rf temp && mv main.min.js dist/$npm_config_package.min.js",
     "build": "npm run prepare-prod --package=$npm_config_package  && rollup -c && npm run clean-up"
   },
   "keywords": [],
