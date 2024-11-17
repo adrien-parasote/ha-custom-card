@@ -1,4 +1,5 @@
-import { LitElement, html } from "lit";
+import { html } from "lit";
+import { BaseElement } from "./../utils/base-element.js";
 
 import "./../utils/sci-fi-card.js";
 import { renderSvgIcon } from "./../utils/icon-svg.js";
@@ -11,12 +12,6 @@ import {
 } from "@mdi/js";
 
 import { VERSION } from "./config.js";
-
-// Custom CSS
-import common_styles from "./../common-styles.js";
-import styles from "./styles.js";
-
-// Constant
 import {
   STATE_TIME_ON,
   ICON_STATE_CLIMATE,
@@ -26,7 +21,14 @@ import {
   ICON_STATE_VACUUM,
 } from "./const.js";
 
-export class EarthCard extends LitElement {
+// Custom CSS
+import common_styles from "./../common-styles.js";
+import styles from "./styles.js";
+
+// Constants
+const PACKAGE = "earth-card";
+
+export class EarthCard extends BaseElement {
   static get styles() {
     return [common_styles, styles];
   }
@@ -38,19 +40,9 @@ export class EarthCard extends LitElement {
   }
 
   constructor() {
-    super();
-    if (VERSION == "DEV") {
-      import("./config.js").then(({ hass, config }) => {
-        this.hass = hass;
-        this.setConfig(config);
-        this.requestUpdate();
-      });
-    } // Clock
+    super(VERSION, PACKAGE);
+    // Clock
     this._date = new Date();
-    console.info(
-      `%cEARTH-CARD Version: ${VERSION}`,
-      "color: rgb(105, 211, 251); font-weight: bold; background: black",
-    );
     // Auto update date
     setInterval(() => {
       this._date = new Date();
@@ -104,7 +96,7 @@ export class EarthCard extends LitElement {
     // Validate config entries
     this.__configTimeSensors(config);
     this.__configInfoSensors(config);
-    this.config = config;
+    super.setConfig(config);
   }
 
   render() {
@@ -261,4 +253,4 @@ export class EarthCard extends LitElement {
   }
 }
 
-window.customElements.define("earth-card", EarthCard);
+window.customElements.define(PACKAGE, EarthCard);

@@ -1,4 +1,5 @@
-import { LitElement, html } from "lit";
+import { html } from "lit";
+import { BaseElement } from "./../utils/base-element.js";
 
 import "./../utils/sci-fi-card.js";
 import { renderSvgIcon } from "./../utils/icon-svg.js";
@@ -10,34 +11,24 @@ import { mdiHomeOutline, mdiHomeOffOutline } from "@mdi/js";
 import common_styles from "./../common-styles.js";
 import styles from "./styles.js";
 
-// Constant
+// Constants
 const STATE_HOME = "home";
+const PACKAGE = "people-card";
 
-export class PeopleCard extends LitElement {
+export class PeopleCard extends BaseElement {
   static get styles() {
     return [common_styles, styles];
   }
 
   constructor() {
-    super();
-    if (VERSION == "DEV") {
-      import("./config.js").then(({ hass, config }) => {
-        this.hass = hass;
-        this.setConfig(config);
-        this.requestUpdate();
-      });
-    }
-    console.info(
-      `%cPEOPLE-CARD Version: ${VERSION}`,
-      "color: rgb(105, 211, 251); font-weight: bold; background: black",
-    );
+    super(VERSION, PACKAGE);
   }
 
   setConfig(config) {
     if (!config.people) {
       throw new Error("You need to define a people entity list");
     }
-    this.config = config;
+    super.setConfig(config);
   }
 
   render() {
@@ -69,4 +60,4 @@ export class PeopleCard extends LitElement {
   }
 }
 
-window.customElements.define("people-card", PeopleCard);
+window.customElements.define(PACKAGE, PeopleCard);
