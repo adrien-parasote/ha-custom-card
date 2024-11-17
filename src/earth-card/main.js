@@ -172,26 +172,53 @@ export class EarthCard extends LitElement {
     }, 1000);
   }
 
-  setConfig(config) {
-    if (!config.workday_sensor) {
-      throw new Error("You need to define a workday sensor");
+  __configTimeSensors(config) {
+    if (!config.time_sensors) {
+      throw new Error("You need to define time sensors");
     }
-    if (!config.school_sensor) {
-      throw new Error("You need to define a school sensor");
+    if (!Array.isArray(config.time_sensors)) {
+      throw new Error("Time sensors must be a list");
     }
-    if (!config.stove) {
-      throw new Error("You need to define a stove climate entity");
+    // Define default value if needed
+    config.time_sensors.map((entity) => {
+      if (!entity.entity)
+        throw new Error("You need to define an entity for each time sensors");
+      if (!entity.type) entity.type = "workday";
+    });
+  }
+
+  __configInfoSensors(config) {
+    if (!config.info_sensors) {
+      throw new Error("You need to define info sensors");
     }
-    if (!config.car) {
-      throw new Error("You need to define a car switch sensor");
-    }
-    if (!config.light) {
-      throw new Error("You need to define light entity");
-    }
-    if (!config.radiators) {
-      throw new Error("You need to define radiators entities");
+    if (!Array.isArray(config.info_sensors)) {
+      throw new Error("Info sensors must be a list");
     }
 
+    // Define default value if needed
+    config.info_sensors.map((entity) => {
+      if (!entity.type)
+        throw new Error(
+          "You need to define an entity <type> for each info sensors",
+        );
+      if (!["car", "stove", "light", "radiators"].includes(entity.type))
+        throw new Error(
+          "Info sensor entity <type> must be car or stove or light or radiators",
+        );
+      if (entity.type == "radiators") {
+        if (!entity.entities)
+          throw new Error("Radiators type must be link to a list of entities");
+      } else {
+        if (!entity.entity)
+          throw new Error("You need to define an entity for each info sensors");
+      }
+    });
+  }
+
+  setConfig(config) {
+    // Validate config entries
+    this.__configTimeSensors(config);
+    this.__configInfoSensors(config);
     this.config = config;
   }
 
@@ -205,12 +232,12 @@ export class EarthCard extends LitElement {
       <div class="row">
         ${this.__renderDateCard()}
         <div class="planet-svg-container">${animatedEarth}</div>
-        ${this.__renderInfo()}
+        ${this.__renderInfos()}
       </div>
     `;
   }
 
-  __renderInfo() {
+  __renderInfos() {
     return html`
       <base-card
         content-display="column"
@@ -220,14 +247,27 @@ export class EarthCard extends LitElement {
         wrap
         class="info-panel"
       >
-        ${this.__renderCar()} ${this.__renderLights()}
-        ${this.__renderRadiators()} ${this.__renderStove()}
+        ${this.__renderInfo()}
       </base-card>
     `;
   }
 
-  __renderRadiators() {
-    const globalState = this.__getRadiatorsGlobalState();
+  __renderInfo() {
+    return this.config.info_sensors.map((sensor) => {
+      const entity = this.hass.states[sensor.entity];
+      if (sensor.type == "stove")
+        return this.__renderStove(this.hass.states[sensor.entity]);
+      if (sensor.type == "car")
+        return this.__renderCar(this.hass.states[sensor.entity]);
+      if (sensor.type == "light")
+        return this.__renderLight(this.hass.states[sensor.entity]);
+      if (sensor.type == "radiators")
+        return this.__renderRadiators(sensor.entities);
+    });
+  }
+
+  __renderRadiators(radiators) {
+    const globalState = this.__getRadiatorsGlobalState(radiators);
     return this.__renderInfoCard(
       ICON_STATE_CLIMATE[globalState],
       "Radiateurs",
@@ -236,9 +276,9 @@ export class EarthCard extends LitElement {
     );
   }
 
-  __getRadiatorsGlobalState() {
+  __getRadiatorsGlobalState(radiators) {
     let state = "off";
-    this.config.radiators.map((entity) => {
+    radiators.map((entity) => {
       const radiators = this.hass.states[entity];
       if (
         radiators.state == "heat" ||
@@ -250,8 +290,7 @@ export class EarthCard extends LitElement {
     return state;
   }
 
-  __renderLights() {
-    const light = this.hass.states[this.config.light];
+  __renderLight(light) {
     return this.__renderInfoCard(
       ICON_STATE_LIGHT[light.state],
       light.attributes.friendly_name,
@@ -260,8 +299,7 @@ export class EarthCard extends LitElement {
     );
   }
 
-  __renderCar() {
-    const car = this.hass.states[this.config.car];
+  __renderCar(car) {
     const state = car.state == "unknown" ? "off" : car.state;
     return this.__renderInfoCard(
       ICON_STATE_CAR[state],
@@ -271,8 +309,7 @@ export class EarthCard extends LitElement {
     );
   }
 
-  __renderStove() {
-    const stove = this.hass.states[this.config.stove];
+  __renderStove(stove) {
     return this.__renderInfoCard(
       ICON_STATE_STOVE[stove.state],
       stove.attributes.friendly_name,
@@ -293,25 +330,34 @@ export class EarthCard extends LitElement {
   __renderDateCard() {
     return html`
       <base-card content-display="column" class="date-panel">
-        <div class="rest row">
-          ${this.__renderSchoolStatus()} ${this.__renderWorkdayStatus()}
-        </div>
+        <div class="rest row">${this.__renderTimeSensors()}</div>
         <div class="hour">${this.__getHour()}</div>
         <div class="date">${this.__getDate()}</div>
       </base-card>
     `;
   }
-  __renderSchoolStatus() {
+
+  __renderTimeSensors() {
+    return this.config.time_sensors.map((sensor) => {
+      if (sensor.type == "workday") {
+        return this.__renderWorkdayStatus(sensor.entity);
+      } else {
+        return this.__renderSchoolStatus(sensor.entity);
+      }
+    });
+  }
+
+  __renderSchoolStatus(entity) {
     return renderSvgIcon(
-      this.hass.states[this.config.school_sensor].state == STATE_SCHOOL_ON
+      this.hass.states[entity].state == STATE_SCHOOL_ON
         ? mdiAccountSchoolOutline
         : mdiHomeOutline,
     );
   }
 
-  __renderWorkdayStatus() {
+  __renderWorkdayStatus(entity) {
     return renderSvgIcon(
-      this.hass.states[this.config.workday_sensor].state == STATE_WORKDAY_ON
+      this.hass.states[entity].state == STATE_WORKDAY_ON
         ? mdiBriefcaseOutline
         : mdiBriefcaseOffOutline,
     );

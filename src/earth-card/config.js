@@ -133,10 +133,35 @@ export const hass = {
 
 /****** DEV CONFIG *******/
 export const config = {
-  workday_sensor: "binary_sensor.workday_sensor",
-  school_sensor: "binary_sensor.school_sensor",
-  stove: "climate.clou",
-  car: "switch.powercar",
-  light: "light.group",
-  radiators: ["climate.radiator_1", "climate.radiator_2", "climate.radiator_3"],
+  time_sensors: [
+    {
+      entity: "binary_sensor.workday_sensor",
+    },
+    {
+      entity: "binary_sensor.school_sensor",
+      type: "school",
+    },
+  ],
+  info_sensors: [
+    {
+      entity: "climate.clou",
+      type: "stove",
+    },
+    {
+      entity: "switch.powercar",
+      type: "car",
+    },
+    {
+      entity: "light.group",
+      type: "light",
+    },
+    {
+      entities: [
+        "climate.radiator_1",
+        "climate.radiator_2",
+        "climate.radiator_3",
+      ],
+      type: "radiators",
+    },
+  ],
 };
