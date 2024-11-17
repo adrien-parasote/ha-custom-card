@@ -1,6 +1,6 @@
 import { LitElement, html } from "lit";
 
-import "./../utils/base-card.js";
+import "./../utils/sci-fi-card.js";
 import { renderSvgIcon } from "./../utils/icon-svg.js";
 import animatedEarth from "./svg/earth.js";
 import {
@@ -107,17 +107,13 @@ export class EarthCard extends LitElement {
     this.config = config;
   }
 
-  getCardSize() {
-    return 1;
-  }
-
   render() {
     if (this.hass == undefined) return html``;
     return html`
       <div class="row">
         ${this.__renderDateCard()}
         <div class="planet-svg-container">${animatedEarth}</div>
-        <base-card
+        <sci-fi-card
           content-display="row"
           align-item="center"
           wrap
@@ -125,7 +121,7 @@ export class EarthCard extends LitElement {
           class="info-panel"
         >
           ${this.__renderInfo()}
-        </base-card>
+        </sci-fi-card>
       </div>
     `;
   }
@@ -195,11 +191,11 @@ export class EarthCard extends LitElement {
 
   __renderDateCard() {
     return html`
-      <base-card content-display="column" class="date-panel">
+      <sci-fi-card content-display="column" class="date-panel">
         <div class="rest row">${this.__renderTimeSensors()}</div>
         <div class="hour">${this.__getHour()}</div>
         <div class="date">${this.__getDate()}</div>
-      </base-card>
+      </sci-fi-card>
     `;
   }
 

@@ -1,6 +1,6 @@
 import { LitElement, html } from "lit";
 
-import "./../utils/base-card.js";
+import "./../utils/sci-fi-card.js";
 import { renderSvgIcon } from "./../utils/icon-svg.js";
 
 import { VERSION } from "./config.js";
@@ -40,18 +40,14 @@ export class PeopleCard extends LitElement {
     this.config = config;
   }
 
-  getCardSize() {
-    return 1;
-  }
-
   render() {
     if (this.hass == undefined) return html``;
     return html`
-      <base-card content-display="row" gap>
+      <sci-fi-card content-display="row" gap>
         ${this.config.people.map((personEntity) => {
           return this.__renderPerson(personEntity);
         })}
-      </base-card>
+      </sci-fi-card>
     `;
   }
 

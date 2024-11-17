@@ -3,7 +3,7 @@ import { LitElement, html, css } from "lit";
 // Custom CSS
 import styles from "../common-styles.js";
 
-export class BaseCard extends LitElement {
+export class SciFiCard extends LitElement {
   static get styles() {
     return [
       styles,
@@ -116,5 +116,5 @@ export class BaseCard extends LitElement {
   }
 }
 
-window.customElements.get("base-card") ||
-  window.customElements.define("base-card", BaseCard);
+window.customElements.get("sci-fi-card") ||
+  window.customElements.define("sci-fi-card", SciFiCard);
