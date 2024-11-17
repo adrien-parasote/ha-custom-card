@@ -148,7 +148,7 @@ export class EarthCard extends LitElement {
         return this.__renderInfoCard(
           ICON_STATE_VACUUM[entity.state],
           !["cleaning", "returning"].includes(entity.state),
-          entity.state != "error" ? "icon" : "icon-error",
+          entity.state != "error" ? "" : "icon-error",
         );
     });
   }

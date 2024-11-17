@@ -116,4 +116,5 @@ export class BaseCard extends LitElement {
   }
 }
 
-window.customElements.define("base-card", BaseCard);
+window.customElements.get("base-card") ||
+  window.customElements.define("base-card", BaseCard);
