@@ -85,11 +85,11 @@ export class BaseCard extends LitElement {
   render() {
     const display = {
       row: {
-        true: "row column-gap",
+        true: "row column-gap row-gap",
         false: "row",
       },
       column: {
-        true: "column row-gap",
+        true: "column column-gap row-gap",
         false: "column",
       },
       wrap: {

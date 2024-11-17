@@ -128,6 +128,18 @@ export const hass = {
         supported_features: 401,
       },
     },
+    "vacuum.dobby": {
+      state: "error", // cleaning, docked, returning, error, idle
+      attributes: {
+        fan_speed_list: ["Silent", "Standard", "Medium", "Turbo"],
+        battery_level: 100,
+        battery_icon: "mdi:battery-charging-100",
+        fan_speed: "Medium",
+        status: "Charging",
+        friendly_name: "Dobby",
+        supported_features: 14204,
+      },
+    },
   },
 };
 
@@ -153,7 +165,9 @@ export const config = {
     },
     {
       entity: "light.group",
-      type: "light",
+    },
+    {
+      entity: "vacuum.dobby",
     },
     {
       entities: [

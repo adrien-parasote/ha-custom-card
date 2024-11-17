@@ -8,6 +8,7 @@ export default css`
     --secondary-color-opacity: rgba(102, 156, 210, 0.5);
     --color-muted: rgb(170, 170, 170);
     --color-active-icon: rgb(255, 193, 7);
+    --color-error-icon: rgb(255, 0, 0);
 
     --font-size-normal: 14px;
     --font-size-small: 12px;
