@@ -48,4 +48,7 @@ export default css`
     font-weight: bold;
     padding-top: 5px;
   }
+  sci-fi-card {
+    width: fit-content;
+  }
 `;
