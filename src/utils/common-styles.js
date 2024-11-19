@@ -64,6 +64,8 @@ export default css`
     margin: 0 10px;
   }
   .editor-row-actions {
+    display: flex;
+    align-self: center;
   }
   .editor-card-actions {
     display: flex;
