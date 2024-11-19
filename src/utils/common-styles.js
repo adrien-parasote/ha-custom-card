@@ -90,7 +90,11 @@ export default css`
     background-color: var(--secondary-color-opacity);
   }
   /************* DROPDOWN *************/
+  .dropdown {
+    flex-grow: 1;
+  }
   .dropdown .dropdown-toggle {
+    position: relative;
     font-size: var(--font-size-normal);
     background: linear-gradient(
       to bottom,
@@ -100,18 +104,17 @@ export default css`
     padding: 0.5rem 1rem;
     border: var(--card-border-width) solid var(--primary-color);
     color: var(--primary-color);
-    white-space: nowrap;
     border-radius: var(--border-radius);
-    min-width: 130px;
+    width: 100%;
   }
   .dropdown .dropdown-toggle:hover {
     cursor: pointer;
     background-color: var(--secondary-color-opacity);
   }
   .dropdown .dropdown-toggle::after {
-    display: inline-block;
-    margin-left: 0.255em;
-    vertical-align: 0.255em;
+    top: 45%;
+    right: 15px;
+    position: absolute;
     content: "";
     border-top: 0.3em solid;
     border-right: 0.3em solid transparent;
@@ -128,7 +131,6 @@ export default css`
     width: fit-content;
     text-align: left;
     border-radius: var(--border-radius);
-    min-width: 130px;
   }
   .dropdown .dropdown-menu.show {
     display: block;
@@ -139,8 +141,6 @@ export default css`
     display: block;
     padding: 5px 10px;
     font-weight: 400;
-    text-align: inherit;
-    white-space: nowrap;
     color: var(--secondary-color);
   }
   .dropdown .dropdown-menu .dropdown-item:hover {
