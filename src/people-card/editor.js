@@ -20,6 +20,9 @@ export class PeopleCardEditor extends BaseEditor {
           return Object.assign(cur, { [key]: this.hass.states[key] });
         }, {});
     }
+    if (!config.people){
+      config["people"] = new Array();
+    }
     super.setConfig(config);
   }
 

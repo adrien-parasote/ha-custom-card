@@ -57,6 +57,8 @@ export class SciFiCard extends LitElement {
         .card-title {
           font-size: var(--font-size-title);
           font-weight: bold;
+          padding-left: 5px;
+          text-transform: capitalize;
         }
       `,
     ];
