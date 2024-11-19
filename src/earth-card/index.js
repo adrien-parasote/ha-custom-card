@@ -14,6 +14,6 @@ window.customElements.get(PACKAGE + "-editor") ||
 window.customCards = window.customCards || [];
 window.customCards.push({
   type: PACKAGE,
-  name: PACKAGE + " custom element",
-  description: "Render clock and display important entity info",
+  name: "Render short earth info",
+  description: "Render clock and display simple/visual entity info",
 });

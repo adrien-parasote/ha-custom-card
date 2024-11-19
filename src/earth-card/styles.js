@@ -59,8 +59,8 @@ export default css`
   }
   .date-panel .icon {
     fill: var(--secondary-color);
-    width: var(--state-icon-size);
-    height: var(--state-icon-size);
+    width: var(--icon-size-xsmall);
+    height: var(--icon-size-xsmall);
   }
   .info-panel {
     align-self: end;

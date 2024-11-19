@@ -102,6 +102,7 @@ export default css`
   .input-group {
     flex-grow: 1;
     display: flex;
+    flex-direction: column;
     max-width: 395px;
   }
   .input-group .input-group-prepend {
@@ -135,6 +136,7 @@ export default css`
   .input-group .input-info-text {
     font-size: var(--font-size-small);
     color: white;
+    height: var(--font-size-small);
   }
   /************* DROPDOWN *************/
   .dropdown {

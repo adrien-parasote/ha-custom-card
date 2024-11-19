@@ -37,6 +37,11 @@ export class EarthCard extends BaseElement {
     };
   }
 
+  // card configuration
+  static getConfigElement() {
+    return document.createElement(PACKAGE + "-editor");
+  }
+
   constructor() {
     super(VERSION, PACKAGE);
     // Clock
