@@ -5,7 +5,7 @@ import replace from '@rollup/plugin-replace';
 import minifyHTML from 'rollup-plugin-minify-html-literals';
 
 export default {
-	input: 'temp/package/main.js',
+	input: 'temp/package/index.js',
 	output: {
 		file: 'main.min.js',
 		name: 'version',

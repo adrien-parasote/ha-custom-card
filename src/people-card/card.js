@@ -1,19 +1,16 @@
 import { html } from "lit";
 import { BaseElement } from "./../utils/base-element.js";
-
-import "./../utils/sci-fi-card.js";
 import { renderSvgIcon } from "./../utils/icon-svg.js";
 
 import { VERSION } from "./config.js";
 import { mdiHomeOutline, mdiHomeOffOutline } from "@mdi/js";
 
 // Custom CSS
-import common_styles from "./../common-styles.js";
+import common_styles from "./../utils/common-styles.js";
 import styles from "./styles.js";
 
 // Constants
-const STATE_HOME = "home";
-const PACKAGE = "people-card";
+import { STATE_HOME, PACKAGE } from "./const.js";
 
 export class PeopleCard extends BaseElement {
   static get styles() {
@@ -31,11 +28,18 @@ export class PeopleCard extends BaseElement {
     super.setConfig(config);
   }
 
+  // card configuration
+  static getConfigElement() {
+    return document.createElement(PACKAGE + "-editor");
+  }
+
   render() {
-    if (this.hass == undefined) return html``;
+    if (!this._hass || !this._config) {
+      return html``;
+    }
     return html`
       <sci-fi-card content-display="row" gap>
-        ${this.config.people.map((personEntity) => {
+        ${this._config.people.map((personEntity) => {
           return this.__renderPerson(personEntity);
         })}
       </sci-fi-card>
@@ -43,7 +47,7 @@ export class PeopleCard extends BaseElement {
   }
 
   __renderPerson(entityName) {
-    const entity = this.hass.states[entityName];
+    const entity = this._hass.states[entityName];
     return html`
       <div class="column">
         <div class="avatar">
@@ -59,5 +63,3 @@ export class PeopleCard extends BaseElement {
     `;
   }
 }
-
-window.customElements.define(PACKAGE, PeopleCard);

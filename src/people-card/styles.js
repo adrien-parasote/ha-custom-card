@@ -2,10 +2,7 @@ import { css } from "lit";
 
 export default css`
   :host {
-    --state-container-icon-size: 20px;
-    --state-icon-size: 15px;
-
-    min-width: calc(var(--state-container-icon-size) + 15px);
+    min-width: calc(var(--icon-size-small) + 15px);
   }
   .column {
     align-items: center;
@@ -29,8 +26,8 @@ export default css`
   .icon-container {
     background-color: var(--secondary-color-opacity);
     border-radius: 50%;
-    width: var(--state-container-icon-size);
-    height: var(--state-container-icon-size);
+    width: var(--icon-size-small);
+    height: var(--icon-size-small);
     position: absolute;
     top: -5px;
     right: -10px;
@@ -47,6 +44,7 @@ export default css`
     margin: auto;
     font-weight: bold;
     padding-top: 5px;
+    min-width: 55px;
   }
   sci-fi-card {
     width: fit-content;

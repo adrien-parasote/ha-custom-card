@@ -1,8 +1,8 @@
 import { html } from "lit";
-import { BaseElement } from "./../utils/base-element.js";
+import { BaseElement } from "../utils/base-element.js";
 
-import "./../utils/sci-fi-card.js";
-import { renderSvgIcon } from "./../utils/icon-svg.js";
+import "../utils/sci-fi-card.js";
+import { renderSvgIcon } from "../utils/icon-svg.js";
 import animatedEarth from "./svg/earth.js";
 import {
   mdiBriefcaseOutline,
@@ -19,14 +19,12 @@ import {
   ICON_STATE_CAR,
   ICON_STATE_LIGHT,
   ICON_STATE_VACUUM,
+  PACKAGE,
 } from "./const.js";
 
 // Custom CSS
-import common_styles from "./../common-styles.js";
+import common_styles from "./../utils/common-styles.js";
 import styles from "./styles.js";
-
-// Constants
-const PACKAGE = "earth-card";
 
 export class EarthCard extends BaseElement {
   static get styles() {
@@ -100,7 +98,9 @@ export class EarthCard extends BaseElement {
   }
 
   render() {
-    if (this.hass == undefined) return html``;
+    if (!this._hass || !this._config) {
+      return html``;
+    }
     return html`
       <div class="row">
         ${this.__renderDateCard()}
@@ -119,8 +119,8 @@ export class EarthCard extends BaseElement {
   }
 
   __renderInfo() {
-    return this.config.info_sensors.map((sensor) => {
-      const entity = this.hass.states[sensor.entity];
+    return this._config.info_sensors.map((sensor) => {
+      const entity = this._hass.states[sensor.entity];
       if (sensor.type == "stove")
         return this.__renderInfoCard(ICON_STATE_STOVE[entity.state]);
       if (sensor.type == "car") return this.__renderCar(entity);
@@ -153,7 +153,7 @@ export class EarthCard extends BaseElement {
   __getRadiatorsGlobalState(radiators) {
     let state = "off";
     radiators.map((entity) => {
-      const radiators = this.hass.states[entity];
+      const radiators = this._hass.states[entity];
       if (
         radiators.state == "heat" ||
         (radiators.state == "auto" && state != "heat")
@@ -192,7 +192,7 @@ export class EarthCard extends BaseElement {
   }
 
   __renderTimeSensors() {
-    return this.config.time_sensors.map((sensor) => {
+    return this._config.time_sensors.map((sensor) => {
       if (sensor.type == "workday") {
         return this.__renderWorkdayStatus(sensor.entity);
       } else {
@@ -203,7 +203,7 @@ export class EarthCard extends BaseElement {
 
   __renderSchoolStatus(entity) {
     return renderSvgIcon(
-      this.hass.states[entity].state == STATE_TIME_ON
+      this._hass.states[entity].state == STATE_TIME_ON
         ? mdiAccountSchoolOutline
         : mdiHomeOutline,
     );
@@ -211,7 +211,7 @@ export class EarthCard extends BaseElement {
 
   __renderWorkdayStatus(entity) {
     return renderSvgIcon(
-      this.hass.states[entity].state == STATE_TIME_ON
+      this._hass.states[entity].state == STATE_TIME_ON
         ? mdiBriefcaseOutline
         : mdiBriefcaseOffOutline,
     );
@@ -252,5 +252,3 @@ export class EarthCard extends BaseElement {
     ].join(" ");
   }
 }
-
-window.customElements.define(PACKAGE, EarthCard);

@@ -12,6 +12,7 @@ import {
   mdiRobotVacuumVariant,
 } from "@mdi/js";
 
+export const PACKAGE = "earth-card";
 export const STATE_TIME_ON = "on";
 export const ICON_STATE_CLIMATE = {
   heat: mdiRadiator,

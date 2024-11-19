@@ -1,9 +1,6 @@
 import { css } from "lit";
 
 export default css`
-  :host {
-    --state-icon-size: 15px;
-  }
   .planet-svg-container {
     width: 125px;
     height: 125px;
@@ -47,7 +44,6 @@ export default css`
     fill: white;
     stroke-width: 0;
   }
-
   .date-panel .hour {
     font-size: 50px;
     text-align: center;
@@ -66,7 +62,6 @@ export default css`
     width: var(--state-icon-size);
     height: var(--state-icon-size);
   }
-
   .info-panel {
     align-self: end;
     width: 100px;

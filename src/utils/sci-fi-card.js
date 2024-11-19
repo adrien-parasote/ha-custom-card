@@ -1,7 +1,7 @@
 import { LitElement, html, css } from "lit";
 
 // Custom CSS
-import styles from "../common-styles.js";
+import styles from "./common-styles.js";
 
 export class SciFiCard extends LitElement {
   static get styles() {
@@ -54,6 +54,10 @@ export class SciFiCard extends LitElement {
           bottom: -1px;
           right: 0;
         }
+        .card-title {
+          font-size: var(--font-size-title);
+          font-weight: bold;
+        }
       `,
     ];
   }
@@ -62,6 +66,7 @@ export class SciFiCard extends LitElement {
     return {
       contentDisplay: { type: String, attribute: "content-display" },
       gap: { type: Boolean },
+      title: { type: String },
       wrap: { type: Boolean },
       width: { type: String },
       height: { type: String },
@@ -80,6 +85,7 @@ export class SciFiCard extends LitElement {
     this.width = this.width ? this.width : "inherit";
     this.height = this.height ? this.height : "inherit";
     this.alignItem = this.alignItem ? this.alignItem : "unset";
+    this.title = this.title ? this.title : null;
   }
 
   render() {
@@ -100,6 +106,7 @@ export class SciFiCard extends LitElement {
     return html`
       <div class="column card">
         <span class="corner-border-top"></span>
+        <div class="card-title">${!this.title ? "" : this.title}</div>
         <div
           class="
           card-content 
@@ -115,6 +122,3 @@ export class SciFiCard extends LitElement {
     `;
   }
 }
-
-window.customElements.get("sci-fi-card") ||
-  window.customElements.define("sci-fi-card", SciFiCard);
