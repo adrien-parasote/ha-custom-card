@@ -14,9 +14,10 @@ export default css`
     --font-size-normal: 14px;
     --font-size-small: 12px;
 
-    --icon-size: 36px;
+    --icon-size-title: 36px;
+    --icon-size-normal: 25px;
     --icon-size-small: 20px;
-    --state-icon-size: 15px;
+    --icon-size-xsmall: 15px;
 
     --gap-size: 10px;
 
@@ -64,8 +65,6 @@ export default css`
   }
   .editor-row-actions {
   }
-  .editor-label {
-  }
   .editor-card-actions {
     display: flex;
     align-self: self-end;
@@ -88,6 +87,54 @@ export default css`
   .btn:hover {
     cursor: pointer;
     background-color: var(--secondary-color-opacity);
+  }
+  .btn-not-show {
+    border: none;
+    width: var(--icon-size-normal);
+    height: var(--icon-size-normal);
+    fill: var(--secondary-color);
+  }
+  .btn-not-show:hover {
+    cursor: pointer;
+    fill: var(--primary-color);
+  }
+  /************* INPUT *************/
+  .input-group {
+    flex-grow: 1;
+    display: flex;
+    max-width: 395px;
+  }
+  .input-group .input-group-prepend {
+    display: flex;
+  }
+  .input-group .input-group-prepend .input-group-text {
+    border-radius: var(--border-radius);
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.2) 100%);
+    color: white;
+    display: flex;
+    align-items: center;
+    font-size: var(--font-size-small);
+    text-align: center;
+    border: var(--card-border-width) solid var(--primary-color);
+    margin-right: -1px;
+    padding: 0.5rem 1rem;
+  }
+  .input-group input {
+    border-radius: var(--border-radius);
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    width: 100%;
+    padding: 0.5rem 1rem;
+    font-size: var(--font-size-normal);
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.2) 100%);
+    border: var(--card-border-width) solid var(--primary-color);
+    color: var(--primary-color);
+  }
+  .input-group .input-info-text {
+    font-size: var(--font-size-small);
+    color: white;
   }
   /************* DROPDOWN *************/
   .dropdown {

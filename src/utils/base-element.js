@@ -8,7 +8,6 @@ export class BaseElement extends LitElement {
     return [styles];
   }
 
-  /* Property */
   _hass; // private
 
   static get properties() {

@@ -14,8 +14,8 @@ export default css`
     border: 1px solid var(--secondary-color);
     box-shadow: 0 0 5px 1px var(--secondary-color);
     border-radius: 50%;
-    height: var(--icon-size);
-    width: var(--icon-size);
+    height: var(--icon-size-title);
+    width: var(--icon-size-title);
     position: relative;
   }
   img {
@@ -36,8 +36,8 @@ export default css`
   }
   .icon {
     fill: var(--primary-color);
-    width: var(--state-icon-size);
-    height: var(--state-icon-size);
+    width: var(--icon-size-xsmall);
+    height: var(--icon-size-xsmall);
   }
   .avatar-info {
     align-self: center;

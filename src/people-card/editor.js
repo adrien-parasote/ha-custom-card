@@ -45,17 +45,15 @@ export class PeopleCardEditor extends BaseEditor {
         ${this._config.people.map((entityId, idx) => {
           return html`
             <div class="row column-gap editor-row">
-              <div class="editor-label">Person</div>
               ${this._renderSelectPeopleBox(entityId, idx)}
               <div class="editor-row-actions">
-                <div class="btn" @click="${() => this._removePeople(idx)}">
+                <div class="btn-not-show" @click="${() => this._removePeople(idx)}">
                   ${renderSvgIcon(mdiDelete)}
                 </div>
               </div>
             </div>
           `;
         })}
-      </sci-fi-card>
     `;
   }
 
@@ -102,7 +100,7 @@ export class PeopleCardEditor extends BaseEditor {
 
   _removePeople(idx) {
     var newConfig = Object.assign({}, this._config);
-    newConfig.people.splice(parseInt(idx), 1);
+    newConfig.people.splice(idx, 1);
     this.__dispatchChange(newConfig);
   }
 

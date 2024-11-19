@@ -58,6 +58,7 @@ export class SciFiCard extends LitElement {
           font-size: var(--font-size-title);
           font-weight: bold;
           padding-left: 5px;
+          margin-bottom: 10px;
           text-transform: capitalize;
         }
       `,
@@ -108,7 +109,7 @@ export class SciFiCard extends LitElement {
     return html`
       <div class="column card">
         <span class="corner-border-top"></span>
-        <div class="card-title">${!this.title ? "" : this.title}</div>
+        <div class="${!this.title ? "" : "card-title"}">${!this.title ? "" : this.title}</div>
         <div
           class="
           card-content 

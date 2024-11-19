@@ -14,6 +14,6 @@ window.customElements.get(PACKAGE + "-editor") ||
 window.customCards = window.customCards || [];
 window.customCards.push({
   type: PACKAGE,
-  name: PACKAGE + " custom element",
+  name: "Render sci-fi people card",
   description: "Render sci-fi people",
 });
