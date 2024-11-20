@@ -1,7 +1,6 @@
 import { html } from "lit";
 import { BaseElement } from "../utils/base-element.js";
 
-
 import { VERSION } from "./config.js";
 import { PACKAGE } from "./const.js";
 
@@ -48,7 +47,7 @@ export class ActionsCard extends BaseElement {
     `;
   }
 
-  __renderdActionsRow(){
+  __renderdActionsRow() {
     return html`
       <div class="actions-badge-content row column-gap">
         ${this._config.actions.map((action) => {
@@ -58,14 +57,19 @@ export class ActionsCard extends BaseElement {
     `;
   }
 
-  __renderActionButton(action){
+  __renderActionButton(action) {
     return html`
-    <sci-fi-card class="action-card" content-display="column" align-item="center" no-padding height="100%">
-      <div class="action-state">${action.showState ? "State" : ""}</div>
-      <div class="action-icon">${action.icon}</div>
-      <div class="action-name">${action.name}</div>
-    </sci-fi-card>
+      <sci-fi-card
+        class="action-card"
+        content-display="column"
+        align-item="center"
+        no-padding
+        height="100%"
+      >
+        <div class="action-state">${action.showState ? "State" : ""}</div>
+        <div class="action-icon">${action.icon}</div>
+        <div class="action-name">${action.name}</div>
+      </sci-fi-card>
     `;
   }
-
 }

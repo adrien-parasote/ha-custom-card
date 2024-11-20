@@ -110,12 +110,17 @@ export class SciFiCard extends LitElement {
       },
     };
     return html`
-      <div class="column card" style="width: ${this.width};height: ${this.height}">
+      <div
+        class="column card"
+        style="width: ${this.width};height: ${this.height}"
+      >
         <span class="corner-border-top"></span>
-        <div class="${!this.title ? "" : "card-title"}">${!this.title ? "" : this.title}</div>
+        <div class="${!this.title ? "" : "card-title"}">
+          ${!this.title ? "" : this.title}
+        </div>
         <div
           class="
-          ${this.noPadding ? "": "card-content"}
+          ${this.noPadding ? "" : "card-content"}
           ${display[this.contentDisplay][this.gap]} 
           ${display["wrap"][this.wrap]}"
           style="align-items: ${this.alignItem}"

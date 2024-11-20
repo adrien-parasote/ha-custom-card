@@ -2,7 +2,6 @@ import { BaseEditor } from "../utils/base-element.js";
 import { html } from "lit";
 
 export class ActionsCardEditor extends BaseEditor {
-
   setConfig(config) {
     super.setConfig(config);
   }

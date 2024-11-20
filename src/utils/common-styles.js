@@ -115,7 +115,11 @@ export default css`
     border-radius: var(--border-radius);
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.2) 100%);
+    background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.7) 0%,
+      rgba(0, 0, 0, 0.2) 100%
+    );
     color: white;
     display: flex;
     align-items: center;
@@ -132,7 +136,11 @@ export default css`
     width: 100%;
     padding: 0.5rem 1rem;
     font-size: var(--font-size-normal);
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.2) 100%);
+    background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.7) 0%,
+      rgba(0, 0, 0, 0.2) 100%
+    );
     border: var(--card-border-width) solid var(--primary-color);
     color: var(--primary-color);
   }

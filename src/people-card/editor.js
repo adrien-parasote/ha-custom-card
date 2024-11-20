@@ -20,7 +20,7 @@ export class PeopleCardEditor extends BaseEditor {
           return Object.assign(cur, { [key]: this.hass.states[key] });
         }, {});
     }
-    if (!config.people){
+    if (!config.people) {
       config["people"] = new Array();
     }
     super.setConfig(config);
@@ -42,18 +42,21 @@ export class PeopleCardEditor extends BaseEditor {
 
   _renderRows() {
     return html`
-        ${this._config.people.map((entityId, idx) => {
-          return html`
-            <div class="row column-gap editor-row">
-              ${this._renderSelectPeopleBox(entityId, idx)}
-              <div class="editor-row-actions">
-                <div class="btn-not-show" @click="${() => this._removePeople(idx)}">
-                  ${renderSvgIcon(mdiDelete)}
-                </div>
+      ${this._config.people.map((entityId, idx) => {
+        return html`
+          <div class="row column-gap editor-row">
+            ${this._renderSelectPeopleBox(entityId, idx)}
+            <div class="editor-row-actions">
+              <div
+                class="btn-not-show"
+                @click="${() => this._removePeople(idx)}"
+              >
+                ${renderSvgIcon(mdiDelete)}
               </div>
             </div>
-          `;
-        })}
+          </div>
+        `;
+      })}
     `;
   }
 
