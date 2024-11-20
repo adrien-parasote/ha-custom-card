@@ -14,6 +14,6 @@ window.customElements.get(PACKAGE + "-editor") ||
 window.customCards = window.customCards || [];
 window.customCards.push({
   type: PACKAGE,
-  name: "Render short earth info",
+  name: "Render sci-fi earth",
   description: "Render clock and display simple/visual entity info",
 });

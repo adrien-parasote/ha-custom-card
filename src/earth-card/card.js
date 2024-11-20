@@ -1,7 +1,6 @@
 import { html } from "lit";
 import { BaseElement } from "../utils/base-element.js";
 
-import "../utils/sci-fi-card.js";
 import { renderSvgIcon } from "../utils/icon-svg.js";
 import animatedEarth from "./svg/earth.js";
 import {

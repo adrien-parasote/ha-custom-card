@@ -13,6 +13,7 @@ export default css`
     --font-size-title: 16px;
     --font-size-normal: 14px;
     --font-size-small: 12px;
+    --font-size-xsmall: 10px;
 
     --icon-size-title: 36px;
     --icon-size-normal: 25px;

@@ -11,6 +11,7 @@ export class SciFiCard extends LitElement {
         .card {
           position: relative;
           padding: 5px;
+          justify-content: center;
         }
         .card-content {
           padding: 5px;
@@ -74,6 +75,7 @@ export class SciFiCard extends LitElement {
       width: { type: String },
       height: { type: String },
       alignItem: { type: String, attribute: "align-item" },
+      noPadding: { type: Boolean, attribute: "no-padding" },
     };
   }
 
@@ -85,6 +87,7 @@ export class SciFiCard extends LitElement {
         : "row";
     this.gap = this.gap ? true : false;
     this.wrap = this.wrap ? true : false;
+    this.noPadding = this.noPadding ? true : false;
     this.width = this.width ? this.width : "inherit";
     this.height = this.height ? this.height : "inherit";
     this.alignItem = this.alignItem ? this.alignItem : "unset";
@@ -107,16 +110,15 @@ export class SciFiCard extends LitElement {
       },
     };
     return html`
-      <div class="column card">
+      <div class="column card" style="width: ${this.width};height: ${this.height}">
         <span class="corner-border-top"></span>
         <div class="${!this.title ? "" : "card-title"}">${!this.title ? "" : this.title}</div>
         <div
           class="
-          card-content 
+          ${this.noPadding ? "": "card-content"}
           ${display[this.contentDisplay][this.gap]} 
           ${display["wrap"][this.wrap]}"
-          style="width: ${this.width};height: ${this.height};align-items: ${this
-            .alignItem}"
+          style="align-items: ${this.alignItem}"
         >
           <slot></slot>
         </div>

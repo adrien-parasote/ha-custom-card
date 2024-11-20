@@ -5,6 +5,7 @@
     <title>HA TESTS</title>
     <script type="module" src="src/people-card/index.js"></script>
     <script type="module" src="src/earth-card/index.js"></script>
+    <script type="module" src="src/actions-card/index.js"></script>
     <style>
       html {
         height: 100%;
@@ -96,17 +97,21 @@
   </head>
   <body>
     <div class="ha-side-bar">
+      <!--
       <ul>
         <li onclick="switchVisible(this)" target="default">Default</li>
         <li onclick="switchVisible(this)" target="components">Components</li>
       </ul>
+      -->
     </div>
     <div class="lovelace-panel">
       <div class="lovelace-header">HEADER</div>
       <div class="lovelace-view">
+        <!--
         <div id="default" class="hide">
           to remove
         </div>
+        -->
         <div id="components">
           <div>
             <div class="title">People Card</div>
@@ -115,6 +120,10 @@
           <div>
             <div class="title">Earth card</div>
             <earth-card></earth-card>
+          </div>
+          <div style="width: 100%;">
+            <div class="title">Actions badge</div>
+            <actions-card></actions-card>
           </div>
         </div>
         

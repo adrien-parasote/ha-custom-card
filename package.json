@@ -2,7 +2,8 @@
   "version": "1.0",
   "components_version": {
     "people-card": "1.0",
-    "earth-card": "1.0"
+    "earth-card": "1.0",
+    "actions-card": "0.5"
   },
   "description": "HA custom dashboard",
   "main": "src/dashboard-card.js",
