@@ -64,22 +64,19 @@
         background-color: rgb(17, 17, 17);
         padding: 60px 4px 4px 4px;
         color: white;
+        flex-direction: column;
+        gap: 20px;
       }
       .hide {
         visibility: hidden;
         display: none !important;
       }
-      #components, #default {
+      #cards > div, #default  > div {
         display: flex;
         flex-direction: column;
-        gap: 20px;
-
-        & > div {
-          display: flex;
-          flex-direction: column;
-          align-self: center;
-        }
-        .title {
+        align-self: center;
+      }
+      .title {
           text-align: center;
           padding: 5px;
           margin-bottom: 10px;
@@ -90,11 +87,10 @@
           display: flex;
           flex-direction: row;
         }
-      }
     </style>
     <script>
       function switchVisible(e) {
-        document.querySelector(".lovelace-view").querySelectorAll("div").forEach(function(el){
+        document.querySelector(".lovelace-view").querySelectorAll(":scope > div").forEach(function(el){
           el.id == e.attributes.target.value ? el.className = "" : el.className = "hide";
         });
       }
