@@ -1,4 +1,4 @@
-import { BaseEditor } from "../utils/base-element.js";
+import { BaseEditor } from "../../utils/base-element.js";
 import { html } from "lit";
 
 export class ActionsCardEditor extends BaseEditor {

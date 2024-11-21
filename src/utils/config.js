@@ -1,6 +1,3 @@
-/****** COMPONENTS VERSION *******/
-export const VERSION = "DEV";
-
 /****** DEV HASS *******/
 export const hass = {
   states: {
@@ -40,5 +37,7 @@ export const hass = {
 
 /****** DEV CONFIG *******/
 export const config = {
-  people: ["punk.1", "punk.2"],
+  "people-card": {
+    people: ["punk.1", "punk.2"],
+  },
 };

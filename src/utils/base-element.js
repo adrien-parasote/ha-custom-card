@@ -1,6 +1,5 @@
 import { LitElement, html } from "lit";
-
-// Custom CSS
+import { DEV } from "../const.js";
 import styles from "./common-styles.js";
 
 export class BaseElement extends LitElement {
@@ -24,19 +23,15 @@ export class BaseElement extends LitElement {
     return {};
   }
 
-  constructor(version, packageName) {
+  constructor(module) {
     super();
-    if (version == "DEV") {
-      import("./../" + packageName + "/config.js").then(({ hass, config }) => {
+    if (DEV) {
+      import("./config.js").then(({ hass, config }) => {
         this._hass = hass;
-        this.setConfig(config);
+        this.setConfig(config[module]);
         this.requestUpdate();
       });
     }
-    console.info(
-      `%c${packageName} v${version}`,
-      "color: rgb(105, 211, 251); font-weight: bold; background: black",
-    );
   }
 
   setConfig(config) {

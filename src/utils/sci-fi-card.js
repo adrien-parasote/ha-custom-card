@@ -1,6 +1,4 @@
 import { LitElement, html, css } from "lit";
-
-// Custom CSS
 import styles from "./common-styles.js";
 
 export class SciFiCard extends LitElement {
@@ -132,3 +130,6 @@ export class SciFiCard extends LitElement {
     `;
   }
 }
+
+window.customElements.get("sci-fi-card") ||
+  window.customElements.define("sci-fi-card", SciFiCard);

@@ -1,4 +1,4 @@
-import { SciFiCard } from "./../utils/sci-fi-card.js";
+import { SciFiCard } from "./../../utils/sci-fi-card.js";
 
 import { EarthCard } from "./card.js";
 import { EarthCardEditor } from "./editor.js";

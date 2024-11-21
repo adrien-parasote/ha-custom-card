@@ -1,4 +1,0 @@
-import { components_version } from '../../package.json';
-
-/****** COMPONENTS VERSION *******/
-export const VERSION = components_version["people-card"];

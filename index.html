@@ -3,10 +3,13 @@
   <head>
     <meta charset="utf-8">
     <title>HA TESTS</title>
-    <script type="module" src="src/people-card/index.js"></script>
-    <script type="module" src="src/earth-card/index.js"></script>
-    <script type="module" src="src/actions-card/index.js"></script>
-    <script type="module" src="src/person-badge/index.js"></script>
+    <!--
+    <script type="module" src="src/cards/people-card/index.js"></script>
+    <script type="module" src="src/cards/earth-card/index.js"></script>
+    <script type="module" src="src/cards/actions-card/index.js"></script>
+    <script type="module" src="src/badges/person-badge/index.js"></script>
+    -->
+    <script type="module" src="src/sci-fi.js"></script>
     <style>
       html {
         height: 100%;
@@ -71,7 +74,7 @@
         visibility: hidden;
         display: none !important;
       }
-      #cards > div, #default  > div {
+      #cards > div, #badges  > div {
         display: flex;
         flex-direction: column;
         align-self: center;
@@ -99,14 +102,22 @@
   <body>
     <div class="ha-side-bar">
       <ul>
-        <li onclick="switchVisible(this)" target="default">Badges</li>
+        <li onclick="switchVisible(this)" target="badges">Badges</li>
         <li onclick="switchVisible(this)" target="cards">Cards</li>
       </ul>
     </div>
     <div class="lovelace-panel">
       <div class="lovelace-header">HEADER</div>
       <div class="lovelace-view">
-        <div id="default">
+        <div id="cards">
+          <div>
+            <div class="title">People Card</div>
+            <people-card></people-card>
+          </div>
+        </div>
+        todo
+        <!--
+        <div id="badges" class="hide">
           <div>
             <div class="title">Person badge</div>
             <div class="row">
@@ -115,7 +126,7 @@
             </div>
           </div>
         </div>
-        <div id="cards" class="hide">
+        <div id="cards">
           <div>
             <div class="title">People Card</div>
             <people-card></people-card>
@@ -129,7 +140,7 @@
             <actions-card></actions-card>
           </div>
         </div>
-        
+        -->
       </div>
     </div>
   </body>

@@ -1,11 +1,11 @@
 import { html } from "lit";
-import { BaseElement } from "../utils/base-element.js";
+import { BaseElement } from "../../utils/base-element.js";
 
 import { VERSION } from "./config.js";
 import { PACKAGE } from "./const.js";
 
 // Custom CSS
-import common_styles from "../utils/common-styles.js";
+import common_styles from "../../utils/common-styles.js";
 import styles from "./styles.js";
 
 export class ActionsCard extends BaseElement {
@@ -24,7 +24,7 @@ export class ActionsCard extends BaseElement {
 
   constructor() {
     // TODO validate config format
-    super(VERSION, PACKAGE);
+    super(VERSION, PACKAGE, "cards");
   }
 
   setConfig(config) {

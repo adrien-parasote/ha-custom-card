@@ -1,13 +1,13 @@
 import { html } from "lit";
-import { BaseElement } from "../utils/base-element.js";
-import { renderSvgIcon } from "../utils/icon-svg.js";
+import { BaseElement } from "./../../utils/base-element.js";
+import { renderSvgIcon } from "./../../utils/icon-svg.js";
 import { mdiHomeOutline, mdiHomeOffOutline } from "@mdi/js";
 
 import { VERSION } from "./config.js";
 import { PACKAGE, STATE_HOME } from "./const.js";
 
 // Custom CSS
-import common_styles from "../utils/common-styles.js";
+import common_styles from "./../../utils/common-styles.js";
 import styles from "./styles.js";
 
 export class PersonBadge extends BaseElement {
@@ -35,7 +35,7 @@ export class PersonBadge extends BaseElement {
   }
 
   constructor() {
-    super(VERSION, PACKAGE);
+    super(VERSION, PACKAGE, "badges");
   }
 
   setConfig(config) {

@@ -1,23 +1,14 @@
 {
   "version": "1.0",
-  "components_version": {
-    "people-card": "1.0",
-    "earth-card": "1.0",
-    "actions-card": "0.5",
-    "person-badge": "1.0"
-  },
   "description": "HA custom dashboard",
   "main": "src/dashboard-card.js",
   "type": "module",
   "scripts": {
-    "format": "prettier src/*/*.js --write",
+    "format": "prettier src/*.js src/**/*.js src/**/**/*.js --write",
     "serve": "es-dev-server --node-resolve --watch",
-    "build-tree": "mkdir temp temp/utils temp/package temp/package/svg",
-    "copy-utils": "cp src/utils/*.js temp/utils",
-    "copy-package": "cp -R src/$npm_config_package/* temp/package && rm temp/package/config.js && mv temp/package/config.js.PROD temp/package/config.js",
-    "prepare-prod": "npm run build-tree && npm run copy-utils && npm run copy-package",
-    "clean-up": "rm -rf temp && mv main.min.js dist/$npm_config_package.min.js",
-    "build": "npm run prepare-prod --package=$npm_config_package  && rollup -c && npm run clean-up"
+    "prepare-prod": "mkdir temp && cp -r ./src/* ./temp",
+    "clean-up": "rm -rf temp && mv sci-fi.min.js dist",
+    "build": "npm run prepare-prod && rollup -c && npm run clean-up"
   },
   "keywords": [],
   "dependencies": {

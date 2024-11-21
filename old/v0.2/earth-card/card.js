@@ -1,7 +1,7 @@
 import { html } from "lit";
-import { BaseElement } from "../utils/base-element.js";
+import { BaseElement } from "./../../utils/base-element.js";
 
-import { renderSvgIcon } from "../utils/icon-svg.js";
+import { renderSvgIcon } from "./../../utils/icon-svg.js";
 import animatedEarth from "./svg/earth.js";
 import {
   mdiBriefcaseOutline,
@@ -22,7 +22,7 @@ import {
 } from "./const.js";
 
 // Custom CSS
-import common_styles from "./../utils/common-styles.js";
+import common_styles from "./../../utils/common-styles.js";
 import styles from "./styles.js";
 
 export class EarthCard extends BaseElement {
@@ -42,7 +42,7 @@ export class EarthCard extends BaseElement {
   }
 
   constructor() {
-    super(VERSION, PACKAGE);
+    super(VERSION, PACKAGE, "cards");
     // Clock
     this._date = new Date();
     // Auto update date
