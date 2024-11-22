@@ -3,13 +3,8 @@
   <head>
     <meta charset="utf-8">
     <title>HA TESTS</title>
-    <!--
-    <script type="module" src="src/cards/people-card/index.js"></script>
-    <script type="module" src="src/cards/earth-card/index.js"></script>
-    <script type="module" src="src/cards/actions-card/index.js"></script>
-    <script type="module" src="src/badges/person-badge/index.js"></script>
-    -->
     <script type="module" src="src/sci-fi.js"></script>
+    <script type="module" src="src/helpers/form/dropdown.js"></script>
     <style>
       html {
         height: 100%;
@@ -74,10 +69,12 @@
         visibility: hidden;
         display: none !important;
       }
-      #cards > div, #badges  > div {
+      #cards > div, #form  > div {
         display: flex;
         flex-direction: column;
         align-self: center;
+        width: 100%;
+        align-items: center;
       }
       .title {
           text-align: center;
@@ -97,19 +94,21 @@
           el.id == e.attributes.target.value ? el.className = "" : el.className = "hide";
         });
       }
+      document.addEventListener("dropdown-select",console.log,false);
+      document.addEventListener("dropdown-delete",console.log,false);
     </script>
   </head>
   <body>
     <div class="ha-side-bar">
       <ul>
-        <li onclick="switchVisible(this)" target="badges">Badges</li>
         <li onclick="switchVisible(this)" target="cards">Cards</li>
+        <li onclick="switchVisible(this)" target="form">Form</li>
       </ul>
     </div>
     <div class="lovelace-panel">
       <div class="lovelace-header">HEADER</div>
       <div class="lovelace-view">
-        <div id="cards">
+        <div id="cards" class="hide">
           <div>
             <div class="title">People Card</div>
             <people-card></people-card>
@@ -117,6 +116,12 @@
           <div>
             <div class="title">Info Card</div>
             <info-card></info-card>
+          </div>
+        </div>
+        <div id="form">
+          <div>
+            <sci-fi-dropdown @dropdown-select="log"></sci-fi-dropdown>
+            <sci-fi-dropdown @dropdown-select="log" is-deletable element-id="elt-to-delete"></sci-fi-dropdown>
           </div>
         </div>
         <!--
