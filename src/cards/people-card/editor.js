@@ -1,7 +1,7 @@
 import { BaseEditor } from "./../../utils/base-editor.js";
 import { html } from "lit";
 
-import { renderSvgIcon } from "./../../utils/icon-svg.js";
+import { renderSvgIcon } from "./../../helpers/icon-svg.js";
 import { mdiDelete, mdiPlus } from "@mdi/js";
 
 export class PeopleCardEditor extends BaseEditor {

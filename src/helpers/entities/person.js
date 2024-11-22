@@ -1,5 +1,5 @@
 import { html, LitElement, css } from "lit";
-import { renderSvgIcon } from "../../utils/icon-svg.js";
+import { renderSvgIcon } from "../icon-svg.js";
 import { mdiHomeOutline, mdiHomeOffOutline } from "@mdi/js";
 import common_styles from "../../utils/common-styles.js";
 
