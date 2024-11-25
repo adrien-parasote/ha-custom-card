@@ -65,9 +65,9 @@ export class SciFiButton extends LitElement {
       <div
         class="btn ${this.hasBorder ? "btn-border" : ""}"
         @click="${this.click}"
-      > 
-      ${renderSvgIcon(this.picturePath)} 
-    </div>
+      >
+        ${renderSvgIcon(this.picturePath)}
+      </div>
     `;
   }
 

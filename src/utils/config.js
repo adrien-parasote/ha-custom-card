@@ -166,6 +166,28 @@ export const hass = {
         supported_features: 14204,
       },
     },
+
+    "light.light_group_off": {
+      state: "off", // on, off
+      attributes: {
+        supported_color_modes: ["on", "off"],
+        color_mode: null,
+        entity_id: [],
+        icon: "mdi:lightbulb-group",
+        friendly_name: "Lumières",
+      },
+    },
+
+    "light.light_group_on": {
+      state: "on", // on, off
+      attributes: {
+        supported_color_modes: ["on", "off"],
+        color_mode: null,
+        entity_id: [],
+        icon: "mdi:lightbulb-group",
+        friendly_name: "Lumières",
+      },
+    },
   },
 };
 
@@ -176,6 +198,14 @@ export const config = {
   },
   "info-card": {
     info: [
+      {
+        entity: "light.light_group_off",
+        type: "light",
+      },
+      {
+        entity: "light.light_group_on",
+        type: "light",
+      },
       {
         entity: "climate.clouCool",
         type: "stove",

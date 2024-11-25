@@ -1,4 +1,4 @@
-import { html, LitElement, css } from "lit";
+import { html, css } from "lit";
 import common_styles from "../../utils/common-styles.js";
 import { renderSvgIcon } from "../icon-svg.js";
 import { vacuumMoving } from "../svg/vacuum.js";
@@ -9,13 +9,16 @@ import {
   mdiKeyboardReturn,
   mdiSleep,
 } from "@mdi/js";
+import { BaseEntity } from "./base-entity.js";
 
 // Constantes
-const VACUUM_CLEANING = "cleaning";
-const VACUUM_DOCKED = "docked";
-const VACUUM_RETURNING = "returning";
-const VACUUM_ERROR = "error";
-const VACUUM_IDLE = "idle";
+import {
+  VACUUM_CLEANING,
+  VACUUM_DOCKED,
+  VACUUM_RETURNING,
+  VACUUM_ERROR,
+  VACUUM_IDLE,
+} from "./const.js";
 
 var RENDER_ICONS = {};
 RENDER_ICONS[VACUUM_CLEANING] = vacuumMoving;
@@ -24,7 +27,7 @@ RENDER_ICONS[VACUUM_RETURNING] = vacuumMoving;
 RENDER_ICONS[VACUUM_ERROR] = mdiRobotVacuumVariantAlert;
 RENDER_ICONS[VACUUM_IDLE] = mdiRobotVacuumVariant;
 
-export class SciFiVacuumInfo extends LitElement {
+export class SciFiVacuumInfo extends BaseEntity {
   static get styles() {
     return [
       common_styles,
@@ -33,7 +36,7 @@ export class SciFiVacuumInfo extends LitElement {
           height: 100%;
         }
         svg {
-          stroke: var(--secondary-color);
+          fill: var(--secondary-color);
         }
         .svg-container {
           width: var(--icon-size-normal);
@@ -52,8 +55,6 @@ export class SciFiVacuumInfo extends LitElement {
           align-content: center;
           position: relative;
         }
-        .icon {
-        }
         .orange {
           color: var(--color-active-icon);
           text-shadow: 0px 0px 5px var(--color-active-icon);
@@ -63,7 +64,8 @@ export class SciFiVacuumInfo extends LitElement {
           text-shadow: 0px 0px 5px var(--color-error-icon);
         }
         .red > .icon {
-          stroke: var(--color-error-icon);
+          fill: var(--color-error-icon);
+          stroke: transparent
         }
         .state-icon {
           width: var(--icon-size-xsmall);
@@ -89,19 +91,9 @@ export class SciFiVacuumInfo extends LitElement {
     ];
   }
 
-  static get properties() {
-    return {
-      entityId: { type: String, attribute: "entity-id" },
-      state: { type: String },
-      name: { type: String },
-    };
-  }
-
   constructor() {
     super();
-    this.entityId = this.entityId ? this.entityId : null;
     this.state = this.state ? this.state : VACUUM_IDLE;
-    this.name = this.name ? this.name : null;
   }
 
   render() {

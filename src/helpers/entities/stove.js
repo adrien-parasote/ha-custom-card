@@ -1,18 +1,17 @@
-import { html, LitElement, css } from "lit";
+import { html, css } from "lit";
 import common_styles from "../../utils/common-styles.js";
-
+import { BaseEntity } from "./base-entity.js";
 import { stoveCool, stoveHeat, stoveOff } from "../svg/stove.js";
+
 // Constantes
-const STOVE_OFF = "off";
-const STOVE_HEAT = "heat";
-const STOVE_COOL = "cool";
+import { STOVE_OFF, STOVE_HEAT, STOVE_COOL } from "./const.js";
 
 var RENDER_ICONS = {};
 RENDER_ICONS[STOVE_OFF] = stoveOff;
 RENDER_ICONS[STOVE_HEAT] = stoveHeat;
 RENDER_ICONS[STOVE_COOL] = stoveCool;
 
-export class SciFiStoveInfo extends LitElement {
+export class SciFiStoveInfo extends BaseEntity {
   static get styles() {
     return [
       common_styles,
@@ -38,19 +37,9 @@ export class SciFiStoveInfo extends LitElement {
     ];
   }
 
-  static get properties() {
-    return {
-      entityId: { type: String, attribute: "entity-id" },
-      state: { type: String },
-      name: { type: String },
-    };
-  }
-
   constructor() {
     super();
-    this.entityId = this.entityId ? this.entityId : null;
     this.state = this.state ? this.state : STOVE_OFF;
-    this.name = this.name ? this.name : null;
   }
 
   render() {

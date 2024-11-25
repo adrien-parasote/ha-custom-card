@@ -3,7 +3,8 @@ import { renderSvgIcon } from "../icon-svg.js";
 import { mdiHomeOutline, mdiHomeOffOutline } from "@mdi/js";
 import common_styles from "../../utils/common-styles.js";
 
-export const STATE_HOME = "home";
+// Constantes
+import { STATE_HOME } from "./const.js";
 
 export class SciFiPerson extends LitElement {
   static get styles() {

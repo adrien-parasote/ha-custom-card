@@ -2,7 +2,7 @@ import { html, css, LitElement } from "lit";
 import { renderSvgIcon } from "../icon-svg.js";
 import common_styles from "../../utils/common-styles.js";
 import { mdiAlienOutline, mdiDelete } from "@mdi/js";
-import "./button.js"
+import "./button.js";
 
 export class SciFiDropdown extends LitElement {
   static get styles() {
@@ -156,8 +156,8 @@ export class SciFiDropdown extends LitElement {
           </div>
         </div>
         <div class="delete">
-          <sci-fi-button 
-            class="${!this.isDeletable ? "hide" : ""}" 
+          <sci-fi-button
+            class="${!this.isDeletable ? "hide" : ""}"
             picture-path="${mdiDelete}"
             @click="${this._delete}"
           ></sci-fi-button>

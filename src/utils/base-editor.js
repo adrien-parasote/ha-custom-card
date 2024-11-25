@@ -21,7 +21,7 @@ export class BaseEditor extends LitElement {
     return html`TO DO`;
   }
 
-  getNewConfig(){
-    return JSON.parse(JSON.stringify(this._config))
+  getNewConfig() {
+    return JSON.parse(JSON.stringify(this._config));
   }
 }
