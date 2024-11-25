@@ -20,4 +20,8 @@ export class BaseEditor extends LitElement {
   render() {
     return html`TO DO`;
   }
+
+  getNewConfig(){
+    return JSON.parse(JSON.stringify(this._config))
+  }
 }

@@ -2,7 +2,11 @@ import { BaseEditor } from "./../../utils/base-editor.js";
 import { html } from "lit";
 
 import { renderSvgIcon } from "./../../helpers/icon-svg.js";
-import { mdiDelete, mdiPlus } from "@mdi/js";
+import { mdiPlus, mdiAccount } from "@mdi/js";
+
+import "../../helpers/form/dropdown.js";
+import "../../helpers/form/button.js"
+
 
 export class PeopleCardEditor extends BaseEditor {
   static get properties() {
@@ -14,14 +18,16 @@ export class PeopleCardEditor extends BaseEditor {
 
   setConfig(config) {
     if (!this._personEntities) {
-      this._personEntities = Object.keys(this.hass.states)
+      const hassPerson = Object.keys(this.hass.states)
         .filter((key) => key.startsWith("person."))
         .reduce((cur, key) => {
-          return Object.assign(cur, { [key]: this.hass.states[key] });
+          return Object.assign(cur, {
+            [key]: this.hass.states[key].attributes.friendly_name,
+          });
         }, {});
-    }
-    if (!config.people) {
-      config["people"] = new Array();
+        this._personEntities = Object.fromEntries(
+          Object.entries(hassPerson).map(([key, value]) => [value, key])
+        );
     }
     super.setConfig(config);
   }
@@ -32,78 +38,53 @@ export class PeopleCardEditor extends BaseEditor {
       <sci-fi-card content-display="column" gap title="crew">
         <div class="columns row-gap editor-rows">${this._renderRows()}</div>
         <div class="editor-card-actions">
-          <div class="btn" @click="${this._addPeople}">
-            ${renderSvgIcon(mdiPlus)}
-          </div>
+          <sci-fi-button 
+            has-border
+            @click="${this._addPerson}"
+          ></sci-fi-button>
         </div>
       </sci-fi-card>
     `;
   }
 
   _renderRows() {
+    const ableToDelete = this._config.people.length > 1;
     return html`
       ${this._config.people.map((entityId, idx) => {
+        const entity = this.hass.states[entityId];
         return html`
           <div class="row column-gap editor-row">
-            ${this._renderSelectPeopleBox(entityId, idx)}
-            <div class="editor-row-actions">
-              <div
-                class="btn-not-show"
-                @click="${() => this._removePeople(idx)}"
-              >
-                ${renderSvgIcon(mdiDelete)}
-              </div>
-            </div>
+            <sci-fi-dropdown
+              element-id="${idx}"
+              picture-path="${mdiAccount}"
+              selected="${entity.attributes.friendly_name}"
+              .items="${Object.keys(this._personEntities)}"
+              ?is-deletable=${ableToDelete}
+              @dropdown-select="${this._updatePerson}"
+              @dropdown-delete="${this._removePeople}"
+            >
+            </sci-fi-dropdown>
           </div>
         `;
       })}
     `;
   }
 
-  _renderSelectPeopleBox(entityId = null, idx = "") {
-    const selected =
-      entityId && this._personEntities[entityId]
-        ? this._personEntities[entityId].attributes.friendly_name
-        : "";
-    return html`
-      <div class="dropdown">
-        <button class="dropdown-toggle" @click="${this._showDropDown}">
-          ${selected}
-        </button>
-        <div class="dropdown-menu">
-          ${Object.entries(this._personEntities).map((el) => {
-            return html`<div
-              class="dropdown-item"
-              @click="${(e) => this._updatePeople(e, idx, el[0])}"
-            >
-              ${el[1].attributes.friendly_name}
-            </div>`;
-          })}
-        </div>
-      </div>
-    `;
-  }
-
-  _showDropDown(ev) {
-    ev.srcElement.nextSibling.classList.toggle("show");
-  }
-
-  _updatePeople(e, idx, entityId) {
-    var newConfig = Object.assign({}, this._config);
-    newConfig.people[idx] = entityId;
-    e.srcElement.parentElement.classList.toggle("show");
+  _updatePerson(e) {
+    var newConfig = this.getNewConfig();
+    newConfig.people[e.detail.dropdownElementId] = this._personEntities[e.detail.value];
     this.__dispatchChange(newConfig);
   }
 
-  _addPeople() {
-    var newConfig = Object.assign({}, this._config);
-    newConfig.people.push(Object.keys(this._personEntities)[0]);
+  _removePeople(e) {
+    var newConfig = this.getNewConfig();
+    newConfig.people.splice(e.detail.dropdownElementId, 1);
     this.__dispatchChange(newConfig);
   }
 
-  _removePeople(idx) {
-    var newConfig = Object.assign({}, this._config);
-    newConfig.people.splice(idx, 1);
+  _addPerson(e) {
+    var newConfig = this.getNewConfig();
+    newConfig.people.push(Object.values(this._personEntities)[0]);
     this.__dispatchChange(newConfig);
   }
 

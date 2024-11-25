@@ -120,8 +120,20 @@
         </div>
         <div id="form">
           <div>
+            <div class="title">Button</div>
+            <div class="row">
+              <sci-fi-button @click="log" has-border></sci-fi-button>
+              <sci-fi-button @click="log"></sci-fi-button>
+            </div>
+          </div>
+          <div>
+            <div class="title">Dropdown box</div>
             <sci-fi-dropdown @dropdown-select="log"></sci-fi-dropdown>
             <sci-fi-dropdown @dropdown-select="log" is-deletable element-id="elt-to-delete"></sci-fi-dropdown>
+          </div>
+          <div>
+            <div class="title">Input</div>
+            
           </div>
         </div>
         <!--

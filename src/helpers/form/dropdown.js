@@ -2,6 +2,7 @@ import { html, css, LitElement } from "lit";
 import { renderSvgIcon } from "../icon-svg.js";
 import common_styles from "../../utils/common-styles.js";
 import { mdiAlienOutline, mdiDelete } from "@mdi/js";
+import "./button.js"
 
 export class SciFiDropdown extends LitElement {
   static get styles() {
@@ -27,12 +28,6 @@ export class SciFiDropdown extends LitElement {
           border-bottom-left-radius: 0;
           width: 100%;
           padding: 0.5rem 1rem;
-          font-size: var(--font-size-normal);
-          background: linear-gradient(
-            to bottom,
-            rgba(0, 0, 0, 0.7) 0%,
-            rgba(0, 0, 0, 0.2) 100%
-          );
           border: var(--card-border-width) solid var(--primary-color);
           color: var(--primary-color);
         }
@@ -113,21 +108,7 @@ export class SciFiDropdown extends LitElement {
           padding: 0.3rem 1rem;
         }
         .hide {
-          display: none
-        }
-        .btn {
-          background-color: transparent;
-          border: none;
-
-        }
-        .btn .icon {
-          fill: var(--secondary-color);
-          width: var(--icon-size-normal);
-          height: var(--icon-size-normal);
-        }
-        .btn:hover .icon {
-          cursor: pointer;
-          fill: var(--primary-color);
+          display: none;
         }
       `,
     ];
@@ -149,7 +130,8 @@ export class SciFiDropdown extends LitElement {
     this.picturePath = this.picturePath ? this.picturePath : mdiAlienOutline;
     this.selected = this.selected ? this.selected : "<nothing selected>";
     this.items = this.items ? this.items : new Array(this.selected);
-    this.isDeletable = (this.isDeletable && this.elementId) ? this.isDeletable : false;
+    this.isDeletable =
+      this.isDeletable && this.elementId ? this.isDeletable : false;
   }
 
   render() {
@@ -174,22 +156,24 @@ export class SciFiDropdown extends LitElement {
           </div>
         </div>
         <div class="delete">
-          <div class="btn ${(!this.isDeletable || !this.elementId) ? "hide":"coucou"}" @click="${this._delete}" >
-            ${renderSvgIcon(mdiDelete)}
-          </div>
+          <sci-fi-button 
+            class="${!this.isDeletable ? "hide" : ""}" 
+            picture-path="${mdiDelete}"
+            @click="${this._delete}"
+          ></sci-fi-button>
         </div>
       </div>
     `;
   }
 
-  _delete(ev){
+  _delete(ev) {
     ev.preventDefault();
     this.dispatchEvent(
       new CustomEvent("dropdown-delete", {
         bubbles: true,
         composed: true,
         detail: {
-          dropdownElementId: this.elementId
+          dropdownElementId: this.elementId,
         },
       }),
     );

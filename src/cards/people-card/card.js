@@ -11,14 +11,13 @@ import "./../../helpers/entities/person.js";
 import "./editor.js";
 
 export class PeopleCard extends BaseElement {
+  /**** DEFINE CARD ELEMENTS ****/
   static get styles() {
     return [common_styles, styles];
   }
-
   constructor() {
     super(PACKAGE);
   }
-
   setConfig(config) {
     if (!config.people) {
       throw new Error("You need to define a people entity list");
@@ -26,10 +25,15 @@ export class PeopleCard extends BaseElement {
     super.setConfig(config);
   }
 
+  /**** DEFINE CARD EDITOR ELEMENTS ****/
   static getConfigElement() {
     return document.createElement(PACKAGE + "-editor");
   }
+  static getStubConfig() {
+    return { entity: "person.entity" };
+  }
 
+  /**** RENDER CARD ****/
   render() {
     if (!this._hass || !this._config) {
       return html``;
@@ -44,7 +48,6 @@ export class PeopleCard extends BaseElement {
       </sci-fi-card>
     `;
   }
-
   __renderPerson(entityName) {
     const entity = this._hass.states[entityName];
     return html`
