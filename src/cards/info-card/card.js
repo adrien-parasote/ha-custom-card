@@ -10,17 +10,17 @@ import styles from "./styles.js";
 import "./../../helpers/entities/stove.js";
 import "./../../helpers/entities/error.js";
 import "./../../helpers/entities/vacuum.js";
+import "./../../helpers/entities/light.js";
 import "./editor.js";
 
 export class InfoCard extends BaseElement {
+  /**** DEFINE CARD ELEMENTS ****/
   static get styles() {
     return [common_styles, styles];
   }
-
   constructor() {
     super(PACKAGE);
   }
-
   setConfig(config) {
     if (!config.info) {
       throw new Error("You need to define an info entity list entry");
@@ -37,14 +37,18 @@ export class InfoCard extends BaseElement {
         );
       }
     });
-
     super.setConfig(config);
   }
 
+  /**** DEFINE CARD EDITOR ELEMENTS ****/
   static getConfigElement() {
     return document.createElement(PACKAGE + "-editor");
   }
+  static getStubConfig() {
+    return { info: [{ entity: "light.entity", type: light }] };
+  }
 
+  /**** RENDER CARD ****/
   render() {
     if (!this._hass || !this._config) {
       return html``;
@@ -72,6 +76,16 @@ export class InfoCard extends BaseElement {
             name="${entity.attributes.friendly_name}"
           >
           </sci-fi-stove-info>
+        `;
+        break;
+      case "light":
+        render = html`
+          <sci-fi-light-info
+            state="${entity.state}"
+            entity-id="${info.entity}"
+            name="${entity.attributes.friendly_name}"
+          >
+          </sci-fi-light-info>
         `;
         break;
       case "vacuum":

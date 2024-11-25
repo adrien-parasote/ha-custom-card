@@ -5,8 +5,7 @@ import { renderSvgIcon } from "./../../helpers/icon-svg.js";
 import { mdiPlus, mdiAccount } from "@mdi/js";
 
 import "../../helpers/form/dropdown.js";
-import "../../helpers/form/button.js"
-
+import "../../helpers/form/button.js";
 
 export class PeopleCardEditor extends BaseEditor {
   static get properties() {
@@ -25,9 +24,9 @@ export class PeopleCardEditor extends BaseEditor {
             [key]: this.hass.states[key].attributes.friendly_name,
           });
         }, {});
-        this._personEntities = Object.fromEntries(
-          Object.entries(hassPerson).map(([key, value]) => [value, key])
-        );
+      this._personEntities = Object.fromEntries(
+        Object.entries(hassPerson).map(([key, value]) => [value, key]),
+      );
     }
     super.setConfig(config);
   }
@@ -38,10 +37,7 @@ export class PeopleCardEditor extends BaseEditor {
       <sci-fi-card content-display="column" gap title="crew">
         <div class="columns row-gap editor-rows">${this._renderRows()}</div>
         <div class="editor-card-actions">
-          <sci-fi-button 
-            has-border
-            @click="${this._addPerson}"
-          ></sci-fi-button>
+          <sci-fi-button has-border @click="${this._addPerson}"></sci-fi-button>
         </div>
       </sci-fi-card>
     `;
@@ -72,7 +68,8 @@ export class PeopleCardEditor extends BaseEditor {
 
   _updatePerson(e) {
     var newConfig = this.getNewConfig();
-    newConfig.people[e.detail.dropdownElementId] = this._personEntities[e.detail.value];
+    newConfig.people[e.detail.dropdownElementId] =
+      this._personEntities[e.detail.value];
     this.__dispatchChange(newConfig);
   }
 
