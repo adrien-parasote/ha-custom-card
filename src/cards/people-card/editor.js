@@ -1,8 +1,7 @@
 import { BaseEditor } from "./../../utils/base-editor.js";
 import { html } from "lit";
 
-import { renderSvgIcon } from "./../../helpers/icon-svg.js";
-import { mdiPlus, mdiAccount } from "@mdi/js";
+import { mdiAccount } from "@mdi/js";
 
 import "../../helpers/form/dropdown.js";
 import "../../helpers/form/button.js";
