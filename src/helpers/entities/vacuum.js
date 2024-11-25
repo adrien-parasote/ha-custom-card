@@ -126,9 +126,7 @@ export class SciFiVacuumInfo extends BaseEntity {
         if (this.state == VACUUM_DOCKED) {
           return html`<div class="icon-container">
             ${renderSvgIcon(RENDER_ICONS[this.state])}
-            <div class="state-icon">
-              ${renderSvgIcon(mdiFlash)}
-            </div>
+            <div class="state-icon">${renderSvgIcon(mdiFlash)}</div>
           </div>`;
         } else {
           return html`<div class="icon-container ${this.__getLabelColor()}">

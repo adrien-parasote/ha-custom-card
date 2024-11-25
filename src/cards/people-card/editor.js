@@ -69,28 +69,18 @@ export class PeopleCardEditor extends BaseEditor {
     var newConfig = this.getNewConfig();
     newConfig.people[e.detail.dropdownElementId] =
       this._personEntities[e.detail.value];
-    this.__dispatchChange(newConfig);
+    this.dispatchChange(newConfig);
   }
 
   _removePeople(e) {
     var newConfig = this.getNewConfig();
     newConfig.people.splice(e.detail.dropdownElementId, 1);
-    this.__dispatchChange(newConfig);
+    this.dispatchChange(newConfig);
   }
 
   _addPerson(e) {
     var newConfig = this.getNewConfig();
     newConfig.people.push(Object.values(this._personEntities)[0]);
-    this.__dispatchChange(newConfig);
-  }
-
-  __dispatchChange(newConfig) {
-    this.dispatchEvent(
-      new CustomEvent("config-changed", {
-        detail: { config: newConfig },
-        bubbles: true,
-        composed: true,
-      }),
-    );
+    this.dispatchChange(newConfig);
   }
 }

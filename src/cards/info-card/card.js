@@ -32,7 +32,7 @@ export class InfoCard extends BaseElement {
       if (!info.type) {
         info.type = info.entity.split(".")[0];
         console.log(
-          "[sci-fi-info-card] No entity type selectec, use default : " +
+          "[sci-fi-info-card] No entity type selected, use default : " +
             info.type,
         );
       }
@@ -45,7 +45,7 @@ export class InfoCard extends BaseElement {
     return document.createElement(PACKAGE + "-editor");
   }
   static getStubConfig() {
-    return { info: [{ entity: "light.entity", type: light }] };
+    return { info: [{ entity: "light.entity", type: "light" }] };
   }
 
   /**** RENDER CARD ****/
@@ -64,9 +64,17 @@ export class InfoCard extends BaseElement {
     `;
   }
 
+  __renderError(info) {
+    console.log(
+      `[sci-fi-info-card] Entity ${info.entity} with type ${info.type} cannot be render.`,
+    );
+    return html`<sci-fi-error-info></sci-fi-error-info>`;
+  }
+
   __renderInfoRow(info) {
     const entity = this._hass.states[info.entity];
     var render = html``;
+    if (!entity) return this.__renderError(info);
     switch (info.type) {
       case "stove":
         render = html`
@@ -99,10 +107,7 @@ export class InfoCard extends BaseElement {
         `;
         break;
       default:
-        console.log(
-          `[sci-fi-info-card] Entity ${info.entity} with type ${info.type} cannot be render.`,
-        );
-        render = html`<sci-fi-error-info></sci-fi-error-info>`;
+        render = this.__renderError(info);
     }
     return render;
   }

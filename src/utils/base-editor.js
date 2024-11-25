@@ -24,4 +24,14 @@ export class BaseEditor extends LitElement {
   getNewConfig() {
     return JSON.parse(JSON.stringify(this._config));
   }
+
+  dispatchChange(newConfig) {
+    this.dispatchEvent(
+      new CustomEvent("config-changed", {
+        detail: { config: newConfig },
+        bubbles: true,
+        composed: true,
+      }),
+    );
+  }
 }

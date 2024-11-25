@@ -1,6 +1,6 @@
 import { html, css } from "lit";
 import { renderSvgIcon } from "../icon-svg.js";
-import { mdiLightbulbGroupOff, mdiLightbulbGroup } from "@mdi/js";
+import { mdiLightbulbGroup } from "@mdi/js";
 import common_styles from "../../utils/common-styles.js";
 
 import { BaseEntity } from "./base-entity.js";

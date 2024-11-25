@@ -4,7 +4,9 @@
     <meta charset="utf-8">
     <title>HA TESTS</title>
     <script type="module" src="src/sci-fi.js"></script>
+    <script type="module" src="src/helpers/form/button.js"></script>
     <script type="module" src="src/helpers/form/dropdown.js"></script>
+    <script type="module" src="src/helpers/form/input.js"></script>
     <style>
       html {
         height: 100%;
@@ -77,16 +79,22 @@
         align-items: center;
       }
       .title {
-          text-align: center;
-          padding: 5px;
-          margin-bottom: 10px;
-          text-transform: uppercase;
-          border-bottom: 1px solid white;
-        }
-        .row {
-          display: flex;
-          flex-direction: row;
-        }
+        text-align: center;
+        padding: 5px;
+        margin-bottom: 10px;
+        text-transform: uppercase;
+        border-bottom: 1px solid white;
+      }
+      .row {
+        display: flex;
+        flex-direction: row;
+      }
+      .column {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        row-gap: 10px;
+      }
     </style>
     <script>
       function switchVisible(e) {
@@ -96,6 +104,7 @@
       }
       document.addEventListener("dropdown-select",console.log,false);
       document.addEventListener("dropdown-delete",console.log,false);
+      document.addEventListener("input-delete",console.log,false);
     </script>
   </head>
   <body>
@@ -108,7 +117,7 @@
     <div class="lovelace-panel">
       <div class="lovelace-header">HEADER</div>
       <div class="lovelace-view">
-        <div id="cards">
+        <div id="cards" class="hide">
           <div>
             <div class="title">People Card</div>
             <people-card></people-card>
@@ -118,7 +127,7 @@
             <info-card></info-card>
           </div>
         </div>
-        <div id="form" class="hide">
+        <div id="form">
           <div>
             <div class="title">Button</div>
             <div class="row">
@@ -128,12 +137,25 @@
           </div>
           <div>
             <div class="title">Dropdown box</div>
-            <sci-fi-dropdown @dropdown-select="log"></sci-fi-dropdown>
-            <sci-fi-dropdown @dropdown-select="log" is-deletable element-id="elt-to-delete"></sci-fi-dropdown>
+            <div class="column">
+              <sci-fi-dropdown @dropdown-select="log" @dropdown-delete="log" element-id="elt-to-delete"></sci-fi-dropdown>
+              <sci-fi-dropdown @dropdown-select="log" @dropdown-delete="log" element-id="elt-to-delete" no-picture></sci-fi-dropdown>
+              <sci-fi-dropdown @dropdown-select="log" @dropdown-delete="log" element-id="elt-to-delete" no-picture is-deletable></sci-fi-dropdown>
+              <sci-fi-dropdown @dropdown-select="log" @dropdown-delete="log" element-id="elt-to-delete" is-deletable ></sci-fi-dropdown>
+              <sci-fi-dropdown @dropdown-select="log" @dropdown-delete="log" element-id="elt-to-delete" hide-deletable ></sci-fi-dropdown>
+            </div>
           </div>
           <div>
             <div class="title">Input</div>
-            
+            <div class="column">
+              <sci-fi-input @input-delete="log" element-id="elt-to-delete" text="a sci-fi text"></sci-fi-input>
+              <sci-fi-input @input-delete="log" element-id="elt-to-delete" text="a sci-fi text" tips="this is an info message"></sci-fi-input>
+              <sci-fi-input @input-delete="log" element-id="elt-to-delete" text="a sci-fi text" tips="this is an error message" error></sci-fi-input>
+              <sci-fi-input @input-delete="log" element-id="elt-to-delete" text="a sci-fi text" no-picture  ></sci-fi-input>
+              <sci-fi-input @input-delete="log" element-id="elt-to-delete" text="a sci-fi text" no-picture is-deletable></sci-fi-input>
+              <sci-fi-input @input-delete="log" element-id="elt-to-delete" text="a sci-fi text" is-deletable></sci-fi-input>
+              <sci-fi-input @input-delete="log" element-id="elt-to-delete" text="a sci-fi text" hide-deletable ></sci-fi-input>
+            </div>
           </div>
         </div>
         <!--

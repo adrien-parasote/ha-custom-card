@@ -30,6 +30,11 @@ export class SciFiDropdown extends LitElement {
           padding: 0.5rem 1rem;
           border: var(--card-border-width) solid var(--primary-color);
           color: var(--primary-color);
+          min-height: 36px;
+        }
+        .dropdown .no-picture {
+          border-top-left-radius: var(--border-radius);
+          border-bottom-left-radius: var(--border-radius);
         }
         .dropdown .dropdown-toggle:hover {
           cursor: pointer;
@@ -98,8 +103,6 @@ export class SciFiDropdown extends LitElement {
             rgba(0, 0, 0, 0.2) 100%
           );
           color: white;
-          display: flex;
-          align-items: center;
           font-size: var(--font-size-small);
           text-align: center;
           border: var(--card-border-width) solid var(--primary-color);
@@ -118,30 +121,35 @@ export class SciFiDropdown extends LitElement {
     return {
       elementId: { type: String, attribute: "element-id" },
       picturePath: { type: String, attribute: "picture-path" },
+      noPicture: { type: Boolean, attribute: "no-picture" },
       items: { type: Array },
       selected: { type: String },
       isDeletable: { type: Boolean, attribute: "is-deletable" },
+      hideDeletable: { type: Boolean, attribute: "hide-deletable" },
     };
   }
 
   constructor() {
     super();
     this.elementId = this.elementId ? this.elementId : null;
+    this.noPicture = this.noPicture ? this.noPicture : false;
     this.picturePath = this.picturePath ? this.picturePath : mdiAlienOutline;
     this.selected = this.selected ? this.selected : "<nothing selected>";
     this.items = this.items ? this.items : new Array(this.selected);
     this.isDeletable =
       this.isDeletable && this.elementId ? this.isDeletable : false;
+    this.hideDeletable = this.showDeletable ? this.showDeletable : false;
   }
 
   render() {
     return html`
       <div class="row dropdown-group">
-        <div class="dropdown-group-prepend">
-          <div class="icon-container">${renderSvgIcon(this.picturePath)}</div>
-        </div>
+        ${this.noPicture ? "" : this._renderPicture()}
         <div class="dropdown">
-          <button class="dropdown-toggle" @click="${this._showDropDown}">
+          <button
+            class="dropdown-toggle ${this.noPicture ? "no-picture" : ""}"
+            @click="${this._showDropDown}"
+          >
             ${this.selected}
           </button>
           <div class="dropdown-menu">
@@ -155,13 +163,27 @@ export class SciFiDropdown extends LitElement {
             })}
           </div>
         </div>
-        <div class="delete">
-          <sci-fi-button
-            class="${!this.isDeletable ? "hide" : ""}"
-            picture-path="${mdiDelete}"
-            @click="${this._delete}"
-          ></sci-fi-button>
-        </div>
+        ${this.hideDeletable ? "" : this._renderDelete()}
+      </div>
+    `;
+  }
+
+  _renderPicture() {
+    return html`
+      <div class="dropdown-group-prepend">
+        <div class="icon-container">${renderSvgIcon(this.picturePath)}</div>
+      </div>
+    `;
+  }
+
+  _renderDelete() {
+    return html`
+      <div class="delete">
+        <sci-fi-button
+          class="${!this.isDeletable ? "hide" : ""}"
+          picture-path="${mdiDelete}"
+          @click="${this._delete}"
+        ></sci-fi-button>
       </div>
     `;
   }
