@@ -8,6 +8,7 @@ import {
   mdiBroom,
   mdiKeyboardReturn,
   mdiSleep,
+  mdiFlash,
 } from "@mdi/js";
 import { BaseEntity } from "./base-entity.js";
 
@@ -65,7 +66,7 @@ export class SciFiVacuumInfo extends BaseEntity {
         }
         .red > .icon {
           fill: var(--color-error-icon);
-          stroke: transparent
+          stroke: transparent;
         }
         .state-icon {
           width: var(--icon-size-xsmall);
@@ -122,9 +123,18 @@ export class SciFiVacuumInfo extends BaseEntity {
           <div class="state-icon">${renderSvgIcon(mdiSleep)}</div>
         </div>`;
       } else {
-        return html`<div class="icon-container ${this.__getLabelColor()}">
-          ${renderSvgIcon(RENDER_ICONS[this.state])}
-        </div>`;
+        if (this.state == VACUUM_DOCKED) {
+          return html`<div class="icon-container">
+            ${renderSvgIcon(RENDER_ICONS[this.state])}
+            <div class="state-icon">
+              ${renderSvgIcon(mdiFlash)}
+            </div>
+          </div>`;
+        } else {
+          return html`<div class="icon-container ${this.__getLabelColor()}">
+            ${renderSvgIcon(RENDER_ICONS[this.state])}
+          </div>`;
+        }
       }
     }
   }
