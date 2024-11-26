@@ -1,5 +1,5 @@
 {
-  "version": "0.1.0",
+  "version": "0.2.5",
   "description": "HA custom dashboard",
   "main": "src/dashboard-card.js",
   "type": "module",

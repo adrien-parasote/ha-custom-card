@@ -4,6 +4,7 @@ import "./utils/sci-fi-card.js";
 
 import "./cards/info-card/card.js";
 import "./cards/people-card/card.js";
+import "./cards/actions-card/card.js";
 
 console.info(
   `%c🚀 ${PACKAGE_NAME.toUpperCase()} 🚀 - v${VERSION}`,

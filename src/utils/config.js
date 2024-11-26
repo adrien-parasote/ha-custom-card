@@ -1,5 +1,8 @@
 /****** DEV HASS *******/
 export const hass = {
+  callService: function (service, action, data) {
+    console.log(service, action, data);
+  },
   states: {
     "punk.1": {
       state: "home",
@@ -188,6 +191,17 @@ export const hass = {
         friendly_name: "Lumières",
       },
     },
+    "automation.call_kids": {
+      state: "on", // on, off
+      attributes: {
+        id: "1728413055421",
+        last_triggered: "2024-11-26T07:30:00.101881+00:00",
+        mode: "single",
+        current: 0,
+        icon: "mdi:bell-outline",
+        friendly_name: "call kids",
+      },
+    },
   },
 };
 
@@ -241,6 +255,29 @@ export const config = {
       {
         entity: "vacuum.dobbyIdle",
         type: "vacuum",
+      },
+    ],
+  },
+  "actions-card": {
+    actions: [
+      {
+        entity: "vacuum.dobbyDocked",
+        // appearance
+        name: "Clean daily",
+        // action on tap
+        service: "xiaomi_miio.vacuum_clean_segment",
+        service_data: {
+          // optionnal
+          segments: [17, 18],
+        },
+      },
+      {
+        entity: "automation.call_kids",
+        // appearance
+        name: "Call kids",
+        // action on tap
+        service: "automation.trigger",
+        service_data: {},
       },
     ],
   },
