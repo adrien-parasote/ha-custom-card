@@ -28,6 +28,7 @@ export class SciFiStoveInfo extends BaseEntity {
         }
         .title {
           font-size: var(--font-size-small);
+          margin-top: 2px;
         }
         .orange {
           color: var(--color-active-icon);
@@ -39,7 +40,10 @@ export class SciFiStoveInfo extends BaseEntity {
 
   constructor() {
     super();
-    this.state = this.state ? this.state : STOVE_OFF;
+    this.state =
+      this.state && Object.keys(RENDER_ICONS).includes(this.state)
+        ? this.state
+        : STOVE_OFF;
   }
 
   render() {

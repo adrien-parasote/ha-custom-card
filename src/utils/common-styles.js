@@ -6,6 +6,7 @@ export default css`
     --primary-color-opacity: rgba(105, 211, 251, 0.5);
     --secondary-color: rgb(102, 156, 210);
     --secondary-color-opacity: rgba(102, 156, 210, 0.5);
+    --error-color: rgb(255, 0, 0);
     --color-muted: rgb(170, 170, 170);
     --color-active-icon: rgb(255, 193, 7);
     --color-active-icon-opacity: rgba(255, 193, 7, 0.2);

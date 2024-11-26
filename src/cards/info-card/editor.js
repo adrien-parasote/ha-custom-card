@@ -13,13 +13,13 @@ import "../../helpers/form/button.js";
 export class InfoCardEditor extends BaseEditor {
   static get styles() {
     return [
-      styles, 
+      styles,
       editorStyles,
       css`
-      sci-fi-dropdown {
-        align-self: baseline;
-      }
-      `
+        sci-fi-dropdown {
+          align-self: baseline;
+        }
+      `,
     ];
   }
 
@@ -41,7 +41,7 @@ export class InfoCardEditor extends BaseEditor {
           })}
         </div>
         <div class="editor-card-actions">
-          <sci-fi-button has-border @click="${this._addInfo}"></sci-fi-button>
+          <sci-fi-button has-border @click="${this._add}"></sci-fi-button>
         </div>
       </sci-fi-card>
     `;
@@ -50,6 +50,8 @@ export class InfoCardEditor extends BaseEditor {
   _renderRow(info, idx, ableToDelete) {
     const entity = info.entity;
     const selectedType = info.type;
+    var error = !this._hass.states[entity];
+    var textError = error ? "Entity " + entity + " cannot be found" : "";
     return html`
       <div class="row column-gap editor-row">
         <sci-fi-input
@@ -58,7 +60,9 @@ export class InfoCardEditor extends BaseEditor {
           ?not-mdi=${selectedType == "stove"}
           hide-deletable
           text="${entity}"
-          @input-focusout="${this._updateInfo}"
+          tips="${textError}"
+          ?error=${error}
+          @input-focusout="${this._update}"
         >
         </sci-fi-input>
         <sci-fi-dropdown
@@ -67,31 +71,31 @@ export class InfoCardEditor extends BaseEditor {
           selected="${selectedType}"
           .items="${Object.keys(this._dropdownEntityType)}"
           ?is-deletable=${ableToDelete}
-          @dropdown-select="${this._updateInfo}"
-          @dropdown-delete="${this._removeInfo}"
+          @dropdown-select="${this._update}"
+          @dropdown-delete="${this._update}"
         >
         </sci-fi-dropdown>
       </div>
     `;
   }
 
-  _updateInfo(e) {
-    console.log(e.detail);
-    console.log(e.type);
-    /*
+  _update(e) {
+    e.preventDefault();
     var newConfig = this.getNewConfig();
-    newConfig.info[e.detail.dropdownElementId] = e.detail.value;
+    if (e.type == "dropdown-delete") {
+      newConfig.info.splice(e.detail.elementId, 1);
+    } else {
+      if (e.type == "input-focusout") {
+        newConfig.info[e.detail.elementId].entity = e.detail.value;
+      } else {
+        newConfig.info[e.detail.elementId].type = e.detail.value;
+      }
+    }
     this.dispatchChange(newConfig);
-    */
   }
 
-  _removeInfo(e) {
-    var newConfig = this.getNewConfig();
-    newConfig.info.splice(e.detail.dropdownElementId, 1);
-    this.dispatchChange(newConfig);
-  }
-
-  _addInfo(e) {
+  _add(e) {
+    e.preventDefault();
     var newConfig = this.getNewConfig();
     newConfig.info.push({ entity: "light.entity", type: "light" });
     this.dispatchChange(newConfig);

@@ -1,10 +1,11 @@
-import { html, css, LitElement } from "lit";
+import { html, css } from "lit";
 import { renderSvgIcon } from "../icon-svg.js";
 import common_styles from "../../utils/common-styles.js";
-import { mdiAlienOutline, mdiDelete } from "@mdi/js";
+import { mdiAlienOutline } from "@mdi/js";
 import "./button.js";
+import { BaseForm } from "./base-form.js";
 
-export class SciFiDropdown extends LitElement {
+export class SciFiDropdown extends BaseForm {
   static get styles() {
     return [
       common_styles,
@@ -91,7 +92,7 @@ export class SciFiDropdown extends LitElement {
           align-self: center;
           justify-items: center;
         }
-        .dropdown-group-prepend {
+        .group-prepend {
           display: flex;
           align-items: center;
           border-radius: var(--border-radius);
@@ -112,6 +113,11 @@ export class SciFiDropdown extends LitElement {
         }
         .hide {
           display: none;
+        }
+        .svg-container {
+          width: var(--icon-size-small);
+          height: var(--icon-size-small);
+          stroke: var(--primary-color);
         }
       `,
     ];
@@ -144,7 +150,7 @@ export class SciFiDropdown extends LitElement {
   render() {
     return html`
       <div class="row dropdown-group">
-        ${this.noPicture ? "" : this._renderPicture()}
+        ${this.noPicture ? "" : this.renderPicture()}
         <div class="dropdown">
           <button
             class="dropdown-toggle ${this.noPicture ? "no-picture" : ""}"
@@ -163,27 +169,7 @@ export class SciFiDropdown extends LitElement {
             })}
           </div>
         </div>
-        ${this.hideDeletable ? "" : this._renderDelete()}
-      </div>
-    `;
-  }
-
-  _renderPicture() {
-    return html`
-      <div class="dropdown-group-prepend">
-        <div class="icon-container">${renderSvgIcon(this.picturePath)}</div>
-      </div>
-    `;
-  }
-
-  _renderDelete() {
-    return html`
-      <div class="delete">
-        <sci-fi-button
-          class="${!this.isDeletable ? "hide" : ""}"
-          picture-path="${mdiDelete}"
-          @click="${this._delete}"
-        ></sci-fi-button>
+        ${this.hideDeletable ? "" : this.renderDelete()}
       </div>
     `;
   }
@@ -209,7 +195,7 @@ export class SciFiDropdown extends LitElement {
         bubbles: true,
         composed: true,
         detail: {
-          dropdownElementId: this.elementId,
+          elementId: this.elementId,
           dropdownIdSelected: idx,
           value: newValue,
         },

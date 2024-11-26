@@ -22,6 +22,7 @@ export class SciFiLight extends BaseEntity {
         }
         .title {
           font-size: var(--font-size-small);
+          margin-top: 1px;
         }
         .icon-container {
           width: 23px;
@@ -45,7 +46,10 @@ export class SciFiLight extends BaseEntity {
 
   constructor() {
     super();
-    this.state = this.state ? this.state : STATE_OFF;
+    this.state =
+      this.state && Object.keys(RENDER_ICONS).includes(this.state)
+        ? this.state
+        : STATE_OFF;
   }
 
   render() {

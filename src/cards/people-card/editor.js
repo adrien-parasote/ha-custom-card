@@ -16,11 +16,11 @@ export class PeopleCardEditor extends BaseEditor {
 
   setConfig(config) {
     if (!this._personEntities) {
-      const hassPerson = Object.keys(this.hass.states)
+      const hassPerson = Object.keys(this._hass.states)
         .filter((key) => key.startsWith("person."))
         .reduce((cur, key) => {
           return Object.assign(cur, {
-            [key]: this.hass.states[key].attributes.friendly_name,
+            [key]: this._hass.states[key].attributes.friendly_name,
           });
         }, {});
       this._personEntities = Object.fromEntries(
@@ -36,7 +36,7 @@ export class PeopleCardEditor extends BaseEditor {
       <sci-fi-card content-display="column" gap title="crew">
         <div class="columns row-gap editor-rows">${this._renderRows()}</div>
         <div class="editor-card-actions">
-          <sci-fi-button has-border @click="${this._addPerson}"></sci-fi-button>
+          <sci-fi-button has-border @click="${this._add}"></sci-fi-button>
         </div>
       </sci-fi-card>
     `;
@@ -46,7 +46,7 @@ export class PeopleCardEditor extends BaseEditor {
     const ableToDelete = this._config.people.length > 1;
     return html`
       ${this._config.people.map((entityId, idx) => {
-        const entity = this.hass.states[entityId];
+        const entity = this._hass.states[entityId];
         return html`
           <div class="row column-gap editor-row">
             <sci-fi-dropdown
@@ -55,8 +55,8 @@ export class PeopleCardEditor extends BaseEditor {
               selected="${entity.attributes.friendly_name}"
               .items="${Object.keys(this._personEntities)}"
               ?is-deletable=${ableToDelete}
-              @dropdown-select="${this._updatePerson}"
-              @dropdown-delete="${this._removePeople}"
+              @dropdown-select="${this._update}"
+              @dropdown-delete="${this._update}"
             >
             </sci-fi-dropdown>
           </div>
@@ -65,20 +65,20 @@ export class PeopleCardEditor extends BaseEditor {
     `;
   }
 
-  _updatePerson(e) {
+  _update(e) {
+    e.preventDefault();
     var newConfig = this.getNewConfig();
-    newConfig.people[e.detail.dropdownElementId] =
-      this._personEntities[e.detail.value];
+    if (e.type == "dropdown-select") {
+      newConfig.people[e.detail.elementId] =
+        this._personEntities[e.detail.value];
+    } else {
+      newConfig.people.splice(e.detail.elementId, 1);
+    }
     this.dispatchChange(newConfig);
   }
 
-  _removePeople(e) {
-    var newConfig = this.getNewConfig();
-    newConfig.people.splice(e.detail.dropdownElementId, 1);
-    this.dispatchChange(newConfig);
-  }
-
-  _addPerson(e) {
+  _add(e) {
+    e.preventDefault();
     var newConfig = this.getNewConfig();
     newConfig.people.push(Object.values(this._personEntities)[0]);
     this.dispatchChange(newConfig);

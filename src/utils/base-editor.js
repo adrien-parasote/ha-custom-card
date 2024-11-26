@@ -13,6 +13,12 @@ export class BaseEditor extends LitElement {
     };
   }
 
+  _hass; // private
+
+  set hass(hass) {
+    this._hass = hass;
+  }
+
   setConfig(config) {
     this._config = config;
   }

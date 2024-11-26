@@ -1,10 +1,10 @@
-import { html, css, LitElement } from "lit";
-import { renderSvgIcon } from "../icon-svg.js";
+import { html, css } from "lit";
 import common_styles from "../../utils/common-styles.js";
-import { mdiAlienOutline, mdiDelete } from "@mdi/js";
+import { mdiAlienOutline } from "@mdi/js";
 import "./button.js";
+import { BaseForm } from "./base-form.js";
 
-export class SciFiInput extends LitElement {
+export class SciFiInput extends BaseForm {
   static get styles() {
     return [
       common_styles,
@@ -17,10 +17,10 @@ export class SciFiInput extends LitElement {
           display: flex;
           flex-direction: column;
         }
-        .input-group .input-group-prepend {
+        .input-group .group-prepend {
           display: flex;
         }
-        .input-group .input-group-prepend .input-group-text {
+        .input-group .group-prepend .group-text {
           display: flex;
           align-items: center;
 
@@ -40,7 +40,7 @@ export class SciFiInput extends LitElement {
           margin-right: -1px;
           padding: 0.5rem 1rem;
         }
-        .input-error .input-group-prepend .input-group-text {
+        .input-error .group-prepend .group-text {
           border-color: var(--color-active-icon);
           color: var(--color-active-icon);
         }
@@ -90,6 +90,11 @@ export class SciFiInput extends LitElement {
         .hide {
           display: none;
         }
+        .svg-container {
+          width: var(--icon-size-small);
+          height: var(--icon-size-small);
+          stroke: var(--primary-color);
+        }
       `,
     ];
   }
@@ -126,33 +131,11 @@ export class SciFiInput extends LitElement {
     return html`
       <div class="input-group ${this.error ? "input-error" : ""}">
         <div class="row">
-          ${this.noPicture ? "" : this._renderPicture()}
+          ${this.noPicture ? "" : this.renderPicture()}
           <input type="text" @focusout="${this._update}" value="${this.text}" />
-          ${this.hideDeletable ? "" : this._renderDelete()}
+          ${this.hideDeletable ? "" : this.renderDelete()}
         </div>
         <div class="input-info-text">${this.tips}</div>
-      </div>
-    `;
-  }
-
-  _renderPicture() {
-    return html`
-      <div class="input-group-prepend">
-        <span class="input-group-text">
-          <div class="icon-container">${renderSvgIcon(this.picturePath)}</div>
-        </span>
-      </div>
-    `;
-  }
-
-  _renderDelete() {
-    return html`
-      <div class="delete">
-        <sci-fi-button
-          class="${!this.isDeletable ? "hide" : ""}"
-          picture-path="${mdiDelete}"
-          @click="${this._delete}"
-        ></sci-fi-button>
       </div>
     `;
   }
@@ -164,7 +147,7 @@ export class SciFiInput extends LitElement {
         bubbles: true,
         composed: true,
         detail: {
-          inputElementId: this.elementId,
+          elementId: this.elementId,
           value: ev.srcElement.value,
         },
       }),
@@ -178,7 +161,7 @@ export class SciFiInput extends LitElement {
         bubbles: true,
         composed: true,
         detail: {
-          dropdownElementId: this.elementId,
+          elementId: this.elementId,
         },
       }),
     );
