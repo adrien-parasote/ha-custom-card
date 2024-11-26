@@ -1,6 +1,5 @@
 import { html, LitElement, css } from "lit";
-import { renderSvgIcon } from "../icon-svg.js";
-import { mdiHomeOutline, mdiHomeOffOutline } from "@mdi/js";
+import { getIcon } from "../icon-svg.js";
 import common_styles from "../../utils/common-styles.js";
 
 // Constantes
@@ -68,8 +67,8 @@ export class SciFiPerson extends LitElement {
       <div class="avatar">
         <img src="${this.picture ? this.picture : ""}" />
         <div class="icon-container">
-          ${renderSvgIcon(
-            this._state == STATE_HOME ? mdiHomeOutline : mdiHomeOffOutline,
+          ${getIcon(
+            this.state == STATE_HOME ? "mdiHomeOutline" : "mdiHomeOffOutline",
           )}
         </div>
       </div>

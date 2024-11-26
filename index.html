@@ -142,7 +142,8 @@
           <div>
             <div class="title">Dropdown box</div>
             <div class="column">
-              <sci-fi-dropdown @dropdown-select="log" @dropdown-delete="log" element-id="elt-to-delete"></sci-fi-dropdown>
+              <sci-fi-dropdown @dropdown-select="log" @dropdown-delete="log" element-id="elt-to-delete" ></sci-fi-dropdown>
+              <sci-fi-dropdown @dropdown-select="log" @dropdown-delete="log" element-id="elt-to-delete" icon-name="stoveHeat"></sci-fi-dropdown>
               <sci-fi-dropdown @dropdown-select="log" @dropdown-delete="log" element-id="elt-to-delete" no-picture></sci-fi-dropdown>
               <sci-fi-dropdown @dropdown-select="log" @dropdown-delete="log" element-id="elt-to-delete" no-picture is-deletable></sci-fi-dropdown>
               <sci-fi-dropdown @dropdown-select="log" @dropdown-delete="log" element-id="elt-to-delete" is-deletable ></sci-fi-dropdown>
@@ -153,12 +154,13 @@
             <div class="title">Input</div>
             <div class="column">
               <sci-fi-input @input-delete="log" element-id="elt-to-delete" text="a sci-fi text"></sci-fi-input>
-              <sci-fi-input @input-delete="log" element-id="elt-to-delete" text="a sci-fi text" tips="this is an info message"></sci-fi-input>
-              <sci-fi-input @input-delete="log" element-id="elt-to-delete" text="a sci-fi text" tips="this is an error message" error></sci-fi-input>
-              <sci-fi-input @input-delete="log" element-id="elt-to-delete" text="a sci-fi text" no-picture  ></sci-fi-input>
-              <sci-fi-input @input-delete="log" element-id="elt-to-delete" text="a sci-fi text" no-picture is-deletable></sci-fi-input>
-              <sci-fi-input @input-delete="log" element-id="elt-to-delete" text="a sci-fi text" is-deletable></sci-fi-input>
-              <sci-fi-input @input-delete="log" element-id="elt-to-delete" text="a sci-fi text" hide-deletable ></sci-fi-input>
+              <sci-fi-input @input-delete="log" element-id="elt-to-delete" text="Icon Name" icon-name="stoveOff"></sci-fi-input>
+              <sci-fi-input @input-delete="log" element-id="elt-to-delete" text="Tip" tips="this is an info message"></sci-fi-input>
+              <sci-fi-input @input-delete="log" element-id="elt-to-delete" text="Error" tips="this is an error message" error></sci-fi-input>
+              <sci-fi-input @input-delete="log" element-id="elt-to-delete" text="No picture" no-picture  ></sci-fi-input>
+              <sci-fi-input @input-delete="log" element-id="elt-to-delete" text="No picture, is deletable" no-picture is-deletable></sci-fi-input>
+              <sci-fi-input @input-delete="log" element-id="elt-to-delete" text="Is deletable" is-deletable></sci-fi-input>
+              <sci-fi-input @input-delete="log" element-id="elt-to-delete" text="Hide deletable" hide-deletable ></sci-fi-input>
             </div>
           </div>
         </div>

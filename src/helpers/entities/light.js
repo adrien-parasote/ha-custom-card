@@ -1,6 +1,5 @@
 import { html, css } from "lit";
-import { renderSvgIcon } from "../icon-svg.js";
-import { mdiLightbulbGroup } from "@mdi/js";
+import { getIcon } from "../icon-svg.js";
 import common_styles from "../../utils/common-styles.js";
 
 import { BaseEntity } from "./base-entity.js";
@@ -9,8 +8,8 @@ import { BaseEntity } from "./base-entity.js";
 import { STATE_ON, STATE_OFF } from "./const.js";
 
 var RENDER_ICONS = {};
-RENDER_ICONS[STATE_ON] = mdiLightbulbGroup;
-RENDER_ICONS[STATE_OFF] = mdiLightbulbGroup;
+RENDER_ICONS[STATE_ON] = "mdiLightbulbGroup";
+RENDER_ICONS[STATE_OFF] = "mdiLightbulbGroup";
 
 export class SciFiLight extends BaseEntity {
   static get styles() {
@@ -22,11 +21,11 @@ export class SciFiLight extends BaseEntity {
         }
         .title {
           font-size: var(--font-size-small);
-          margin-top: 1px;
+          margin-top: 2px;
         }
         .icon-container {
-          width: 23px;
-          height: 100%;
+          width: var(--icon-size-normal);
+          height: var(--icon-size-normal);
           align-content: center;
           position: relative;
         }
@@ -56,7 +55,7 @@ export class SciFiLight extends BaseEntity {
     return html`
       <div class="column content" no-padding>
         <div class="icon-container ${this.__getLabelColor()}">
-          ${renderSvgIcon(RENDER_ICONS[this.state])}
+          ${getIcon(RENDER_ICONS[this.state])}
         </div>
         <div class="title ${this.__getLabelColor()}">${this.name}</div>
       </div>

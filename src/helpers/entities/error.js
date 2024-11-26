@@ -1,6 +1,5 @@
 import { html, LitElement, css } from "lit";
-import { renderSvgIcon } from "../icon-svg.js";
-import { mdiAlertOutline } from "@mdi/js";
+import { getIcon } from "../icon-svg.js";
 import common_styles from "../../utils/common-styles.js";
 
 export class SciFiErrorInfo extends LitElement {
@@ -19,10 +18,11 @@ export class SciFiErrorInfo extends LitElement {
           font-size: var(--font-size-small);
           color: var(--color-error-icon);
           text-shadow: 0px 0px 5px var(--color-error-icon);
+          margin-top: 2px;
         }
         .icon-container {
-          width: 23px;
-          height: 100%;
+          width: var(--icon-size-normal);
+          height: var(--icon-size-normal);
           align-content: center;
         }
         .icon {
@@ -39,7 +39,7 @@ export class SciFiErrorInfo extends LitElement {
   render() {
     return html`
       <div class="column content" no-padding>
-        <div class="icon-container">${renderSvgIcon(mdiAlertOutline)}</div>
+        <div class="icon-container">${getIcon("mdiAlertOutline")}</div>
         <div class="title">Not found</div>
       </div>
     `;

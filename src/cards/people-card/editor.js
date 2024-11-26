@@ -1,8 +1,6 @@
 import { BaseEditor } from "./../../utils/base-editor.js";
 import { html } from "lit";
 
-import { mdiAccount } from "@mdi/js";
-
 import "../../helpers/form/dropdown.js";
 import "../../helpers/form/button.js";
 
@@ -51,7 +49,7 @@ export class PeopleCardEditor extends BaseEditor {
           <div class="row column-gap editor-row">
             <sci-fi-dropdown
               element-id="${idx}"
-              picture-path="${mdiAccount}"
+              icon-name="mdiAccount"
               selected="${entity.attributes.friendly_name}"
               .items="${Object.keys(this._personEntities)}"
               ?is-deletable=${ableToDelete}

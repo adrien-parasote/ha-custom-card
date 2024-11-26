@@ -1,7 +1,6 @@
 import { html, css, LitElement } from "lit";
-import { renderSvgIcon } from "../icon-svg.js";
+import { getIcon } from "../icon-svg.js";
 import common_styles from "../../utils/common-styles.js";
-import { mdiPlus } from "@mdi/js";
 
 export class SciFiButton extends LitElement {
   static get styles() {
@@ -39,7 +38,6 @@ export class SciFiButton extends LitElement {
           cursor: pointer;
           fill: var(--primary-color);
         }
-
         .btn-border:hover {
           background-color: var(--secondary-color-opacity);
         }
@@ -50,14 +48,14 @@ export class SciFiButton extends LitElement {
   static get properties() {
     return {
       hasBorder: { type: Boolean, attribute: "has-border" },
-      picturePath: { type: String, attribute: "picture-path" },
+      iconName: { type: String, attribute: "icon-name" },
     };
   }
 
   constructor() {
     super();
     this.hasBorder = this.hasBorder ? this.hasBorder : false;
-    this.picturePath = this.picturePath ? this.picturePath : mdiPlus;
+    this.iconName = this.iconName ? this.iconName : "mdiPlus";
   }
 
   render() {
@@ -66,7 +64,7 @@ export class SciFiButton extends LitElement {
         class="btn ${this.hasBorder ? "btn-border" : ""}"
         @click="${this.click}"
       >
-        ${renderSvgIcon(this.picturePath)}
+        ${getIcon(this.iconName)}
       </div>
     `;
   }

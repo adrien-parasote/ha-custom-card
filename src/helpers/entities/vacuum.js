@@ -1,15 +1,6 @@
 import { html, css } from "lit";
 import common_styles from "../../utils/common-styles.js";
-import { renderSvgIcon } from "../icon-svg.js";
-import { vacuumMoving } from "../svg/vacuum.js";
-import {
-  mdiRobotVacuumVariantAlert,
-  mdiRobotVacuumVariant,
-  mdiBroom,
-  mdiKeyboardReturn,
-  mdiSleep,
-  mdiFlash,
-} from "@mdi/js";
+import { getIcon } from "../icon-svg.js";
 import { BaseEntity } from "./base-entity.js";
 
 // Constantes
@@ -22,11 +13,11 @@ import {
 } from "./const.js";
 
 var RENDER_ICONS = {};
-RENDER_ICONS[VACUUM_CLEANING] = vacuumMoving;
-RENDER_ICONS[VACUUM_DOCKED] = mdiRobotVacuumVariant;
-RENDER_ICONS[VACUUM_RETURNING] = vacuumMoving;
-RENDER_ICONS[VACUUM_ERROR] = mdiRobotVacuumVariantAlert;
-RENDER_ICONS[VACUUM_IDLE] = mdiRobotVacuumVariant;
+RENDER_ICONS[VACUUM_CLEANING] = ["mdiRobotVacuumVariant", "mdiBroom"];
+RENDER_ICONS[VACUUM_DOCKED] = ["mdiRobotVacuumVariant", "mdiFlash"];
+RENDER_ICONS[VACUUM_RETURNING] = ["mdiRobotVacuumVariant", "mdiKeyboardReturn"];
+RENDER_ICONS[VACUUM_ERROR] = ["mdiRobotVacuumVariantAlert", null];
+RENDER_ICONS[VACUUM_IDLE] = ["mdiRobotVacuumVariant", "mdiSleep"];
 
 export class SciFiVacuumInfo extends BaseEntity {
   static get styles() {
@@ -36,29 +27,29 @@ export class SciFiVacuumInfo extends BaseEntity {
         :host {
           height: 100%;
         }
-        svg {
-          fill: var(--secondary-color);
-        }
-        .svg-container {
-          width: var(--icon-size-normal);
-          height: var(--icon-size-normal);
-          position: relative;
-        }
         .content {
           align-items: center;
         }
         .title {
           font-size: var(--font-size-small);
+          margin-top: 2px;
         }
         .icon-container {
-          width: 23px;
-          height: 100%;
+          width: var(--icon-size-normal);
+          height: var(--icon-size-normal);
           align-content: center;
           position: relative;
+        }
+        svg {
+          fill: var(--secondary-color);
         }
         .orange {
           color: var(--color-active-icon);
           text-shadow: 0px 0px 5px var(--color-active-icon);
+        }
+        .orange > .icon {
+          fill: var(--color-active-icon);
+          stroke: transparent;
         }
         .red {
           color: var(--color-error-icon);
@@ -110,33 +101,17 @@ export class SciFiVacuumInfo extends BaseEntity {
   }
 
   __getIcon() {
-    if (this.state == VACUUM_CLEANING || this.state == VACUUM_RETURNING) {
-      return html`<div class="svg-container">
-        ${RENDER_ICONS[this.state]}
-        <div class="state-icon state-icon-orange">
-          ${renderSvgIcon(
-            this.state == VACUUM_CLEANING ? mdiBroom : mdiKeyboardReturn,
-          )}
-        </div>
+    if (this.state == VACUUM_ERROR) {
+      return html`<div class="icon-container ${this.__getLabelColor()}">
+        ${getIcon(RENDER_ICONS[this.state][0])}
       </div>`;
     } else {
-      if (this.state == VACUUM_IDLE) {
-        return html`<div class="icon-container">
-          ${renderSvgIcon(RENDER_ICONS[this.state])}
-          <div class="state-icon">${renderSvgIcon(mdiSleep)}</div>
-        </div>`;
-      } else {
-        if (this.state == VACUUM_DOCKED) {
-          return html`<div class="icon-container">
-            ${renderSvgIcon(RENDER_ICONS[this.state])}
-            <div class="state-icon">${renderSvgIcon(mdiFlash)}</div>
-          </div>`;
-        } else {
-          return html`<div class="icon-container ${this.__getLabelColor()}">
-            ${renderSvgIcon(RENDER_ICONS[this.state])}
-          </div>`;
-        }
-      }
+      return html`<div class="icon-container ${this.__getLabelColor()}">
+        ${getIcon(RENDER_ICONS[this.state][0])}
+        <div class="state-icon state-icon-${this.__getLabelColor()}">
+          ${getIcon(RENDER_ICONS[this.state][1])}
+        </div>
+      </div>`;
     }
   }
   __getLabelColor() {

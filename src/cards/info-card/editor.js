@@ -3,9 +3,6 @@ import styles from "./../../utils/common-styles.js";
 import editorStyles from "./../../utils/editor-styles.js";
 import { html, css } from "lit";
 
-import { mdiLightbulbGroup, mdiRobotVacuumVariant } from "@mdi/js";
-import { stoveOff } from "../../helpers/svg/stove.js";
-
 import "../../helpers/form/dropdown.js";
 import "../../helpers/form/input.js";
 import "../../helpers/form/button.js";
@@ -25,9 +22,9 @@ export class InfoCardEditor extends BaseEditor {
 
   // Private
   _dropdownEntityType = {
-    light: mdiLightbulbGroup,
-    stove: stoveOff,
-    vacuum: mdiRobotVacuumVariant,
+    light: "mdiLightbulbGroup",
+    stove: "stoveOff",
+    vacuum: "mdiRobotVacuumVariant",
   };
 
   render() {
@@ -56,7 +53,7 @@ export class InfoCardEditor extends BaseEditor {
       <div class="row column-gap editor-row">
         <sci-fi-input
           element-id="${idx}"
-          picture-path="${this._dropdownEntityType[selectedType]}"
+          icon-name="${this._dropdownEntityType[selectedType]}"
           ?not-mdi=${selectedType == "stove"}
           hide-deletable
           text="${entity}"

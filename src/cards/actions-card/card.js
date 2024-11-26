@@ -3,7 +3,7 @@ import { html } from "lit";
 import { BaseElement } from "../../utils/base-element.js";
 import common_styles from "../../utils/common-styles.js";
 import { ActionsCardEditor } from "./editor.js";
-import "./../../helpers/toast/toast.js";
+import "./../../helpers/toast.js";
 
 import { PACKAGE } from "./const.js";
 import styles from "./styles.js";

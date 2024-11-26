@@ -1,7 +1,5 @@
 import { html, css } from "lit";
-import { renderSvgIcon } from "../icon-svg.js";
 import common_styles from "../../utils/common-styles.js";
-import { mdiAlienOutline } from "@mdi/js";
 import "./button.js";
 import { BaseForm } from "./base-form.js";
 
@@ -126,7 +124,7 @@ export class SciFiDropdown extends BaseForm {
   static get properties() {
     return {
       elementId: { type: String, attribute: "element-id" },
-      picturePath: { type: String, attribute: "picture-path" },
+      iconName: { type: String, attribute: "icon-name" },
       noPicture: { type: Boolean, attribute: "no-picture" },
       items: { type: Array },
       selected: { type: String },
@@ -139,7 +137,7 @@ export class SciFiDropdown extends BaseForm {
     super();
     this.elementId = this.elementId ? this.elementId : null;
     this.noPicture = this.noPicture ? this.noPicture : false;
-    this.picturePath = this.picturePath ? this.picturePath : mdiAlienOutline;
+    this.iconName = this.iconName ? this.iconName : "mdiAlienOutline";
     this.selected = this.selected ? this.selected : "<nothing selected>";
     this.items = this.items ? this.items : new Array(this.selected);
     this.isDeletable =

@@ -1,6 +1,5 @@
 import { html, css } from "lit";
 import common_styles from "../../utils/common-styles.js";
-import { mdiAlienOutline } from "@mdi/js";
 import "./button.js";
 import { BaseForm } from "./base-form.js";
 
@@ -102,10 +101,9 @@ export class SciFiInput extends BaseForm {
   static get properties() {
     return {
       elementId: { type: String, attribute: "element-id" },
-      picturePath: { type: String, attribute: "picture-path" },
+      iconName: { type: String, attribute: "icon-name" },
       noPicture: { type: Boolean, attribute: "no-picture" },
       error: { type: Boolean },
-      notMdi: { type: Boolean, attribute: "not-mdi" }, // TODO
       text: { type: String },
       tips: { type: String }, // TODO
       isDeletable: { type: Boolean, attribute: "is-deletable" },
@@ -116,9 +114,8 @@ export class SciFiInput extends BaseForm {
   constructor() {
     super();
     this.elementId = this.elementId ? this.elementId : null;
-    this.picturePath = this.picturePath ? this.picturePath : mdiAlienOutline;
+    this.iconName = this.iconName ? this.iconName : "mdiAlienOutline";
     this.noPicture = this.noPicture ? this.noPicture : false;
-    this.notMdi = this.notMdi ? this.notMdi : false;
     this.text = this.text ? this.text : "";
     this.tips = this.tips ? this.tips : "";
     this.error = this.error ? this.error : false;
