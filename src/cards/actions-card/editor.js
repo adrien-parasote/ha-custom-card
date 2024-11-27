@@ -5,7 +5,7 @@ import { html, css } from "lit";
 
 export class ActionsCardEditor extends BaseEditor {
   static get styles() {
-    return [styles, editorStyles, css``];
+    return [styles, editorStyles];
   }
 
   // Private
