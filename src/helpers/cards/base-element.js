@@ -1,5 +1,5 @@
 import { LitElement, html } from "lit";
-import { DEV } from "../../const.js";
+import { DEV } from "../../utils/const.js";
 import styles from "../../helpers/styles/common-styles.js";
 
 export class BaseElement extends LitElement {

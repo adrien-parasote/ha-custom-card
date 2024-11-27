@@ -1,4 +1,4 @@
-import { PACKAGE_NAME, VERSION } from "./const.js";
+import { PACKAGE_NAME, VERSION } from "./utils/const.js";
 
 import "./helpers/cards/sci-fi-card.js";
 

@@ -1,6 +1,6 @@
 import { html, css } from "lit";
 import { SVG_ICONS, getIcon } from "../styles/icon-svg.js";
-import common_styles from "../styles/common-styles.js"
+import common_styles from "../styles/common-styles.js";
 import "./button.js";
 import { BaseForm } from "./base-form.js";
 
@@ -207,8 +207,7 @@ export class SciFiDropdown extends BaseForm {
   }
 
   _showHideDropDown() {
-    this.shadowRoot.querySelector(".dropdown-menu")
-        .classList.toggle("show");
+    this.shadowRoot.querySelector(".dropdown-menu").classList.toggle("show");
   }
 }
 
@@ -237,7 +236,6 @@ export class SciFiDropdownIcon extends SciFiDropdown {
       <div>${value}</div>
     </div>`;
   }
-
 }
 
 window.customElements.get("sci-fi-dropdown") ||
