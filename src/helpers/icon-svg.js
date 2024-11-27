@@ -16,7 +16,7 @@ import {
   mdiDelete,
 } from "@mdi/js";
 
-const SVG_ICONS = {
+export const SVG_ICONS = {
   mdiAlertOutline: mdiAlertOutline,
   mdiLightbulbGroup: mdiLightbulbGroup,
   mdiHomeOutline: mdiHomeOutline,

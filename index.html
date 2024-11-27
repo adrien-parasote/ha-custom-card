@@ -151,6 +151,17 @@
             </div>
           </div>
           <div>
+            <div class="title">Icons Dropdown box</div>
+            <div class="column">
+              <sci-fi-dropdown-icon @dropdown-select="log" @dropdown-delete="log" element-id="elt-to-delete" ></sci-fi-dropdown-icon>
+              <sci-fi-dropdown-icon @dropdown-select="log" @dropdown-delete="log" element-id="elt-to-delete" icon-name="stoveHeat"></sci-fi-dropdown-icon>
+              <sci-fi-dropdown-icon @dropdown-select="log" @dropdown-delete="log" element-id="elt-to-delete" no-picture></sci-fi-dropdown-icon>
+              <sci-fi-dropdown-icon @dropdown-select="log" @dropdown-delete="log" element-id="elt-to-delete" no-picture is-deletable></sci-fi-dropdown-icon>
+              <sci-fi-dropdown-icon @dropdown-select="log" @dropdown-delete="log" element-id="elt-to-delete" is-deletable ></sci-fi-dropdown-icon>
+              <sci-fi-dropdown-icon @dropdown-select="log" @dropdown-delete="log" element-id="elt-to-delete" hide-deletable ></sci-fi-dropdown-icon>
+            </div>
+          </div>
+          <div>
             <div class="title">Input</div>
             <div class="column">
               <sci-fi-input @input-delete="log" element-id="elt-to-delete" text="a sci-fi text"></sci-fi-input>

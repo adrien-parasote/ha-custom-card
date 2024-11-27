@@ -2,6 +2,7 @@ import { html, css } from "lit";
 import common_styles from "../../utils/common-styles.js";
 import "./button.js";
 import { BaseForm } from "./base-form.js";
+import { SVG_ICONS, getIcon } from "./../icon-svg.js";
 
 export class SciFiDropdown extends BaseForm {
   static get styles() {
@@ -152,7 +153,7 @@ export class SciFiDropdown extends BaseForm {
         <div class="dropdown">
           <button
             class="dropdown-toggle ${this.noPicture ? "no-picture" : ""}"
-            @click="${this._showDropDown}"
+            @click="${this._showHideDropDown}"
           >
             ${this.selected}
           </button>
@@ -162,7 +163,7 @@ export class SciFiDropdown extends BaseForm {
                 class="dropdown-item"
                 @click="${(e) => this._newItemSelected(e, idx, value)}"
               >
-                ${value}
+                ${this.renderDropDownItem(value)}
               </div>`;
             })}
           </div>
@@ -170,6 +171,10 @@ export class SciFiDropdown extends BaseForm {
         ${this.hideDeletable ? "" : this.renderDelete()}
       </div>
     `;
+  }
+
+  renderDropDownItem(value) {
+    return html`${value}`;
   }
 
   _delete(ev) {
@@ -187,7 +192,7 @@ export class SciFiDropdown extends BaseForm {
 
   _newItemSelected(ev, idx, newValue) {
     ev.preventDefault();
-    this._hideDropDown(ev);
+    this._showHideDropDown(ev);
     this.dispatchEvent(
       new CustomEvent("dropdown-select", {
         bubbles: true,
@@ -201,16 +206,41 @@ export class SciFiDropdown extends BaseForm {
     );
   }
 
-  _showDropDown(ev) {
-    ev.srcElement.parentElement
-      .querySelector(".dropdown-menu")
-      .classList.toggle("show");
+  _showHideDropDown() {
+    this.shadowRoot.querySelector(".dropdown-menu")
+        .classList.toggle("show");
+  }
+}
+
+export class SciFiDropdownIcon extends SciFiDropdown {
+  static get properties() {
+    return {
+      elementId: { type: String, attribute: "element-id" },
+      iconName: { type: String, attribute: "icon-name" },
+      noPicture: { type: Boolean, attribute: "no-picture" },
+      selected: { type: String },
+      isDeletable: { type: Boolean, attribute: "is-deletable" },
+      hideDeletable: { type: Boolean, attribute: "hide-deletable" },
+    };
   }
 
-  _hideDropDown(ev) {
-    ev.srcElement.parentElement.classList.toggle("show");
+  constructor() {
+    super();
+    this.selected = this.selected ? this.selected : "mdiAlienOutline";
+    this.items = Object.keys(SVG_ICONS);
+    this.items.sort();
   }
+
+  renderDropDownItem(value) {
+    return html`<div class="row column-gap" style="align-items: center;">
+      <div class="icon-container">${getIcon(value)}</div>
+      <div>${value}</div>
+    </div>`;
+  }
+
 }
 
 window.customElements.get("sci-fi-dropdown") ||
   window.customElements.define("sci-fi-dropdown", SciFiDropdown);
+window.customElements.get("sci-fi-dropdown-icon") ||
+  window.customElements.define("sci-fi-dropdown-icon", SciFiDropdownIcon);
