@@ -1,6 +1,6 @@
-import { BaseEditor } from "./../../utils/base-editor.js";
-import styles from "./../../utils/common-styles.js";
-import editorStyles from "./../../utils/editor-styles.js";
+import { BaseEditor } from "../../helpers/cards/base-editor.js";
+import styles from "../../helpers/styles/common-styles.js";
+import editorStyles from "../../helpers/styles/editor-styles.js";
 import { html, css } from "lit";
 
 import "../../helpers/form/dropdown.js";

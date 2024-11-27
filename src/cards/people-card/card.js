@@ -1,7 +1,7 @@
 import { html } from "lit";
 
-import { BaseElement } from "./../../utils/base-element.js";
-import common_styles from "./../../utils/common-styles.js";
+import { BaseElement } from "../../helpers/cards/base-element.js";
+import common_styles from "../../helpers/styles/common-styles.js";
 import { PeopleCardEditor } from "./editor.js";
 
 import { PACKAGE } from "./const.js";

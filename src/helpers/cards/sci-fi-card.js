@@ -1,5 +1,5 @@
 import { LitElement, html, css } from "lit";
-import styles from "./common-styles.js";
+import styles from "../../helpers/styles/common-styles.js";
 
 export class SciFiCard extends LitElement {
   static get styles() {

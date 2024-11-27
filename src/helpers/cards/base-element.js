@@ -1,6 +1,6 @@
 import { LitElement, html } from "lit";
-import { DEV } from "../const.js";
-import styles from "./common-styles.js";
+import { DEV } from "../../const.js";
+import styles from "../../helpers/styles/common-styles.js";
 
 export class BaseElement extends LitElement {
   static get styles() {
@@ -26,7 +26,7 @@ export class BaseElement extends LitElement {
   constructor(module) {
     super();
     if (DEV) {
-      import("./config.js").then(({ hass, config }) => {
+      import("../../utils/config.js").then(({ hass, config }) => {
         this._hass = hass;
         this.setConfig(config[module]);
         this.requestUpdate();

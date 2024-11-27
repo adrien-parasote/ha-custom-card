@@ -1,6 +1,5 @@
 import { html, LitElement } from "lit";
-import { getIcon } from "../icon-svg.js";
-import { mdiDelete } from "@mdi/js";
+import { getIcon } from "../styles/icon-svg.js";
 
 export class BaseForm extends LitElement {
   renderPicture() {

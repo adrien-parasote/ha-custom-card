@@ -1,6 +1,6 @@
 import { LitElement, html } from "lit";
-import styles from "./common-styles.js";
-import editorStyles from "./editor-styles.js";
+import styles from "../../helpers/styles/common-styles.js";
+import editorStyles from "../../helpers/styles/editor-styles.js";
 
 export class BaseEditor extends LitElement {
   static get styles() {

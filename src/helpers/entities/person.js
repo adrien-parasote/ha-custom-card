@@ -1,6 +1,6 @@
 import { html, LitElement, css } from "lit";
-import { getIcon } from "../icon-svg.js";
-import common_styles from "../../utils/common-styles.js";
+import { getIcon } from "../styles/icon-svg.js";
+import common_styles from "../styles/common-styles.js";
 
 // Constantes
 import { STATE_HOME } from "./const.js";

@@ -1,4 +1,4 @@
-import { BaseEditor } from "./../../utils/base-editor.js";
+import { BaseEditor } from "../../helpers/cards/base-editor.js";
 import { html } from "lit";
 
 import "../../helpers/form/dropdown.js";

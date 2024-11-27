@@ -1,5 +1,5 @@
 import { LitElement, html, css } from "lit";
-import styles from "./../utils/common-styles";
+import styles from "../../helpers/styles/common-styles.js";
 
 export class Toast extends LitElement {
   static styles = [

@@ -1,5 +1,6 @@
 import { LitElement } from "lit";
-import common_styles from "../../utils/common-styles.js";
+import common_styles from "../styles/common-styles.js";
+
 
 export class BaseEntity extends LitElement {
   static get styles() {
