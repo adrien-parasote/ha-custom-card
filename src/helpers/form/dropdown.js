@@ -185,7 +185,7 @@ export class SciFiDropdown extends BaseForm {
         bubbles: true,
         composed: true,
         detail: {
-          dropdownElementId: this.elementId,
+          elementId: this.elementId,
         },
       }),
     );

@@ -7,6 +7,7 @@ export class AccordionCard extends LitElement {
       styles,
       css`
         .accordion {
+          flex:1;
           border: var(--card-border-width) solid var(--primary-color);
           overflow: hidden;
         }
@@ -59,6 +60,9 @@ export class AccordionCard extends LitElement {
           animation: bounce 0.5s infinite;
           -webkit-animation-name: bounce 0.5s infinite;
         }
+        .delete {
+          margin-top: 6px;
+        }
         @-webkit-keyframes bounce {
           25% {
             transform: rotate(90deg) translate(0.25rem);
@@ -82,35 +86,67 @@ export class AccordionCard extends LitElement {
 
   static get properties() {
     return {
+      elementId: { type: String, attribute: "element-id" },
       title: { type: String },
       open: { type: Boolean },
+      deletable: { type: Boolean },
     };
   }
 
   constructor() {
     super();
+    this.elementId = this.elementId ? this.elementId : 'cb';
     this.title = this.title ? this.title : null;
     this.open = this.open ? this.open : false;
+    this.deletable = this.deletable ? this.deletable : false;
   }
 
   render() {
     return html`
-      <section class="accordion">
-        <div class="tab">
-          <input
-            type="checkbox"
-            name="accordion-1"
-            id="cb"
-            ?checked=${this.open}
-          />
-          <label for="cb" class="label">${this.title}</label>
-          <div class="content">
-            <div><slot></slot></div>
+      <div class="row column-gap">
+        <section class="accordion">
+          <div class="tab">
+            <input
+              type="checkbox"
+              name="accordion-1"
+              id="${this.elementId}"
+              ?checked=${this.open}
+            />
+            <label for="${this.elementId}" class="label">${this.title}</label>
+            <div class="content">
+              <div><slot></slot></div>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      ${this.deletable ? this.__renderIcon():  ""}
+      </div>
     `;
   }
+
+  __renderIcon(){
+    return html`
+      <div class="delete">
+        <sci-fi-button
+          icon-name="mdiDelete"
+          @click="${this._delete}"
+        ></sci-fi-button>
+      </div>
+    `
+  }
+
+  _delete(ev) {
+    ev.preventDefault();
+    this.dispatchEvent(
+      new CustomEvent("accordion-delete", {
+        bubbles: true,
+        composed: true,
+        detail: {
+          elementId: this.elementId,
+        },
+      }),
+    );
+  }
+
 }
 
 window.customElements.get("sci-fi-accordion-card") ||
