@@ -2,6 +2,7 @@ import { html } from "lit";
 
 import { BaseElement } from "../../helpers/cards/base-element.js";
 import common_styles from "../../helpers/styles/common-styles.js";
+import { getIcon } from "../../helpers/styles/icon-svg.js";
 import { ActionsCardEditor } from "./editor.js";
 import "../../helpers/cards/toast-card.js";
 
@@ -52,12 +53,16 @@ export class ActionsCard extends BaseElement {
     return html`
       <div class="action-container" @click="${(e) => this._tapped(e, action)}">
         <div class="row column-gap">
-          <div>ICON</div>
+          ${action.icon ? this._renderIcon(action.icon) : ""}
           <div>${action.name}</div>
         </div>
         <div class="helper"></div>
       </div>
     `;
+  }
+
+  _renderIcon(icon) {
+    return html`<div class="icon-container">${getIcon(icon)}</div>`;
   }
 
   _tapped(e, action) {

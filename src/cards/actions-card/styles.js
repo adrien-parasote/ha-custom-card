@@ -2,6 +2,7 @@ import { css } from "lit";
 
 export default css`
   :host {
+    font-size: var(--font-size-small);
     --border-cut: 4px;
     --button-shape: polygon(
       0 var(--border-cut),
@@ -58,6 +59,7 @@ export default css`
   .action-container {
     color: var(--secondary-color);
     border: 0;
+    min-height: 50px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -99,9 +101,23 @@ export default css`
     background: var(--secondary-color);
     z-index: -2;
   }
-
   .action-container:hover {
     cursor: pointer;
     color: var(--primary-color);
+  }
+  .action-container:hover .icon {
+    fill: var(--primary-color);
+  }
+  .icon-container {
+    width: var(--icon-size-small);
+    height: var(--icon-size-small);
+    align-content: center;
+  }
+  .icon {
+    fill: var(--secondary-color);
+  }
+  .column-gap {
+    gap: 5px;
+    align-items: center;
   }
 `;

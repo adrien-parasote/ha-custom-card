@@ -264,6 +264,18 @@ export const config = {
         entity: "vacuum.dobbyDocked",
         // appearance
         name: "Clean daily",
+        icon: "mdiBroom",
+        // action on tap
+        service: "xiaomi_miio.vacuum_clean_segment",
+        service_data: {
+          // optionnal
+          segments: [17, 18],
+        },
+      },
+      {
+        entity: "vacuum.dobbyDocked",
+        // appearance
+        name: "Clean daily",
         // action on tap
         service: "xiaomi_miio.vacuum_clean_segment",
         service_data: {
@@ -275,6 +287,7 @@ export const config = {
         entity: "automation.call_kids",
         // appearance
         name: "Call kids",
+        icon: "mdiBellRingOutline",
         // action on tap
         service: "automation.trigger",
         service_data: {},
