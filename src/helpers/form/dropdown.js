@@ -29,7 +29,7 @@ export class SciFiDropdown extends BaseForm {
           width: 100%;
           padding: 0.5rem 1rem;
           border: var(--card-border-width) solid var(--primary-color);
-          color: var(--primary-color);
+          color: var(--secondary-color);
           min-height: 36px;
         }
         .dropdown .no-picture {
@@ -39,6 +39,7 @@ export class SciFiDropdown extends BaseForm {
         .dropdown .dropdown-toggle:hover {
           cursor: pointer;
           background-color: var(--secondary-color-opacity);
+          color: var(--primary-color);
         }
         .dropdown .dropdown-toggle::after {
           top: 45%;

@@ -22,7 +22,6 @@ export class SciFiInput extends BaseForm {
         .input-group .group-prepend .group-text {
           display: flex;
           align-items: center;
-
           border-radius: var(--border-radius);
           border-top-right-radius: 0;
           border-bottom-right-radius: 0;
@@ -56,8 +55,20 @@ export class SciFiInput extends BaseForm {
             rgba(0, 0, 0, 0.2) 100%
           );
           border: var(--card-border-width) solid var(--primary-color);
-          color: var(--primary-color);
+          color: var(--secondary-color);
         }
+
+        .input-group input:focus {
+          outline: 0;
+          color: var(--primary-color);
+          background: linear-gradient(
+            to bottom,
+            rgba(102, 156, 210, 0.1) 0%,
+            rgba(102, 156, 210, 0.2) 100%
+          );
+          box-shadow: none;
+        }
+
         .input-error input {
           border-color: var(--color-active-icon);
           color: var(--color-active-icon);

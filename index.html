@@ -8,6 +8,7 @@
     <script type="module" src="src/helpers/form/button.js"></script>
     <script type="module" src="src/helpers/form/dropdown.js"></script>
     <script type="module" src="src/helpers/form/input.js"></script>
+    <script type="module" src="src/helpers/form/textarea.js"></script>
     <style>
       html {
         height: 100%;
@@ -96,9 +97,11 @@
           el.id == e.attributes.target.value ? el.className = "" : el.className = "hide";
         });
       }
-      document.addEventListener("dropdown-select",console.log,false);
+      document.addEventListener("button-click",console.log,false);
       document.addEventListener("dropdown-delete",console.log,false);
       document.addEventListener("input-delete",console.log,false);
+      document.addEventListener("input-focusout",console.log,false);
+      document.addEventListener("textarea-focusout",console.log,false);
     </script>
   </head>
   <body>
@@ -111,7 +114,7 @@
     <div class="lovelace-panel">
       <div class="lovelace-header">HEADER</div>
       <div class="lovelace-view">
-        <div id="cards" >
+        <div id="cards" class="hide">
           <sci-fi-accordion-card title="People Card">
             <people-card></people-card>
           </sci-fi-accordion-card>
@@ -122,44 +125,50 @@
             <actions-card></actions-card>
           </sci-fi-accordion-card>
         </div>
-        <div id="form" class="hide">
+        <div id="form" >
           <sci-fi-accordion-card title="Button">
             <div class="row">
-              <sci-fi-button @click="log" has-border></sci-fi-button>
-              <sci-fi-button @click="log"></sci-fi-button>
-              <sci-fi-button @click="log" has-border icon-name="mdiDelete"></sci-fi-button>
+              <sci-fi-button has-border></sci-fi-button>
+              <sci-fi-button></sci-fi-button>
+              <sci-fi-button has-border icon-name="mdiDelete"></sci-fi-button>
             </div>
           </sci-fi-accordion-card>
           <sci-fi-accordion-card title="Dropdown box">
             <div class="column">
-              <sci-fi-dropdown @dropdown-select="log" @dropdown-delete="log" element-id="elt-to-delete" ></sci-fi-dropdown>
-              <sci-fi-dropdown @dropdown-select="log" @dropdown-delete="log" element-id="elt-to-delete" icon-name="stoveHeat"></sci-fi-dropdown>
-              <sci-fi-dropdown @dropdown-select="log" @dropdown-delete="log" element-id="elt-to-delete" no-picture></sci-fi-dropdown>
-              <sci-fi-dropdown @dropdown-select="log" @dropdown-delete="log" element-id="elt-to-delete" no-picture is-deletable></sci-fi-dropdown>
-              <sci-fi-dropdown @dropdown-select="log" @dropdown-delete="log" element-id="elt-to-delete" is-deletable ></sci-fi-dropdown>
-              <sci-fi-dropdown @dropdown-select="log" @dropdown-delete="log" element-id="elt-to-delete" hide-deletable ></sci-fi-dropdown>
+              <sci-fi-dropdown element-id="elt-to-delete" ></sci-fi-dropdown>
+              <sci-fi-dropdown element-id="elt-to-delete" icon-name="stoveHeat"></sci-fi-dropdown>
+              <sci-fi-dropdown element-id="elt-to-delete" no-picture></sci-fi-dropdown>
+              <sci-fi-dropdown element-id="elt-to-delete" no-picture is-deletable></sci-fi-dropdown>
+              <sci-fi-dropdown element-id="elt-to-delete" is-deletable ></sci-fi-dropdown>
+              <sci-fi-dropdown element-id="elt-to-delete" hide-deletable ></sci-fi-dropdown>
             </div>
           </sci-fi-accordion-card>
           <sci-fi-accordion-card title="Icons Dropdown box">
             <div class="column">
-              <sci-fi-dropdown-icon @dropdown-select="log" @dropdown-delete="log" element-id="elt-to-delete" ></sci-fi-dropdown-icon>
-              <sci-fi-dropdown-icon @dropdown-select="log" @dropdown-delete="log" element-id="elt-to-delete" icon-name="stoveHeat"></sci-fi-dropdown-icon>
-              <sci-fi-dropdown-icon @dropdown-select="log" @dropdown-delete="log" element-id="elt-to-delete" no-picture></sci-fi-dropdown-icon>
-              <sci-fi-dropdown-icon @dropdown-select="log" @dropdown-delete="log" element-id="elt-to-delete" no-picture is-deletable></sci-fi-dropdown-icon>
-              <sci-fi-dropdown-icon @dropdown-select="log" @dropdown-delete="log" element-id="elt-to-delete" is-deletable ></sci-fi-dropdown-icon>
-              <sci-fi-dropdown-icon @dropdown-select="log" @dropdown-delete="log" element-id="elt-to-delete" hide-deletable ></sci-fi-dropdown-icon>
+              <sci-fi-dropdown-icon element-id="elt-to-delete" ></sci-fi-dropdown-icon>
+              <sci-fi-dropdown-icon element-id="elt-to-delete" icon-name="stoveHeat"></sci-fi-dropdown-icon>
+              <sci-fi-dropdown-icon element-id="elt-to-delete" no-picture></sci-fi-dropdown-icon>
+              <sci-fi-dropdown-icon element-id="elt-to-delete" no-picture is-deletable></sci-fi-dropdown-icon>
+              <sci-fi-dropdown-icon element-id="elt-to-delete" is-deletable ></sci-fi-dropdown-icon>
+              <sci-fi-dropdown-icon element-id="elt-to-delete" hide-deletable ></sci-fi-dropdown-icon>
             </div>
           </sci-fi-accordion-card>
           <sci-fi-accordion-card title="Input">
             <div class="column">
-              <sci-fi-input @input-delete="log" element-id="elt-to-delete" text="a sci-fi text"></sci-fi-input>
-              <sci-fi-input @input-delete="log" element-id="elt-to-delete" text="Icon Name" icon-name="stoveOff"></sci-fi-input>
-              <sci-fi-input @input-delete="log" element-id="elt-to-delete" text="Tip" tips="this is an info message"></sci-fi-input>
-              <sci-fi-input @input-delete="log" element-id="elt-to-delete" text="Error" tips="this is an error message" error></sci-fi-input>
-              <sci-fi-input @input-delete="log" element-id="elt-to-delete" text="No picture" no-picture  ></sci-fi-input>
-              <sci-fi-input @input-delete="log" element-id="elt-to-delete" text="No picture, is deletable" no-picture is-deletable></sci-fi-input>
-              <sci-fi-input @input-delete="log" element-id="elt-to-delete" text="Is deletable" is-deletable></sci-fi-input>
-              <sci-fi-input @input-delete="log" element-id="elt-to-delete" text="Hide deletable" hide-deletable ></sci-fi-input>
+              <sci-fi-input element-id="elt-to-delete" text="a sci-fi text"></sci-fi-input>
+              <sci-fi-input element-id="elt-to-delete" text="Icon Name" icon-name="stoveOff"></sci-fi-input>
+              <sci-fi-input element-id="elt-to-delete" text="Tip" tips="this is an info message"></sci-fi-input>
+              <sci-fi-input element-id="elt-to-delete" text="Error" tips="this is an error message" error></sci-fi-input>
+              <sci-fi-input element-id="elt-to-delete" text="No picture" no-picture  ></sci-fi-input>
+              <sci-fi-input element-id="elt-to-delete" text="No picture, is deletable" no-picture is-deletable></sci-fi-input>
+              <sci-fi-input element-id="elt-to-delete" text="Is deletable" is-deletable></sci-fi-input>
+              <sci-fi-input element-id="elt-to-delete" text="Hide deletable" hide-deletable ></sci-fi-input>
+            </div>
+          </sci-fi-accordion-card>
+          <sci-fi-accordion-card title="Textarea" open>
+            <div class="column">
+              <sci-fi-textarea @textarea-focusout="log" element-id="elt-to-delete" text="a sci-fi text"></sci-fi-textarea>
+              <sci-fi-textarea @textarea-focusout="log" element-id="elt-to-delete"></sci-fi-textarea>
             </div>
           </sci-fi-accordion-card>
         </div>

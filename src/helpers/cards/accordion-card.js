@@ -100,10 +100,10 @@ export class AccordionCard extends LitElement {
           <input
             type="checkbox"
             name="accordion-1"
-            id="cb1"
+            id="cb"
             ?checked=${this.open}
           />
-          <label for="cb1" class="label">${this.title}</label>
+          <label for="cb" class="label">${this.title}</label>
           <div class="content">
             <div><slot></slot></div>
           </div>
