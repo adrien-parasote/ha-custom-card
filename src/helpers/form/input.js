@@ -148,22 +148,24 @@ export class SciFiInput extends BaseForm {
     `;
   }
 
-  _update(ev) {
-    ev.preventDefault();
+  _update(e) {
+    e.preventDefault();
+    e.stopPropagation();
     this.dispatchEvent(
       new CustomEvent("input-focusout", {
         bubbles: true,
         composed: true,
         detail: {
           elementId: this.elementId,
-          value: ev.srcElement.value,
+          value: e.srcElement.value,
         },
       }),
     );
   }
 
-  _delete(ev) {
-    ev.preventDefault();
+  _delete(e) {
+    e.preventDefault();
+    e.stopPropagation();
     this.dispatchEvent(
       new CustomEvent("input-delete", {
         bubbles: true,

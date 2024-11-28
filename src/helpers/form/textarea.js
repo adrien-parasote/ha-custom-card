@@ -52,8 +52,9 @@ export class SciFiTextArea extends BaseForm {
     return html`<textarea @focusout="${this._update}">${this.text}</textarea>`;
   }
 
-  _update(ev) {
-    ev.preventDefault();
+  _update(e) {
+    e.preventDefault();
+    e.stopPropagation();
     console.log("textarea-focusout");
     this.dispatchEvent(
       new CustomEvent("textarea-focusout", {
@@ -61,7 +62,7 @@ export class SciFiTextArea extends BaseForm {
         composed: true,
         detail: {
           elementId: this.elementId,
-          value: ev.srcElement.value,
+          value: e.srcElement.value,
         },
       }),
     );

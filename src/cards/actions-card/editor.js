@@ -17,12 +17,14 @@ export class ActionsCardEditor extends BaseEditor {
 
   _update(e) {
     e.preventDefault();
+    e.stopPropagation();
     var newConfig = this.getNewConfig();
     this.dispatchChange(newConfig);
   }
 
   _add(e) {
     e.preventDefault();
+    e.stopPropagation();
     var newConfig = this.getNewConfig();
     this.dispatchChange(newConfig);
   }

@@ -97,11 +97,11 @@
           el.id == e.attributes.target.value ? el.className = "" : el.className = "hide";
         });
       }
-      document.addEventListener("button-click",console.log,false);
       document.addEventListener("dropdown-delete",console.log,false);
       document.addEventListener("input-delete",console.log,false);
       document.addEventListener("input-focusout",console.log,false);
       document.addEventListener("textarea-focusout",console.log,false);
+      document.addEventListener("accordion-delete",console.log,false);
     </script>
   </head>
   <body>
@@ -126,7 +126,7 @@
           </sci-fi-accordion-card>
         </div>
         <div id="form" >
-          <sci-fi-accordion-card title="Button">
+          <sci-fi-accordion-card title="Button" deletable>
             <div class="row">
               <sci-fi-button has-border></sci-fi-button>
               <sci-fi-button></sci-fi-button>

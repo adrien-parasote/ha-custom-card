@@ -7,7 +7,7 @@ export class AccordionCard extends LitElement {
       styles,
       css`
         .accordion {
-          flex:1;
+          flex: 1;
           border: var(--card-border-width) solid var(--primary-color);
           overflow: hidden;
         }
@@ -95,7 +95,7 @@ export class AccordionCard extends LitElement {
 
   constructor() {
     super();
-    this.elementId = this.elementId ? this.elementId : 'cb';
+    this.elementId = this.elementId ? this.elementId : "cb";
     this.title = this.title ? this.title : null;
     this.open = this.open ? this.open : false;
     this.deletable = this.deletable ? this.deletable : false;
@@ -118,24 +118,25 @@ export class AccordionCard extends LitElement {
             </div>
           </div>
         </section>
-      ${this.deletable ? this.__renderIcon():  ""}
+        ${this.deletable ? this.__renderIcon() : ""}
       </div>
     `;
   }
 
-  __renderIcon(){
+  __renderIcon() {
     return html`
       <div class="delete">
         <sci-fi-button
           icon-name="mdiDelete"
-          @click="${this._delete}"
+          @button-click="${this._delete}"
         ></sci-fi-button>
       </div>
-    `
+    `;
   }
 
-  _delete(ev) {
-    ev.preventDefault();
+  _delete(e) {
+    e.preventDefault();
+    e.stopPropagation();
     this.dispatchEvent(
       new CustomEvent("accordion-delete", {
         bubbles: true,
@@ -146,7 +147,6 @@ export class AccordionCard extends LitElement {
       }),
     );
   }
-
 }
 
 window.customElements.get("sci-fi-accordion-card") ||

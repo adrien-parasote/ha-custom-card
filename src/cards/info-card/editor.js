@@ -78,6 +78,7 @@ export class InfoCardEditor extends BaseEditor {
 
   _update(e) {
     e.preventDefault();
+    e.stopPropagation();
     var newConfig = this.getNewConfig();
     if (e.type == "dropdown-delete") {
       newConfig.info.splice(e.detail.elementId, 1);
@@ -93,6 +94,7 @@ export class InfoCardEditor extends BaseEditor {
 
   _add(e) {
     e.preventDefault();
+    e.stopPropagation();
     var newConfig = this.getNewConfig();
     newConfig.info.push({ entity: "light.entity", type: "light" });
     this.dispatchChange(newConfig);

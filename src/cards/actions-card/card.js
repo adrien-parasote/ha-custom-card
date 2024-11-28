@@ -67,6 +67,7 @@ export class ActionsCard extends BaseElement {
 
   _tapped(e, action) {
     e.preventDefault();
+    e.stopPropagation();
     const toast = this.shadowRoot.querySelector("toast-card");
     try {
       toast.show("Start " + action.name);

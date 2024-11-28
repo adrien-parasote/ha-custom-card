@@ -65,6 +65,7 @@ export class PeopleCardEditor extends BaseEditor {
 
   _update(e) {
     e.preventDefault();
+    e.stopPropagation();
     var newConfig = this.getNewConfig();
     if (e.type == "dropdown-select") {
       newConfig.people[e.detail.elementId] =
@@ -77,6 +78,7 @@ export class PeopleCardEditor extends BaseEditor {
 
   _add(e) {
     e.preventDefault();
+    e.stopPropagation();
     var newConfig = this.getNewConfig();
     newConfig.people.push(Object.values(this._personEntities)[0]);
     this.dispatchChange(newConfig);

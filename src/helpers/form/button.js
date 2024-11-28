@@ -69,8 +69,9 @@ export class SciFiButton extends LitElement {
     `;
   }
 
-  click(ev) {
-    ev.preventDefault();
+  click(e) {
+    e.preventDefault();
+    e.stopPropagation();
     this.dispatchEvent(
       new CustomEvent("button-click", {
         bubbles: true,

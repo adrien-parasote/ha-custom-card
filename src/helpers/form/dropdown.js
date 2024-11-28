@@ -178,8 +178,9 @@ export class SciFiDropdown extends BaseForm {
     return html`${value}`;
   }
 
-  _delete(ev) {
-    ev.preventDefault();
+  _delete(e) {
+    e.preventDefault();
+    e.stopPropagation();
     this.dispatchEvent(
       new CustomEvent("dropdown-delete", {
         bubbles: true,
@@ -191,9 +192,10 @@ export class SciFiDropdown extends BaseForm {
     );
   }
 
-  _newItemSelected(ev, idx, newValue) {
-    ev.preventDefault();
-    this._showHideDropDown(ev);
+  _newItemSelected(e, idx, newValue) {
+    e.preventDefault();
+    e.stopPropagation();
+    this._showHideDropDown();
     this.dispatchEvent(
       new CustomEvent("dropdown-select", {
         bubbles: true,
