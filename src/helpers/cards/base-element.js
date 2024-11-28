@@ -43,6 +43,10 @@ export class BaseElement extends LitElement {
     }
   }
 
+  getCardSize() {
+    return 1;
+  }
+
   render() {
     return html`TO DO`;
   }
