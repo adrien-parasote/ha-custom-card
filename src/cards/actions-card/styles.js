@@ -59,7 +59,6 @@ export default css`
   .action-container {
     color: var(--secondary-color);
     border: 0;
-    min-height: 50px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -68,7 +67,7 @@ export default css`
     vertical-align: middle;
     box-sizing: border-box;
     position: relative;
-    min-height: 30px;
+    min-height: 50px;
     min-width: 70px;
     white-space: nowrap;
     z-index: 1;
