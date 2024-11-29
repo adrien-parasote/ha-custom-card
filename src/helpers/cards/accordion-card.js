@@ -65,12 +65,11 @@ export class AccordionCard extends LitElement {
           margin-top: 6px;
         }
 
-
-.svg-container {
-  width: var(--icon-size-xsmall);
-  height: var(--icon-size-xsmall);
-  fill: var(--primary-color);
-}
+        .svg-container {
+          width: var(--icon-size-xsmall);
+          height: var(--icon-size-xsmall);
+          fill: var(--primary-color);
+        }
         @-webkit-keyframes bounce {
           25% {
             transform: rotate(90deg) translate(0.25rem);
@@ -127,7 +126,7 @@ export class AccordionCard extends LitElement {
                 ${this.icon ? this.__renderMainIcon() : ""}
                 <div>${this.title}</div>
               </div>
-          </label>
+            </label>
             <div class="content">
               <div><slot></slot></div>
             </div>
@@ -141,7 +140,7 @@ export class AccordionCard extends LitElement {
   __renderMainIcon() {
     return html`<div class="svg-container">${getIcon(this.icon)}</div>`;
   }
-  
+
   __renderDeleteIcon() {
     return html`
       <div class="delete">

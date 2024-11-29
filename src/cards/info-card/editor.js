@@ -56,7 +56,8 @@ export class InfoCardEditor extends BaseEditor {
           icon-name="${this._dropdownEntityType[selectedType]}"
           ?not-mdi=${selectedType == "stove"}
           hide-deletable
-          text="${entity}"
+          text="entity"
+          value="${entity}"
           tips="${textError}"
           ?error=${error}
           @input-focusout="${this._update}"

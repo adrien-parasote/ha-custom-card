@@ -47,7 +47,7 @@ export class SciFiInput extends BaseForm {
           border-top-left-radius: 0;
           border-bottom-left-radius: 0;
           width: 100%;
-          padding: 0.5rem 1rem;
+          padding: 18px 10px 5px 10px;
           font-size: var(--font-size-normal);
           background: linear-gradient(
             to bottom,
@@ -105,6 +105,24 @@ export class SciFiInput extends BaseForm {
           height: var(--icon-size-small);
           stroke: var(--primary-color);
         }
+        .input-element {
+          display: flex;
+          flex: 1;
+          position: relative;
+          width: 100%;
+        }
+        .input-element label {
+          color: var(--color-muted);
+          font-size: var(--font-size-xsmall);
+          text-shadow: none;
+          position: absolute;
+          top: 5px;
+          left: 5px;
+        }
+        .input-group .no-picture {
+          border-top-left-radius: var(--border-radius);
+          border-bottom-left-radius: var(--border-radius);
+        }
       `,
     ];
   }
@@ -116,6 +134,7 @@ export class SciFiInput extends BaseForm {
       noPicture: { type: Boolean, attribute: "no-picture" },
       error: { type: Boolean },
       text: { type: String },
+      value: { type: String },
       tips: { type: String }, // TODO
       isDeletable: { type: Boolean, attribute: "is-deletable" },
       hideDeletable: { type: Boolean, attribute: "hide-deletable" },
@@ -128,6 +147,7 @@ export class SciFiInput extends BaseForm {
     this.iconName = this.iconName ? this.iconName : "mdiAlienOutline";
     this.noPicture = this.noPicture ? this.noPicture : false;
     this.text = this.text ? this.text : "";
+    this.value = this.value ? this.value : "";
     this.tips = this.tips ? this.tips : "";
     this.error = this.error ? this.error : false;
     this.isDeletable =
@@ -140,7 +160,16 @@ export class SciFiInput extends BaseForm {
       <div class="input-group ${this.error ? "input-error" : ""}">
         <div class="row">
           ${this.noPicture ? "" : this.renderPicture()}
-          <input type="text" @focusout="${this._update}" value="${this.text}" />
+          <div class="input-element">
+            <label for="${this.elementId}">${this.text}</label>
+            <input
+              id="${this.elementId}"
+              type="text"
+              @focusout="${this._update}"
+              value="${this.value}"
+              class="${this.noPicture ? "no-picture" : ""}"
+            />
+          </div>
           ${this.hideDeletable ? "" : this.renderDelete()}
         </div>
         <div class="input-info-text">${this.tips}</div>
