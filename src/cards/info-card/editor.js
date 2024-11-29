@@ -38,7 +38,10 @@ export class InfoCardEditor extends BaseEditor {
           })}
         </div>
         <div class="editor-card-actions">
-          <sci-fi-button has-border @click="${this._add}"></sci-fi-button>
+          <sci-fi-button
+            has-border
+            @button-click="${this._add}"
+          ></sci-fi-button>
         </div>
       </sci-fi-card>
     `;

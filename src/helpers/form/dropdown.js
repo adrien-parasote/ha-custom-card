@@ -12,6 +12,8 @@ export class SciFiDropdown extends BaseForm {
         :host {
           width: 100%;
         }
+        .dropdown-group {
+        }
         .dropdown {
           flex-grow: 1;
         }
@@ -30,7 +32,7 @@ export class SciFiDropdown extends BaseForm {
           padding: 0.5rem 1rem;
           border: var(--card-border-width) solid var(--primary-color);
           color: var(--secondary-color);
-          min-height: 36px;
+          min-height: 42px;
         }
         .dropdown .no-picture {
           border-top-left-radius: var(--border-radius);

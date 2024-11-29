@@ -10,6 +10,20 @@ export class SciFiTextArea extends BaseForm {
         :host {
           width: 100%;
         }
+        .textarea-element {
+          display: flex;
+          flex: 1;
+          position: relative;
+          width: 100%;
+        }
+        .textarea-element label {
+          color: var(--color-muted);
+          font-size: var(--font-size-xsmall);
+          text-shadow: none;
+          position: absolute;
+          top: 5px;
+          left: 5px;
+        }
         textarea {
           background: linear-gradient(
             to bottom,
@@ -18,8 +32,9 @@ export class SciFiTextArea extends BaseForm {
           );
           border: var(--card-border-width) solid var(--primary-color);
           color: var(--secondary-color);
-          padding: 0.5rem 1rem;
+          padding: 18px 10px 5px 10px;
           border-radius: var(--border-radius);
+          width: 100%;
         }
         textarea:focus {
           background: linear-gradient(
@@ -39,6 +54,7 @@ export class SciFiTextArea extends BaseForm {
     return {
       elementId: { type: String, attribute: "element-id" },
       text: { type: String },
+      value: { type: String },
     };
   }
 
@@ -46,10 +62,18 @@ export class SciFiTextArea extends BaseForm {
     super();
     this.elementId = this.elementId ? this.elementId : null;
     this.text = this.text ? this.text : "";
+    this.value = this.value ? this.value : "";
   }
 
   render() {
-    return html`<textarea @focusout="${this._update}">${this.text}</textarea>`;
+    return html`
+      <div class="textarea-element">
+        <label for="${this.elementId}">${this.text}</label>
+        <textarea id="${this.elementId}" @focusout="${this._update}">
+${this.value}</textarea
+        >
+      </div>
+    `;
   }
 
   _update(e) {

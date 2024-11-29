@@ -34,7 +34,10 @@ export class PeopleCardEditor extends BaseEditor {
       <sci-fi-card content-display="column" gap title="crew">
         <div class="columns row-gap editor-rows">${this._renderRows()}</div>
         <div class="editor-card-actions">
-          <sci-fi-button has-border @click="${this._add}"></sci-fi-button>
+          <sci-fi-button
+            has-border
+            @button-click="${this._add}"
+          ></sci-fi-button>
         </div>
       </sci-fi-card>
     `;

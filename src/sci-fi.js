@@ -1,6 +1,7 @@
 import { PACKAGE_NAME, VERSION } from "./utils/const.js";
 
 import "./helpers/cards/sci-fi-card.js";
+import "./helpers/cards/accordion-card.js";
 
 import "./cards/info-card/card.js";
 import "./cards/people-card/card.js";

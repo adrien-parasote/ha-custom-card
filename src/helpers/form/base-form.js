@@ -18,7 +18,7 @@ export class BaseForm extends LitElement {
         <sci-fi-button
           class="${!this.isDeletable ? "hide" : ""}"
           icon-name="mdiDelete"
-          @click="${this._delete}"
+          @button-click="${this._delete}"
         ></sci-fi-button>
       </div>
     `;

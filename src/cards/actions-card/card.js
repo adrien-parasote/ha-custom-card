@@ -31,7 +31,17 @@ export class ActionsCard extends BaseElement {
     return document.createElement(PACKAGE + "-editor");
   }
   static getStubConfig() {
-    return { actions: [] };
+    return {
+      actions: [
+        {
+          entity: "",
+          name: "",
+          icon: "mdiAlienOutline",
+          service: "",
+          service_data: {},
+        },
+      ],
+    };
   }
 
   /**** RENDER CARD ****/
