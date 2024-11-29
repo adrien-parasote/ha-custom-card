@@ -1,5 +1,6 @@
 import { LitElement, html, css } from "lit";
 import styles from "../styles/common-styles.js";
+import { getIcon } from "../styles/icon-svg.js";
 
 export class AccordionCard extends LitElement {
   static get styles() {
@@ -63,6 +64,13 @@ export class AccordionCard extends LitElement {
         .delete {
           margin-top: 6px;
         }
+
+
+.svg-container {
+  width: var(--icon-size-xsmall);
+  height: var(--icon-size-xsmall);
+  fill: var(--primary-color);
+}
         @-webkit-keyframes bounce {
           25% {
             transform: rotate(90deg) translate(0.25rem);
@@ -89,6 +97,7 @@ export class AccordionCard extends LitElement {
       elementId: { type: String, attribute: "element-id" },
       title: { type: String },
       open: { type: Boolean },
+      icon: { type: String },
       deletable: { type: Boolean },
     };
   }
@@ -99,6 +108,7 @@ export class AccordionCard extends LitElement {
     this.title = this.title ? this.title : null;
     this.open = this.open ? this.open : false;
     this.deletable = this.deletable ? this.deletable : false;
+    this.icon = this.icon ? this.icon : null;
   }
 
   render() {
@@ -112,18 +122,27 @@ export class AccordionCard extends LitElement {
               id="${this.elementId}"
               ?checked=${this.open}
             />
-            <label for="${this.elementId}" class="label">${this.title}</label>
+            <label for="${this.elementId}" class="label">
+              <div class="row column-gap">
+                ${this.icon ? this.__renderMainIcon() : ""}
+                <div>${this.title}</div>
+              </div>
+          </label>
             <div class="content">
               <div><slot></slot></div>
             </div>
           </div>
         </section>
-        ${this.deletable ? this.__renderIcon() : ""}
+        ${this.deletable ? this.__renderDeleteIcon() : ""}
       </div>
     `;
   }
 
-  __renderIcon() {
+  __renderMainIcon() {
+    return html`<div class="svg-container">${getIcon(this.icon)}</div>`;
+  }
+  
+  __renderDeleteIcon() {
     return html`
       <div class="delete">
         <sci-fi-button

@@ -12,7 +12,11 @@ export class ActionsCardEditor extends BaseEditor {
 
   render() {
     if (!this._config) return html``;
-    return html`TODO`;
+    return html`
+    
+    
+    
+    `;
   }
 
   _update(e) {

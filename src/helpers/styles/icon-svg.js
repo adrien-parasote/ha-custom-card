@@ -14,10 +14,18 @@ import {
   mdiSleep,
   mdiFlash,
   mdiDelete,
+  mdiAccountGroup,
   mdiBellRingOutline,
+  mdiInformationSlabBox,
+  mdiInformationSlabBoxOutline,
+  mdiGestureTap,
 } from "@mdi/js";
 
 export const SVG_ICONS = {
+  mdiInformationSlabBoxOutline: mdiInformationSlabBoxOutline,
+  mdiGestureTap: mdiGestureTap,
+  mdiInformationSlabBox: mdiInformationSlabBox,
+  mdiAccountGroup: mdiAccountGroup,
   mdiAlertOutline: mdiAlertOutline,
   mdiLightbulbGroup: mdiLightbulbGroup,
   mdiHomeOutline: mdiHomeOutline,
