@@ -36,6 +36,7 @@ export class ActionsCard extends BaseElement {
         {
           entity: "",
           name: "",
+          has_icon: false,
           icon: "mdiAlienOutline",
           service: "",
           service_data: {
@@ -65,7 +66,7 @@ export class ActionsCard extends BaseElement {
     return html`
       <div class="action-container" @click="${(e) => this._tapped(e, action)}">
         <div class="row column-gap">
-          ${action.icon ? this._renderIcon(action.icon) : ""}
+          ${action.has_icon ? this._renderIcon(action.icon) : ""}
           <div class="action-name">${action.name}</div>
         </div>
         <div class="helper"></div>

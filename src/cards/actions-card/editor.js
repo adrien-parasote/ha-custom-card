@@ -9,6 +9,7 @@ import "../../helpers/form/dropdown.js";
 import "../../helpers/form/input.js";
 import "../../helpers/form/textarea.js";
 import "../../helpers/form/button.js";
+import "../../helpers/form/checkbox.js";
 
 export class ActionsCardEditor extends BaseEditor {
   static get styles() {
@@ -27,6 +28,9 @@ export class ActionsCardEditor extends BaseEditor {
           margin-bottom: 10px;
           text-transform: uppercase;
           font-weight: 400;
+        }
+        .first-row {
+          align-items: center;
         }
       `,
     ];
@@ -65,22 +69,22 @@ export class ActionsCardEditor extends BaseEditor {
         @accordion-delete="${this._deleteRow}"
         >
         <div class="column row-gap">
-          <div>
-            <sci-fi-input 
-            @input-focusout="${(e) => this._update(e, "entity")}" 
-            element-id="${idx}" 
-            text="Entity"
-             value="${elt.entity}" 
-             no-picture 
-             hide-deletable>
-            </sci-fi-input>
+          <sci-fi-input 
+          @input-focusout="${(e) => this._update(e, "entity")}" 
+          element-id="${idx}" 
+          text="Entity"
+            value="${elt.entity}" 
+            no-picture 
+            hide-deletable>
+          </sci-fi-input>
 
-            <div class="column appearance">
-              <div class="title row column-gap">
-                <div class="svg-container">${getIcon("mdiPaletteOutline")}</div>
-                <div>Appearance</div>
-              </div>
-              <div class="row column-gap">
+          <div class="column appearance">
+            <div class="title row">
+              <div class="svg-container">${getIcon("mdiPaletteOutline")}</div>
+              <div>Appearance</div>
+            </div>
+            <div class="column row-gap">
+              <div class="row column-gap first-row">
                 <sci-fi-input 
                   @input-focusout="${(e) => this._update(e, "name")}" 
                   element-id="${idx}" 
@@ -89,17 +93,18 @@ export class ActionsCardEditor extends BaseEditor {
                   no-picture 
                   hide-deletable>
                 </sci-fi-input>
-                <sci-fi-dropdown-icon 
-                  @dropdown-select="${(e) => this._update(e, "icon")}" 
-                  element-id="${idx}" 
-                  icon-name="${elt.icon}" 
-                  hide-deletable 
-                  selected="${elt.icon}">
-                </sci-fi-dropdown-icon>
+                <sci-fi-checkbox 
+                  @checkbox-change="${(e) => this._update(e, "hasIcon")}"
+                  ?checked=${elt.has_icon}
+                  element-id="${idx}"  
+                  label="Add Icon ?">
+                </sci-fi-checkbox>
               </div>
+              ${elt.has_icon ? this._renderDropBoxIcon(idx, elt) : ""}
             </div>
+          </div>
 
-            <div class="column actions">
+          <div class="column actions">
             <div class="title row column-gap">
               <div class="svg-container">${getIcon("mdiBullhornVariantOutline")}</div>
               <div>Action call</div>
@@ -115,10 +120,22 @@ export class ActionsCardEditor extends BaseEditor {
               <sci-fi-textarea @textarea-focusout="${(e) => this._update(e, "service_data")}" element-id="${idx}" text="Service data (optional)" value="${stringify(elt.service_data)}"></sci-fi-textarea>
               </div>
             </div>
-
           </div>
         </div>
       </sci-fi-accordion-card>
+    `;
+  }
+
+  _renderDropBoxIcon(idx, elt) {
+    return html`
+      <sci-fi-dropdown-icon
+        @dropdown-select="${(e) => this._update(e, "icon")}"
+        element-id="${idx}"
+        icon-name="${elt.icon}"
+        hide-deletable
+        selected="${elt.icon}"
+      >
+      </sci-fi-dropdown-icon>
     `;
   }
 
@@ -133,6 +150,9 @@ export class ActionsCardEditor extends BaseEditor {
         break;
       case "name":
         newConfig.actions[idx].name = e.detail.value;
+        break;
+      case "hasIcon":
+        newConfig.actions[idx].has_icon = e.detail.value;
         break;
       case "icon":
         newConfig.actions[idx].icon = e.detail.value;
@@ -153,6 +173,7 @@ export class ActionsCardEditor extends BaseEditor {
     var newConfig = this.getNewConfig();
     newConfig.actions.push({
       entity: "",
+      has_icon: false,
       name: "",
       icon: "mdiAlienOutline",
       service: "",

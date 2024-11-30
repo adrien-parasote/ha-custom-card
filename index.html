@@ -9,6 +9,7 @@
     <script type="module" src="src/helpers/form/dropdown.js"></script>
     <script type="module" src="src/helpers/form/input.js"></script>
     <script type="module" src="src/helpers/form/textarea.js"></script>
+    <script type="module" src="src/helpers/form/checkbox.js"></script>
     <style>
       html {
         height: 100%;
@@ -126,11 +127,17 @@
           </sci-fi-accordion-card>
         </div>
         <div id="form" >
-          <sci-fi-accordion-card title="Button" deletable>
+          <sci-fi-accordion-card title="Button">
             <div class="row">
               <sci-fi-button has-border></sci-fi-button>
               <sci-fi-button></sci-fi-button>
               <sci-fi-button has-border icon-name="mdiDelete"></sci-fi-button>
+            </div>
+          </sci-fi-accordion-card>
+          <sci-fi-accordion-card title="Checkbox" open>
+            <div class="row">
+              <sci-fi-checkbox element-id="elt-to-delete" label="a label"></sci-fi-checkbox>
+              <sci-fi-checkbox element-id="elt-to-delete" label="a label" checked></sci-fi-checkbox>
             </div>
           </sci-fi-accordion-card>
           <sci-fi-accordion-card title="Dropdown box">
@@ -143,7 +150,7 @@
               <sci-fi-dropdown element-id="elt-to-delete" hide-deletable ></sci-fi-dropdown>
             </div>
           </sci-fi-accordion-card>
-          <sci-fi-accordion-card title="Icons Dropdown box" open>
+          <sci-fi-accordion-card title="Icons Dropdown box">
             <div class="column">
               <sci-fi-dropdown-icon element-id="elt-to-delete" ></sci-fi-dropdown-icon>
               <sci-fi-dropdown-icon element-id="elt-to-delete" icon-name="stoveHeat"></sci-fi-dropdown-icon>
