@@ -12,8 +12,6 @@ export class SciFiDropdown extends BaseForm {
         :host {
           width: 100%;
         }
-        .dropdown-group {
-        }
         .dropdown {
           flex-grow: 1;
         }
@@ -63,6 +61,8 @@ export class SciFiDropdown extends BaseForm {
           width: fit-content;
           text-align: left;
           border-radius: var(--border-radius);
+          max-height: 160px;
+          overflow: auto;
         }
         .dropdown .dropdown-menu.show {
           display: block;

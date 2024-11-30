@@ -3,6 +3,7 @@ import styles from "../../helpers/styles/common-styles.js";
 import editorStyles from "../../helpers/styles/editor-styles.js";
 import { html, css } from "lit";
 import { getIcon } from "../../helpers/styles/icon-svg.js";
+import { parse, stringify } from "yaml";
 
 import "../../helpers/form/dropdown.js";
 import "../../helpers/form/input.js";
@@ -66,7 +67,7 @@ export class ActionsCardEditor extends BaseEditor {
         <div class="column row-gap">
           <div>
             <sci-fi-input 
-            @input-focusout="${this._entityChange}" 
+            @input-focusout="${(e) => this._update(e, "entity")}" 
             element-id="${idx}" 
             text="Entity"
              value="${elt.entity}" 
@@ -81,14 +82,20 @@ export class ActionsCardEditor extends BaseEditor {
               </div>
               <div class="row column-gap">
                 <sci-fi-input 
-                  @input-focusout="${this._nameChange}" 
+                  @input-focusout="${(e) => this._update(e, "name")}" 
                   element-id="${idx}" 
                   text="Action name" 
                   value="${elt.name}" 
                   no-picture 
                   hide-deletable>
                 </sci-fi-input>
-                <sci-fi-dropdown-icon @dropdown-select="${this._iconChange}" element-id="${idx}" icon-name="${elt.icon}" hide-deletable ></sci-fi-dropdown-icon>
+                <sci-fi-dropdown-icon 
+                  @dropdown-select="${(e) => this._update(e, "icon")}" 
+                  element-id="${idx}" 
+                  icon-name="${elt.icon}" 
+                  hide-deletable 
+                  selected="${elt.icon}">
+                </sci-fi-dropdown-icon>
               </div>
             </div>
 
@@ -98,14 +105,14 @@ export class ActionsCardEditor extends BaseEditor {
               <div>Action call</div>
               </div>
               <sci-fi-input 
-                @input-focusout="${this._serviceChange}" 
+                @input-focusout="${(e) => this._update(e, "service")}" 
                 element-id="${idx}" 
                 text="Service" 
-                value="${elt.name}" 
+                value="${elt.service}" 
                 no-picture 
                 hide-deletable>
               </sci-fi-input>
-              <sci-fi-textarea @textarea-focusout="${this._serviceDataChange}" element-id="${idx}" text="Service data (optional)" value="${elt.service_data}"></sci-fi-textarea>
+              <sci-fi-textarea @textarea-focusout="${(e) => this._update(e, "service_data")}" element-id="${idx}" text="Service data (optional)" value="${stringify(elt.service_data)}"></sci-fi-textarea>
               </div>
             </div>
 
@@ -115,56 +122,31 @@ export class ActionsCardEditor extends BaseEditor {
     `;
   }
 
-  _entityChange(e) {
+  _update(e, type) {
     e.preventDefault();
     e.stopPropagation();
-    console.log("_entityChange");
-    console.log(e.detail, e.type);
-  }
-
-  _nameChange(e) {
-    e.preventDefault();
-    e.stopPropagation();
-    console.log("_entityChange");
-    console.log(e.detail, e.type);
-  }
-
-  _iconChange(e) {
-    e.preventDefault();
-    e.stopPropagation();
-    console.log("_iconChange");
-    console.log(e.detail, e.type);
-  }
-
-  _serviceChange(e) {
-    e.preventDefault();
-    e.stopPropagation();
-    console.log("_serviceChange");
-    console.log(e.detail, e.type);
-  }
-
-  _serviceDataChange(e) {
-    e.preventDefault();
-    e.stopPropagation();
-    console.log("_serviceDataChange");
-    console.log(e.detail, e.type);
-  }
-
-  _deleteRow(e) {
-    e.preventDefault();
-    e.stopPropagation();
-    console.log("_deleteRow");
-    console.log(e.detail, e.type);
-  }
-
-  /*
-  _update(e) {
-    e.preventDefault();
-    e.stopPropagation();
+    var idx = e.detail.elementId;
     var newConfig = this.getNewConfig();
+    switch (type) {
+      case "entity":
+        newConfig.actions[idx].entity = e.detail.value;
+        break;
+      case "name":
+        newConfig.actions[idx].name = e.detail.value;
+        break;
+      case "icon":
+        newConfig.actions[idx].icon = e.detail.value;
+        break;
+      case "service":
+        newConfig.actions[idx].service = e.detail.value;
+        break;
+      default:
+        //service_data
+        newConfig.actions[idx].service_data = parse(e.detail.value);
+    }
     this.dispatchChange(newConfig);
   }
-*/
+
   _add(e) {
     e.preventDefault();
     e.stopPropagation();
@@ -174,8 +156,16 @@ export class ActionsCardEditor extends BaseEditor {
       name: "",
       icon: "mdiAlienOutline",
       service: "",
-      service_data: {},
+      service_data: { entity_id: "" },
     });
+    this.dispatchChange(newConfig);
+  }
+
+  _deleteRow(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    var newConfig = this.getNewConfig();
+    newConfig.actions.splice(e.detail.elementId, 1);
     this.dispatchChange(newConfig);
   }
 }

@@ -22,9 +22,17 @@ import {
   mdiInformationSlabBoxOutline,
   mdiPaletteOutline,
   mdiGestureTap,
+  mdiFridgeOutline,
+  mdiBench,
+  mdiSilverwareForkKnife,
+  mdiCalendarTodayOutline,
 } from "@mdi/js";
 
 export const SVG_ICONS = {
+  mdiFridgeOutline: mdiFridgeOutline,
+  mdiSilverwareForkKnife: mdiSilverwareForkKnife,
+  mdiCalendarTodayOutline: mdiCalendarTodayOutline,
+  mdiBench: mdiBench,
   mdiBullhornVariantOutline: mdiBullhornVariantOutline,
   mdiPaletteOutline: mdiPaletteOutline,
   mdiInformationSlabBoxOutline: mdiInformationSlabBoxOutline,

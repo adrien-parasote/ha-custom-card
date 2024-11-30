@@ -31,7 +31,7 @@ export class InfoCard extends BaseElement {
       }
       if (!info.type) {
         info.type = info.entity.split(".")[0];
-        console.log(
+        console.info(
           "[sci-fi-info-card] No entity type selected, use default : " +
             info.type,
         );
@@ -65,7 +65,7 @@ export class InfoCard extends BaseElement {
   }
 
   __renderError(info) {
-    console.log(
+    console.info(
       `[sci-fi-info-card] Entity ${info.entity} with type ${info.type} cannot be render.`,
     );
     return html`<sci-fi-error-info></sci-fi-error-info>`;

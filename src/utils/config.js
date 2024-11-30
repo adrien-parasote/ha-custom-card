@@ -280,6 +280,7 @@ export const config = {
         service: "xiaomi_miio.vacuum_clean_segment",
         service_data: {
           // optionnal
+          entity_id: "vacuum.dobby",
           segments: [17, 18],
         },
       },
@@ -290,7 +291,9 @@ export const config = {
         icon: "mdiBellRingOutline",
         // action on tap
         service: "automation.trigger",
-        service_data: {},
+        service_data: {
+          entity_id: "automation.call_kids",
+        },
       },
     ],
   },

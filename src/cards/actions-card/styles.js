@@ -62,19 +62,13 @@ export default css`
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    justify-self: center;
     align-self: center;
-    vertical-align: middle;
     box-sizing: border-box;
     position: relative;
     min-height: 50px;
     min-width: 70px;
-    white-space: nowrap;
     z-index: 1;
-    user-select: none;
-    outline: 0;
-    padding: 15px;
-    background-color: transparent;
+    padding: 10px;
   }
 
   .action-container:before,
@@ -118,5 +112,10 @@ export default css`
   .column-gap {
     gap: 5px;
     align-items: center;
+  }
+  .action-name {
+    width: 45px;
+    white-space: pre-line;
+    text-align: center;
   }
 `;

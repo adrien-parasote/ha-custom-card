@@ -79,7 +79,6 @@ ${this.value}</textarea
   _update(e) {
     e.preventDefault();
     e.stopPropagation();
-    console.log("textarea-focusout");
     this.dispatchEvent(
       new CustomEvent("textarea-focusout", {
         bubbles: true,
