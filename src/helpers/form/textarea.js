@@ -1,7 +1,7 @@
-import { css, html } from "lit";
+import {css, html} from 'lit';
 
-import common_styles from "../styles/common-styles.js";
-import { BaseForm } from "./base-form.js";
+import common_styles from '../styles/common-styles.js';
+import {BaseForm} from './base-form.js';
 
 export class SciFiTextArea extends BaseForm {
   static get styles() {
@@ -53,17 +53,17 @@ export class SciFiTextArea extends BaseForm {
 
   static get properties() {
     return {
-      elementId: { type: String, attribute: "element-id" },
-      text: { type: String },
-      value: { type: String },
+      elementId: {type: String, attribute: 'element-id'},
+      text: {type: String},
+      value: {type: String},
     };
   }
 
   constructor() {
     super();
     this.elementId = this.elementId ? this.elementId : null;
-    this.text = this.text ? this.text : "";
-    this.value = this.value ? this.value : "";
+    this.text = this.text ? this.text : '';
+    this.value = this.value ? this.value : '';
   }
 
   render() {
@@ -81,17 +81,17 @@ ${this.value}</textarea
     e.preventDefault();
     e.stopPropagation();
     this.dispatchEvent(
-      new CustomEvent("textarea-focusout", {
+      new CustomEvent('textarea-focusout', {
         bubbles: true,
         composed: true,
         detail: {
           elementId: this.elementId,
           value: e.srcElement.value,
         },
-      }),
+      })
     );
   }
 }
 
-window.customElements.get("sci-fi-textarea") ||
-  window.customElements.define("sci-fi-textarea", SciFiTextArea);
+window.customElements.get('sci-fi-textarea') ||
+  window.customElements.define('sci-fi-textarea', SciFiTextArea);

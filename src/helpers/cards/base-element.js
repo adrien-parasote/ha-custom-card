@@ -1,7 +1,7 @@
-import { LitElement, html } from "lit";
+import {LitElement, html} from 'lit';
 
-import styles from "../../helpers/styles/common-styles.js";
-import { DEV } from "../../utils/const.js";
+import styles from '../../helpers/styles/common-styles.js';
+import {DEV} from '../../utils/const.js';
 
 export class BaseElement extends LitElement {
   static get styles() {
@@ -12,7 +12,7 @@ export class BaseElement extends LitElement {
 
   static get properties() {
     return {
-      _config: { type: Object },
+      _config: {type: Object},
     };
   }
 
@@ -27,7 +27,7 @@ export class BaseElement extends LitElement {
   constructor(module) {
     super();
     if (DEV) {
-      import("../../utils/config.js").then(({ hass, config }) => {
+      import('../../utils/config.js').then(({hass, config}) => {
         this._hass = hass;
         this.setConfig(config[module]);
         this.requestUpdate();
@@ -60,7 +60,7 @@ export class BaseEditor extends LitElement {
 
   static get properties() {
     return {
-      _config: { type: Object },
+      _config: {type: Object},
     };
   }
 

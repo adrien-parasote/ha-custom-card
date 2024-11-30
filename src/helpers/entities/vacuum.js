@@ -1,8 +1,8 @@
-import { css, html } from "lit";
+import {css, html} from 'lit';
 
-import common_styles from "../styles/common-styles.js";
-import { getIcon } from "../styles/icon-svg.js";
-import { BaseEntity } from "./base-entity.js";
+import common_styles from '../styles/common-styles.js';
+import {getIcon} from '../styles/icon-svg.js';
+import {BaseEntity} from './base-entity.js';
 // Constantes
 import {
   VACUUM_CLEANING,
@@ -10,14 +10,14 @@ import {
   VACUUM_ERROR,
   VACUUM_IDLE,
   VACUUM_RETURNING,
-} from "./const.js";
+} from './const.js';
 
 var RENDER_ICONS = {};
-RENDER_ICONS[VACUUM_CLEANING] = ["mdiRobotVacuumVariant", "mdiBroom"];
-RENDER_ICONS[VACUUM_DOCKED] = ["mdiRobotVacuumVariant", "mdiFlash"];
-RENDER_ICONS[VACUUM_RETURNING] = ["mdiRobotVacuumVariant", "mdiKeyboardReturn"];
-RENDER_ICONS[VACUUM_ERROR] = ["mdiRobotVacuumVariantAlert", null];
-RENDER_ICONS[VACUUM_IDLE] = ["mdiRobotVacuumVariant", "mdiSleep"];
+RENDER_ICONS[VACUUM_CLEANING] = ['mdiRobotVacuumVariant', 'mdiBroom'];
+RENDER_ICONS[VACUUM_DOCKED] = ['mdiRobotVacuumVariant', 'mdiFlash'];
+RENDER_ICONS[VACUUM_RETURNING] = ['mdiRobotVacuumVariant', 'mdiKeyboardReturn'];
+RENDER_ICONS[VACUUM_ERROR] = ['mdiRobotVacuumVariantAlert', null];
+RENDER_ICONS[VACUUM_IDLE] = ['mdiRobotVacuumVariant', 'mdiSleep'];
 
 export class SciFiVacuumInfo extends BaseEntity {
   static get styles() {
@@ -115,23 +115,23 @@ export class SciFiVacuumInfo extends BaseEntity {
     }
   }
   __getLabelColor() {
-    var color = "";
+    var color = '';
     switch (this.state) {
       case VACUUM_CLEANING:
-        color = "orange";
+        color = 'orange';
         break;
       case VACUUM_RETURNING:
-        color = "orange";
+        color = 'orange';
         break;
       case VACUUM_ERROR:
-        color = "red";
+        color = 'red';
         break;
       default:
-        color = "";
+        color = '';
     }
     return color;
   }
 }
 
-window.customElements.get("sci-fi-vacuum-info") ||
-  window.customElements.define("sci-fi-vacuum-info", SciFiVacuumInfo);
+window.customElements.get('sci-fi-vacuum-info') ||
+  window.customElements.define('sci-fi-vacuum-info', SciFiVacuumInfo);

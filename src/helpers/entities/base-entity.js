@@ -1,6 +1,6 @@
-import { LitElement } from "lit";
+import {LitElement} from 'lit';
 
-import common_styles from "../styles/common-styles.js";
+import common_styles from '../styles/common-styles.js';
 
 export class BaseEntity extends LitElement {
   static get styles() {
@@ -9,9 +9,9 @@ export class BaseEntity extends LitElement {
 
   static get properties() {
     return {
-      entityId: { type: String, attribute: "entity-id" },
-      state: { type: String },
-      name: { type: String },
+      entityId: {type: String, attribute: 'entity-id'},
+      state: {type: String},
+      name: {type: String},
     };
   }
 

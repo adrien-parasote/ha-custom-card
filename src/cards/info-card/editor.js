@@ -1,11 +1,11 @@
-import { css, html } from "lit";
+import {css, html} from 'lit';
 
-import { BaseEditor } from "../../helpers/cards/base-editor.js";
-import "../../helpers/form/button.js";
-import "../../helpers/form/dropdown.js";
-import "../../helpers/form/input.js";
-import styles from "../../helpers/styles/common-styles.js";
-import editorStyles from "../../helpers/styles/editor-styles.js";
+import {BaseEditor} from '../../helpers/cards/base-editor.js';
+import '../../helpers/form/button.js';
+import '../../helpers/form/dropdown.js';
+import '../../helpers/form/input.js';
+import styles from '../../helpers/styles/common-styles.js';
+import editorStyles from '../../helpers/styles/editor-styles.js';
 
 export class InfoCardEditor extends BaseEditor {
   static get styles() {
@@ -22,9 +22,9 @@ export class InfoCardEditor extends BaseEditor {
 
   // Private
   _dropdownEntityType = {
-    light: "mdiLightbulbGroup",
-    stove: "stoveOff",
-    vacuum: "mdiRobotVacuumVariant",
+    light: 'mdiLightbulbGroup',
+    stove: 'stoveOff',
+    vacuum: 'mdiRobotVacuumVariant',
   };
 
   render() {
@@ -51,13 +51,13 @@ export class InfoCardEditor extends BaseEditor {
     const entity = info.entity;
     const selectedType = info.type;
     var error = !this._hass.states[entity];
-    var textError = error ? "Entity " + entity + " cannot be found" : "";
+    var textError = error ? 'Entity ' + entity + ' cannot be found' : '';
     return html`
       <div class="row column-gap editor-row">
         <sci-fi-input
           element-id="${idx}"
           icon-name="${this._dropdownEntityType[selectedType]}"
-          ?not-mdi=${selectedType == "stove"}
+          ?not-mdi=${selectedType == 'stove'}
           hide-deletable
           text="entity"
           value="${entity}"
@@ -84,10 +84,10 @@ export class InfoCardEditor extends BaseEditor {
     e.preventDefault();
     e.stopPropagation();
     var newConfig = this.getNewConfig();
-    if (e.type == "dropdown-delete") {
+    if (e.type == 'dropdown-delete') {
       newConfig.info.splice(e.detail.elementId, 1);
     } else {
-      if (e.type == "input-focusout") {
+      if (e.type == 'input-focusout') {
         newConfig.info[e.detail.elementId].entity = e.detail.value;
       } else {
         newConfig.info[e.detail.elementId].type = e.detail.value;
@@ -100,7 +100,7 @@ export class InfoCardEditor extends BaseEditor {
     e.preventDefault();
     e.stopPropagation();
     var newConfig = this.getNewConfig();
-    newConfig.info.push({ entity: "light.entity", type: "light" });
+    newConfig.info.push({entity: 'light.entity', type: 'light'});
     this.dispatchChange(newConfig);
   }
 }

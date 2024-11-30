@@ -1,6 +1,6 @@
-import { LitElement, css, html } from "lit";
+import {LitElement, css, html} from 'lit';
 
-import styles from "../../helpers/styles/common-styles.js";
+import styles from '../../helpers/styles/common-styles.js';
 
 export class Toast extends LitElement {
   static styles = [
@@ -101,7 +101,7 @@ export class Toast extends LitElement {
 
   static get properties() {
     return {
-      msg: { type: String },
+      msg: {type: String},
     };
   }
 
@@ -116,12 +116,12 @@ export class Toast extends LitElement {
 
   show(msg) {
     this.msg = msg;
-    const toast = this.shadowRoot.querySelector(".toast");
-    toast.classList.add("show");
+    const toast = this.shadowRoot.querySelector('.toast');
+    toast.classList.add('show');
     setTimeout(function () {
-      toast.classList.remove("show");
+      toast.classList.remove('show');
     }, 10000);
   }
 }
 
-window.customElements.define("toast-card", Toast);
+window.customElements.define('toast-card', Toast);

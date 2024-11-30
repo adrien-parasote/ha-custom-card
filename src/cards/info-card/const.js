@@ -1,1 +1,1 @@
-export const PACKAGE = "info-card";
+export const PACKAGE = 'info-card';

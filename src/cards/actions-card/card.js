@@ -1,13 +1,13 @@
-import { html } from "lit";
+import {html} from 'lit';
 
-import { BaseElement } from "../../helpers/cards/base-element.js";
-import "../../helpers/cards/toast-card.js";
-import common_styles from "../../helpers/styles/common-styles.js";
-import { getIcon } from "../../helpers/styles/icon-svg.js";
-import { PACKAGE } from "./const.js";
-import { ActionsCardEditor } from "./editor.js";
-import "./editor.js";
-import styles from "./styles.js";
+import {BaseElement} from '../../helpers/cards/base-element.js';
+import '../../helpers/cards/toast-card.js';
+import common_styles from '../../helpers/styles/common-styles.js';
+import {getIcon} from '../../helpers/styles/icon-svg.js';
+import {PACKAGE} from './const.js';
+import {ActionsCardEditor} from './editor.js';
+import './editor.js';
+import styles from './styles.js';
 
 export class ActionsCard extends BaseElement {
   /**** DEFINE CARD ELEMENTS ****/
@@ -19,26 +19,26 @@ export class ActionsCard extends BaseElement {
   }
   setConfig(config) {
     if (!config.actions) {
-      throw new Error("You need to define an info entity list entry");
+      throw new Error('You need to define an info entity list entry');
     }
     super.setConfig(config);
   }
 
   /**** DEFINE CARD EDITOR ELEMENTS ****/
   static getConfigElement() {
-    return document.createElement(PACKAGE + "-editor");
+    return document.createElement(PACKAGE + '-editor');
   }
   static getStubConfig() {
     return {
       actions: [
         {
-          entity: "",
-          name: "",
+          entity: '',
+          name: '',
           has_icon: false,
-          icon: "mdiAlienOutline",
-          service: "",
+          icon: 'mdiAlienOutline',
+          service: '',
           service_data: {
-            entity_id: "",
+            entity_id: '',
           },
         },
       ],
@@ -64,7 +64,7 @@ export class ActionsCard extends BaseElement {
     return html`
       <div class="action-container" @click="${(e) => this._tapped(e, action)}">
         <div class="row column-gap">
-          ${action.has_icon ? this._renderIcon(action.icon) : ""}
+          ${action.has_icon ? this._renderIcon(action.icon) : ''}
           <div class="action-name">${action.name}</div>
         </div>
         <div class="helper"></div>
@@ -79,25 +79,25 @@ export class ActionsCard extends BaseElement {
   _tapped(e, action) {
     e.preventDefault();
     e.stopPropagation();
-    const toast = this.shadowRoot.querySelector("toast-card");
+    const toast = this.shadowRoot.querySelector('toast-card');
     try {
-      toast.show("Start " + action.name);
-      const services = action.service.split(".");
+      toast.show('Start ' + action.name);
+      const services = action.service.split('.');
       this._hass.callService(services[0], services[1], action.service_data);
     } catch (error) {
-      toast.show("Error during action call : " + error);
+      toast.show('Error during action call : ' + error);
     }
   }
 }
 
 window.customElements.get(PACKAGE) ||
   window.customElements.define(PACKAGE, ActionsCard);
-window.customElements.get(PACKAGE + "-editor") ||
-  window.customElements.define(PACKAGE + "-editor", ActionsCardEditor);
+window.customElements.get(PACKAGE + '-editor') ||
+  window.customElements.define(PACKAGE + '-editor', ActionsCardEditor);
 
 window.customCards = window.customCards || [];
 window.customCards.push({
   type: PACKAGE,
-  name: "Render sci-fi actions card",
-  description: "Render sci-fi actions",
+  name: 'Render sci-fi actions card',
+  description: 'Render sci-fi actions',
 });

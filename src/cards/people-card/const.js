@@ -1,1 +1,1 @@
-export const PACKAGE = "people-card";
+export const PACKAGE = 'people-card';

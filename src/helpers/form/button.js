@@ -1,7 +1,7 @@
-import { LitElement, css, html } from "lit";
+import {LitElement, css, html} from 'lit';
 
-import common_styles from "../styles/common-styles.js";
-import { getIcon } from "../styles/icon-svg.js";
+import common_styles from '../styles/common-styles.js';
+import {getIcon} from '../styles/icon-svg.js';
 
 export class SciFiButton extends LitElement {
   static get styles() {
@@ -48,21 +48,21 @@ export class SciFiButton extends LitElement {
 
   static get properties() {
     return {
-      hasBorder: { type: Boolean, attribute: "has-border" },
-      iconName: { type: String, attribute: "icon-name" },
+      hasBorder: {type: Boolean, attribute: 'has-border'},
+      iconName: {type: String, attribute: 'icon-name'},
     };
   }
 
   constructor() {
     super();
     this.hasBorder = this.hasBorder ? this.hasBorder : false;
-    this.iconName = this.iconName ? this.iconName : "mdiPlus";
+    this.iconName = this.iconName ? this.iconName : 'mdiPlus';
   }
 
   render() {
     return html`
       <div
-        class="btn ${this.hasBorder ? "btn-border" : ""}"
+        class="btn ${this.hasBorder ? 'btn-border' : ''}"
         @click="${this.click}"
       >
         ${getIcon(this.iconName)}
@@ -74,16 +74,16 @@ export class SciFiButton extends LitElement {
     e.preventDefault();
     e.stopPropagation();
     this.dispatchEvent(
-      new CustomEvent("button-click", {
+      new CustomEvent('button-click', {
         bubbles: true,
         composed: true,
         detail: {
           element: this,
         },
-      }),
+      })
     );
   }
 }
 
-window.customElements.get("sci-fi-button") ||
-  window.customElements.define("sci-fi-button", SciFiButton);
+window.customElements.get('sci-fi-button') ||
+  window.customElements.define('sci-fi-button', SciFiButton);

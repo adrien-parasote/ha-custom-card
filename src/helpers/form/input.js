@@ -1,8 +1,8 @@
-import { css, html } from "lit";
+import {css, html} from 'lit';
 
-import common_styles from "../styles/common-styles.js";
-import { BaseForm } from "./base-form.js";
-import "./button.js";
+import common_styles from '../styles/common-styles.js';
+import {BaseForm} from './base-form.js';
+import './button.js';
 
 export class SciFiInput extends BaseForm {
   static get styles() {
@@ -130,26 +130,26 @@ export class SciFiInput extends BaseForm {
 
   static get properties() {
     return {
-      elementId: { type: String, attribute: "element-id" },
-      iconName: { type: String, attribute: "icon-name" },
-      noPicture: { type: Boolean, attribute: "no-picture" },
-      error: { type: Boolean },
-      text: { type: String },
-      value: { type: String },
-      tips: { type: String }, // TODO
-      isDeletable: { type: Boolean, attribute: "is-deletable" },
-      hideDeletable: { type: Boolean, attribute: "hide-deletable" },
+      elementId: {type: String, attribute: 'element-id'},
+      iconName: {type: String, attribute: 'icon-name'},
+      noPicture: {type: Boolean, attribute: 'no-picture'},
+      error: {type: Boolean},
+      text: {type: String},
+      value: {type: String},
+      tips: {type: String}, // TODO
+      isDeletable: {type: Boolean, attribute: 'is-deletable'},
+      hideDeletable: {type: Boolean, attribute: 'hide-deletable'},
     };
   }
 
   constructor() {
     super();
     this.elementId = this.elementId ? this.elementId : null;
-    this.iconName = this.iconName ? this.iconName : "mdiAlienOutline";
+    this.iconName = this.iconName ? this.iconName : 'mdiAlienOutline';
     this.noPicture = this.noPicture ? this.noPicture : false;
-    this.text = this.text ? this.text : "";
-    this.value = this.value ? this.value : "";
-    this.tips = this.tips ? this.tips : "";
+    this.text = this.text ? this.text : '';
+    this.value = this.value ? this.value : '';
+    this.tips = this.tips ? this.tips : '';
     this.error = this.error ? this.error : false;
     this.isDeletable =
       this.isDeletable && this.elementId ? this.isDeletable : false;
@@ -158,9 +158,9 @@ export class SciFiInput extends BaseForm {
 
   render() {
     return html`
-      <div class="input-group ${this.error ? "input-error" : ""}">
+      <div class="input-group ${this.error ? 'input-error' : ''}">
         <div class="row">
-          ${this.noPicture ? "" : this.renderPicture()}
+          ${this.noPicture ? '' : this.renderPicture()}
           <div class="input-element">
             <label for="${this.elementId}">${this.text}</label>
             <input
@@ -168,10 +168,10 @@ export class SciFiInput extends BaseForm {
               type="text"
               @focusout="${this._update}"
               value="${this.value}"
-              class="${this.noPicture ? "no-picture" : ""}"
+              class="${this.noPicture ? 'no-picture' : ''}"
             />
           </div>
-          ${this.hideDeletable ? "" : this.renderDelete()}
+          ${this.hideDeletable ? '' : this.renderDelete()}
         </div>
         <div class="input-info-text">${this.tips}</div>
       </div>
@@ -182,14 +182,14 @@ export class SciFiInput extends BaseForm {
     e.preventDefault();
     e.stopPropagation();
     this.dispatchEvent(
-      new CustomEvent("input-focusout", {
+      new CustomEvent('input-focusout', {
         bubbles: true,
         composed: true,
         detail: {
           elementId: this.elementId,
           value: e.srcElement.value,
         },
-      }),
+      })
     );
   }
 
@@ -197,16 +197,16 @@ export class SciFiInput extends BaseForm {
     e.preventDefault();
     e.stopPropagation();
     this.dispatchEvent(
-      new CustomEvent("input-delete", {
+      new CustomEvent('input-delete', {
         bubbles: true,
         composed: true,
         detail: {
           elementId: this.elementId,
         },
-      }),
+      })
     );
   }
 }
 
-window.customElements.get("sci-fi-input") ||
-  window.customElements.define("sci-fi-input", SciFiInput);
+window.customElements.get('sci-fi-input') ||
+  window.customElements.define('sci-fi-input', SciFiInput);

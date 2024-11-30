@@ -1,15 +1,15 @@
-import { css, html } from "lit";
-import { parse, stringify } from "yaml";
+import {css, html} from 'lit';
+import {parse, stringify} from 'yaml';
 
-import { BaseEditor } from "../../helpers/cards/base-editor.js";
-import "../../helpers/form/button.js";
-import "../../helpers/form/checkbox.js";
-import "../../helpers/form/dropdown.js";
-import "../../helpers/form/input.js";
-import "../../helpers/form/textarea.js";
-import styles from "../../helpers/styles/common-styles.js";
-import editorStyles from "../../helpers/styles/editor-styles.js";
-import { getIcon } from "../../helpers/styles/icon-svg.js";
+import {BaseEditor} from '../../helpers/cards/base-editor.js';
+import '../../helpers/form/button.js';
+import '../../helpers/form/checkbox.js';
+import '../../helpers/form/dropdown.js';
+import '../../helpers/form/input.js';
+import '../../helpers/form/textarea.js';
+import styles from '../../helpers/styles/common-styles.js';
+import editorStyles from '../../helpers/styles/editor-styles.js';
+import {getIcon} from '../../helpers/styles/icon-svg.js';
 
 export class ActionsCardEditor extends BaseEditor {
   static get styles() {
@@ -70,7 +70,7 @@ export class ActionsCardEditor extends BaseEditor {
         >
         <div class="column row-gap">
           <sci-fi-input 
-          @input-focusout="${(e) => this._update(e, "entity")}" 
+          @input-focusout="${(e) => this._update(e, 'entity')}" 
           element-id="${idx}" 
           text="Entity"
             value="${elt.entity}" 
@@ -80,13 +80,13 @@ export class ActionsCardEditor extends BaseEditor {
 
           <div class="column appearance">
             <div class="title row">
-              <div class="svg-container">${getIcon("mdiPaletteOutline")}</div>
+              <div class="svg-container">${getIcon('mdiPaletteOutline')}</div>
               <div>Appearance</div>
             </div>
             <div class="column row-gap">
               <div class="row column-gap first-row">
                 <sci-fi-input 
-                  @input-focusout="${(e) => this._update(e, "name")}" 
+                  @input-focusout="${(e) => this._update(e, 'name')}" 
                   element-id="${idx}" 
                   text="Action name" 
                   value="${elt.name}" 
@@ -94,30 +94,30 @@ export class ActionsCardEditor extends BaseEditor {
                   hide-deletable>
                 </sci-fi-input>
                 <sci-fi-checkbox 
-                  @checkbox-change="${(e) => this._update(e, "hasIcon")}"
+                  @checkbox-change="${(e) => this._update(e, 'hasIcon')}"
                   ?checked=${elt.has_icon}
                   element-id="${idx}"  
                   label="Add Icon ?">
                 </sci-fi-checkbox>
               </div>
-              ${elt.has_icon ? this._renderDropBoxIcon(idx, elt) : ""}
+              ${elt.has_icon ? this._renderDropBoxIcon(idx, elt) : ''}
             </div>
           </div>
 
           <div class="column actions">
             <div class="title row column-gap">
-              <div class="svg-container">${getIcon("mdiBullhornVariantOutline")}</div>
+              <div class="svg-container">${getIcon('mdiBullhornVariantOutline')}</div>
               <div>Action call</div>
               </div>
               <sci-fi-input 
-                @input-focusout="${(e) => this._update(e, "service")}" 
+                @input-focusout="${(e) => this._update(e, 'service')}" 
                 element-id="${idx}" 
                 text="Service" 
                 value="${elt.service}" 
                 no-picture 
                 hide-deletable>
               </sci-fi-input>
-              <sci-fi-textarea @textarea-focusout="${(e) => this._update(e, "service_data")}" element-id="${idx}" text="Service data (optional)" value="${stringify(elt.service_data)}"></sci-fi-textarea>
+              <sci-fi-textarea @textarea-focusout="${(e) => this._update(e, 'service_data')}" element-id="${idx}" text="Service data (optional)" value="${stringify(elt.service_data)}"></sci-fi-textarea>
               </div>
             </div>
           </div>
@@ -129,7 +129,7 @@ export class ActionsCardEditor extends BaseEditor {
   _renderDropBoxIcon(idx, elt) {
     return html`
       <sci-fi-dropdown-icon
-        @dropdown-select="${(e) => this._update(e, "icon")}"
+        @dropdown-select="${(e) => this._update(e, 'icon')}"
         element-id="${idx}"
         icon-name="${elt.icon}"
         hide-deletable
@@ -145,19 +145,19 @@ export class ActionsCardEditor extends BaseEditor {
     var idx = e.detail.elementId;
     var newConfig = this.getNewConfig();
     switch (type) {
-      case "entity":
+      case 'entity':
         newConfig.actions[idx].entity = e.detail.value;
         break;
-      case "name":
+      case 'name':
         newConfig.actions[idx].name = e.detail.value;
         break;
-      case "hasIcon":
+      case 'hasIcon':
         newConfig.actions[idx].has_icon = e.detail.value;
         break;
-      case "icon":
+      case 'icon':
         newConfig.actions[idx].icon = e.detail.value;
         break;
-      case "service":
+      case 'service':
         newConfig.actions[idx].service = e.detail.value;
         break;
       default:
@@ -172,12 +172,12 @@ export class ActionsCardEditor extends BaseEditor {
     e.stopPropagation();
     var newConfig = this.getNewConfig();
     newConfig.actions.push({
-      entity: "",
+      entity: '',
       has_icon: false,
-      name: "",
-      icon: "mdiAlienOutline",
-      service: "",
-      service_data: { entity_id: "" },
+      name: '',
+      icon: 'mdiAlienOutline',
+      service: '',
+      service_data: {entity_id: ''},
     });
     this.dispatchChange(newConfig);
   }

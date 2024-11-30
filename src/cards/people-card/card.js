@@ -1,12 +1,12 @@
-import { html } from "lit";
+import {html} from 'lit';
 
-import { BaseElement } from "../../helpers/cards/base-element.js";
-import common_styles from "../../helpers/styles/common-styles.js";
-import "./../../helpers/entities/person.js";
-import { PACKAGE } from "./const.js";
-import { PeopleCardEditor } from "./editor.js";
-import "./editor.js";
-import styles from "./styles.js";
+import {BaseElement} from '../../helpers/cards/base-element.js';
+import common_styles from '../../helpers/styles/common-styles.js';
+import './../../helpers/entities/person.js';
+import {PACKAGE} from './const.js';
+import {PeopleCardEditor} from './editor.js';
+import './editor.js';
+import styles from './styles.js';
 
 export class PeopleCard extends BaseElement {
   /**** DEFINE CARD ELEMENTS ****/
@@ -18,17 +18,17 @@ export class PeopleCard extends BaseElement {
   }
   setConfig(config) {
     if (!config.people) {
-      throw new Error("You need to define a people entity list");
+      throw new Error('You need to define a people entity list');
     }
     super.setConfig(config);
   }
 
   /**** DEFINE CARD EDITOR ELEMENTS ****/
   static getConfigElement() {
-    return document.createElement(PACKAGE + "-editor");
+    return document.createElement(PACKAGE + '-editor');
   }
   static getStubConfig() {
-    return { entity: "person.entity" };
+    return {entity: 'person.entity'};
   }
 
   /**** RENDER CARD ****/
@@ -61,12 +61,12 @@ export class PeopleCard extends BaseElement {
 
 window.customElements.get(PACKAGE) ||
   window.customElements.define(PACKAGE, PeopleCard);
-window.customElements.get(PACKAGE + "-editor") ||
-  window.customElements.define(PACKAGE + "-editor", PeopleCardEditor);
+window.customElements.get(PACKAGE + '-editor') ||
+  window.customElements.define(PACKAGE + '-editor', PeopleCardEditor);
 
 window.customCards = window.customCards || [];
 window.customCards.push({
   type: PACKAGE,
-  name: "Render sci-fi people card",
-  description: "Render sci-fi people",
+  name: 'Render sci-fi people card',
+  description: 'Render sci-fi people',
 });

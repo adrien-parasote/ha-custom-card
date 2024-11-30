@@ -1,14 +1,14 @@
-import { css, html } from "lit";
+import {css, html} from 'lit';
 
-import common_styles from "../styles/common-styles.js";
-import { getIcon } from "../styles/icon-svg.js";
-import { BaseEntity } from "./base-entity.js";
+import common_styles from '../styles/common-styles.js';
+import {getIcon} from '../styles/icon-svg.js';
+import {BaseEntity} from './base-entity.js';
 // Constantes
-import { STATE_OFF, STATE_ON } from "./const.js";
+import {STATE_OFF, STATE_ON} from './const.js';
 
 var RENDER_ICONS = {};
-RENDER_ICONS[STATE_ON] = "mdiLightbulbGroup";
-RENDER_ICONS[STATE_OFF] = "mdiLightbulbGroup";
+RENDER_ICONS[STATE_ON] = 'mdiLightbulbGroup';
+RENDER_ICONS[STATE_OFF] = 'mdiLightbulbGroup';
 
 export class SciFiLight extends BaseEntity {
   static get styles() {
@@ -62,9 +62,9 @@ export class SciFiLight extends BaseEntity {
   }
 
   __getLabelColor() {
-    return this.state == STATE_OFF ? "blue" : "orange";
+    return this.state == STATE_OFF ? 'blue' : 'orange';
   }
 }
 
-window.customElements.get("sci-fi-light-info") ||
-  window.customElements.define("sci-fi-light-info", SciFiLight);
+window.customElements.get('sci-fi-light-info') ||
+  window.customElements.define('sci-fi-light-info', SciFiLight);

@@ -1,7 +1,7 @@
-import { LitElement, css, html } from "lit";
+import {LitElement, css, html} from 'lit';
 
-import styles from "../styles/common-styles.js";
-import { getIcon } from "../styles/icon-svg.js";
+import styles from '../styles/common-styles.js';
+import {getIcon} from '../styles/icon-svg.js';
 
 export class AccordionCard extends LitElement {
   static get styles() {
@@ -48,7 +48,7 @@ export class AccordionCard extends LitElement {
           font-weight: bold;
         }
         .label::after {
-          content: "❯";
+          content: '❯';
           width: 1em;
           height: 1em;
           text-align: center;
@@ -94,17 +94,17 @@ export class AccordionCard extends LitElement {
 
   static get properties() {
     return {
-      elementId: { type: String, attribute: "element-id" },
-      title: { type: String },
-      open: { type: Boolean },
-      icon: { type: String },
-      deletable: { type: Boolean },
+      elementId: {type: String, attribute: 'element-id'},
+      title: {type: String},
+      open: {type: Boolean},
+      icon: {type: String},
+      deletable: {type: Boolean},
     };
   }
 
   constructor() {
     super();
-    this.elementId = this.elementId ? this.elementId : "cb";
+    this.elementId = this.elementId ? this.elementId : 'cb';
     this.title = this.title ? this.title : null;
     this.open = this.open ? this.open : false;
     this.deletable = this.deletable ? this.deletable : false;
@@ -124,7 +124,7 @@ export class AccordionCard extends LitElement {
             />
             <label for="${this.elementId}" class="label">
               <div class="row column-gap">
-                ${this.icon ? this.__renderMainIcon() : ""}
+                ${this.icon ? this.__renderMainIcon() : ''}
                 <div>${this.title}</div>
               </div>
             </label>
@@ -133,7 +133,7 @@ export class AccordionCard extends LitElement {
             </div>
           </div>
         </section>
-        ${this.deletable ? this.__renderDeleteIcon() : ""}
+        ${this.deletable ? this.__renderDeleteIcon() : ''}
       </div>
     `;
   }
@@ -157,16 +157,16 @@ export class AccordionCard extends LitElement {
     e.preventDefault();
     e.stopPropagation();
     this.dispatchEvent(
-      new CustomEvent("accordion-delete", {
+      new CustomEvent('accordion-delete', {
         bubbles: true,
         composed: true,
         detail: {
           elementId: this.elementId,
         },
-      }),
+      })
     );
   }
 }
 
-window.customElements.get("sci-fi-accordion-card") ||
-  window.customElements.define("sci-fi-accordion-card", AccordionCard);
+window.customElements.get('sci-fi-accordion-card') ||
+  window.customElements.define('sci-fi-accordion-card', AccordionCard);

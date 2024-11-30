@@ -1,4 +1,4 @@
-import { css } from "lit";
+import {css} from 'lit';
 
 export default css`
   :host {
@@ -29,7 +29,7 @@ export default css`
 
     display: flex;
     flex-direction: column;
-    font-family: "Titillium Web", sans-serif;
+    font-family: 'Titillium Web', sans-serif;
     font-size: var(--font-size-normal);
     font-weight: 300;
     text-shadow: 0px 0px 5px var(--secondary-color);

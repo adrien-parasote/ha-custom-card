@@ -1,7 +1,7 @@
-import { css, html } from "lit";
+import {css, html} from 'lit';
 
-import common_styles from "../styles/common-styles.js";
-import { BaseForm } from "./base-form.js";
+import common_styles from '../styles/common-styles.js';
+import {BaseForm} from './base-form.js';
 
 export class SciFiCheckbox extends BaseForm {
   static get styles() {
@@ -49,16 +49,16 @@ export class SciFiCheckbox extends BaseForm {
 
   static get properties() {
     return {
-      elementId: { type: String, attribute: "element-id" },
-      label: { type: String },
-      checked: { type: Boolean },
+      elementId: {type: String, attribute: 'element-id'},
+      label: {type: String},
+      checked: {type: Boolean},
     };
   }
 
   constructor() {
     super();
     this.elementId = this.elementId ? this.elementId : null;
-    this.label = this.label ? this.label : "";
+    this.label = this.label ? this.label : '';
     this.checked = this.checked ? this.checked : false;
   }
 
@@ -87,17 +87,17 @@ export class SciFiCheckbox extends BaseForm {
     e.preventDefault();
     e.stopPropagation();
     this.dispatchEvent(
-      new CustomEvent("checkbox-change", {
+      new CustomEvent('checkbox-change', {
         bubbles: true,
         composed: true,
         detail: {
           elementId: this.elementId,
-          value: this.shadowRoot.querySelector("input").checked,
+          value: this.shadowRoot.querySelector('input').checked,
         },
-      }),
+      })
     );
   }
 }
 
-window.customElements.get("sci-fi-checkbox") ||
-  window.customElements.define("sci-fi-checkbox", SciFiCheckbox);
+window.customElements.get('sci-fi-checkbox') ||
+  window.customElements.define('sci-fi-checkbox', SciFiCheckbox);

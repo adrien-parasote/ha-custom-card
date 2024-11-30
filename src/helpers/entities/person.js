@@ -1,9 +1,9 @@
-import { LitElement, css, html } from "lit";
+import {LitElement, css, html} from 'lit';
 
-import common_styles from "../styles/common-styles.js";
-import { getIcon } from "../styles/icon-svg.js";
+import common_styles from '../styles/common-styles.js';
+import {getIcon} from '../styles/icon-svg.js';
 // Constantes
-import { STATE_HOME } from "./const.js";
+import {STATE_HOME} from './const.js';
 
 export class SciFiPerson extends LitElement {
   static get styles() {
@@ -49,9 +49,9 @@ export class SciFiPerson extends LitElement {
 
   static get properties() {
     return {
-      entityId: { type: String, attribute: "entity-id" },
-      state: { type: String },
-      picture: { type: String },
+      entityId: {type: String, attribute: 'entity-id'},
+      state: {type: String},
+      picture: {type: String},
     };
   }
 
@@ -65,10 +65,10 @@ export class SciFiPerson extends LitElement {
   render() {
     return html`
       <div class="avatar">
-        <img src="${this.picture ? this.picture : ""}" />
+        <img src="${this.picture ? this.picture : ''}" />
         <div class="icon-container">
           ${getIcon(
-            this.state == STATE_HOME ? "mdiHomeOutline" : "mdiHomeOffOutline",
+            this.state == STATE_HOME ? 'mdiHomeOutline' : 'mdiHomeOffOutline'
           )}
         </div>
       </div>
@@ -76,5 +76,5 @@ export class SciFiPerson extends LitElement {
   }
 }
 
-window.customElements.get("sci-fi-person") ||
-  window.customElements.define("sci-fi-person", SciFiPerson);
+window.customElements.get('sci-fi-person') ||
+  window.customElements.define('sci-fi-person', SciFiPerson);

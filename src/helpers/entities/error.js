@@ -1,7 +1,7 @@
-import { LitElement, css, html } from "lit";
+import {LitElement, css, html} from 'lit';
 
-import common_styles from "../styles/common-styles.js";
-import { getIcon } from "../styles/icon-svg.js";
+import common_styles from '../styles/common-styles.js';
+import {getIcon} from '../styles/icon-svg.js';
 
 export class SciFiErrorInfo extends LitElement {
   static get styles() {
@@ -40,12 +40,12 @@ export class SciFiErrorInfo extends LitElement {
   render() {
     return html`
       <div class="column content" no-padding>
-        <div class="icon-container">${getIcon("mdiAlertOutline")}</div>
+        <div class="icon-container">${getIcon('mdiAlertOutline')}</div>
         <div class="title">Not found</div>
       </div>
     `;
   }
 }
 
-window.customElements.get("sci-fi-error-info") ||
-  window.customElements.define("sci-fi-error-info", SciFiErrorInfo);
+window.customElements.get('sci-fi-error-info') ||
+  window.customElements.define('sci-fi-error-info', SciFiErrorInfo);

@@ -1,4 +1,4 @@
-import { css } from "lit";
+import {css} from 'lit';
 
 export default css`
   :host {
@@ -73,7 +73,7 @@ export default css`
 
   .action-container:before,
   .action-container:after {
-    content: "";
+    content: '';
     inset: 0;
     background: var(--secondary-color);
     position: absolute;
@@ -88,7 +88,7 @@ export default css`
   }
 
   .action-container .helper {
-    content: "";
+    content: '';
     position: absolute;
     inset: calc(var(--border-cut) / 2);
     background: var(--secondary-color);

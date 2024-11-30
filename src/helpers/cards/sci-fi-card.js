@@ -1,6 +1,6 @@
-import { LitElement, css, html } from "lit";
+import {LitElement, css, html} from 'lit';
 
-import styles from "../../helpers/styles/common-styles.js";
+import styles from '../../helpers/styles/common-styles.js';
 
 export class SciFiCard extends LitElement {
   static get styles() {
@@ -25,7 +25,7 @@ export class SciFiCard extends LitElement {
           border-style: solid;
           border-width: 0;
           border-color: var(--secondary-color);
-          content: "";
+          content: '';
           height: 10px;
           position: absolute;
           width: 10px;
@@ -67,45 +67,45 @@ export class SciFiCard extends LitElement {
 
   static get properties() {
     return {
-      contentDisplay: { type: String, attribute: "content-display" },
-      gap: { type: Boolean },
-      title: { type: String },
-      wrap: { type: Boolean },
-      width: { type: String },
-      height: { type: String },
-      alignItem: { type: String, attribute: "align-item" },
-      noPadding: { type: Boolean, attribute: "no-padding" },
+      contentDisplay: {type: String, attribute: 'content-display'},
+      gap: {type: Boolean},
+      title: {type: String},
+      wrap: {type: Boolean},
+      width: {type: String},
+      height: {type: String},
+      alignItem: {type: String, attribute: 'align-item'},
+      noPadding: {type: Boolean, attribute: 'no-padding'},
     };
   }
 
   constructor() {
     super();
     this.contentDisplay =
-      this.contentDisplay && ["row", "column"].includes(this.contentDisplay)
+      this.contentDisplay && ['row', 'column'].includes(this.contentDisplay)
         ? this.contentDisplay
-        : "row";
+        : 'row';
     this.gap = this.gap ? true : false;
     this.wrap = this.wrap ? true : false;
     this.noPadding = this.noPadding ? true : false;
-    this.width = this.width ? this.width : "inherit";
-    this.height = this.height ? this.height : "inherit";
-    this.alignItem = this.alignItem ? this.alignItem : "unset";
+    this.width = this.width ? this.width : 'inherit';
+    this.height = this.height ? this.height : 'inherit';
+    this.alignItem = this.alignItem ? this.alignItem : 'unset';
     this.title = this.title ? this.title : null;
   }
 
   render() {
     const display = {
       row: {
-        true: "row column-gap row-gap",
-        false: "row",
+        true: 'row column-gap row-gap',
+        false: 'row',
       },
       column: {
-        true: "column column-gap row-gap",
-        false: "column",
+        true: 'column column-gap row-gap',
+        false: 'column',
       },
       wrap: {
-        true: "flex-wrap",
-        false: "",
+        true: 'flex-wrap',
+        false: '',
       },
     };
     return html`
@@ -114,14 +114,14 @@ export class SciFiCard extends LitElement {
         style="width: ${this.width};height: ${this.height}"
       >
         <span class="corner-border-top"></span>
-        <div class="${!this.title ? "" : "card-title"}">
-          ${!this.title ? "" : this.title}
+        <div class="${!this.title ? '' : 'card-title'}">
+          ${!this.title ? '' : this.title}
         </div>
         <div
           class="
-          ${this.noPadding ? "" : "card-content"}
+          ${this.noPadding ? '' : 'card-content'}
           ${display[this.contentDisplay][this.gap]} 
-          ${display["wrap"][this.wrap]}"
+          ${display['wrap'][this.wrap]}"
           style="align-items: ${this.alignItem}"
         >
           <slot></slot>
@@ -132,5 +132,5 @@ export class SciFiCard extends LitElement {
   }
 }
 
-window.customElements.get("sci-fi-card") ||
-  window.customElements.define("sci-fi-card", SciFiCard);
+window.customElements.get('sci-fi-card') ||
+  window.customElements.define('sci-fi-card', SciFiCard);

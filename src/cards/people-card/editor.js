@@ -1,28 +1,28 @@
-import { html } from "lit";
+import {html} from 'lit';
 
-import { BaseEditor } from "../../helpers/cards/base-editor.js";
-import "../../helpers/form/button.js";
-import "../../helpers/form/dropdown.js";
+import {BaseEditor} from '../../helpers/cards/base-editor.js';
+import '../../helpers/form/button.js';
+import '../../helpers/form/dropdown.js';
 
 export class PeopleCardEditor extends BaseEditor {
   static get properties() {
     return {
-      _config: { type: Object },
-      _personEntities: { type: Object },
+      _config: {type: Object},
+      _personEntities: {type: Object},
     };
   }
 
   setConfig(config) {
     if (!this._personEntities) {
       const hassPerson = Object.keys(this._hass.states)
-        .filter((key) => key.startsWith("person."))
+        .filter((key) => key.startsWith('person.'))
         .reduce((cur, key) => {
           return Object.assign(cur, {
             [key]: this._hass.states[key].attributes.friendly_name,
           });
         }, {});
       this._personEntities = Object.fromEntries(
-        Object.entries(hassPerson).map(([key, value]) => [value, key]),
+        Object.entries(hassPerson).map(([key, value]) => [value, key])
       );
     }
     super.setConfig(config);
@@ -70,7 +70,7 @@ export class PeopleCardEditor extends BaseEditor {
     e.preventDefault();
     e.stopPropagation();
     var newConfig = this.getNewConfig();
-    if (e.type == "dropdown-select") {
+    if (e.type == 'dropdown-select') {
       newConfig.people[e.detail.elementId] =
         this._personEntities[e.detail.value];
     } else {

@@ -1,9 +1,9 @@
-import { css, html } from "lit";
+import {css, html} from 'lit';
 
-import common_styles from "../styles/common-styles.js";
-import { SVG_ICONS, getIcon } from "../styles/icon-svg.js";
-import { BaseForm } from "./base-form.js";
-import "./button.js";
+import common_styles from '../styles/common-styles.js';
+import {SVG_ICONS, getIcon} from '../styles/icon-svg.js';
+import {BaseForm} from './base-form.js';
+import './button.js';
 
 export class SciFiDropdown extends BaseForm {
   static get styles() {
@@ -46,7 +46,7 @@ export class SciFiDropdown extends BaseForm {
           top: 45%;
           right: 15px;
           position: absolute;
-          content: "";
+          content: '';
           border-top: 0.3em solid;
           border-right: 0.3em solid transparent;
           border-bottom: 0;
@@ -128,13 +128,13 @@ export class SciFiDropdown extends BaseForm {
 
   static get properties() {
     return {
-      elementId: { type: String, attribute: "element-id" },
-      iconName: { type: String, attribute: "icon-name" },
-      noPicture: { type: Boolean, attribute: "no-picture" },
-      items: { type: Array },
-      selected: { type: String },
-      isDeletable: { type: Boolean, attribute: "is-deletable" },
-      hideDeletable: { type: Boolean, attribute: "hide-deletable" },
+      elementId: {type: String, attribute: 'element-id'},
+      iconName: {type: String, attribute: 'icon-name'},
+      noPicture: {type: Boolean, attribute: 'no-picture'},
+      items: {type: Array},
+      selected: {type: String},
+      isDeletable: {type: Boolean, attribute: 'is-deletable'},
+      hideDeletable: {type: Boolean, attribute: 'hide-deletable'},
     };
   }
 
@@ -142,8 +142,8 @@ export class SciFiDropdown extends BaseForm {
     super();
     this.elementId = this.elementId ? this.elementId : null;
     this.noPicture = this.noPicture ? this.noPicture : false;
-    this.iconName = this.iconName ? this.iconName : "mdiAlienOutline";
-    this.selected = this.selected ? this.selected : "<nothing selected>";
+    this.iconName = this.iconName ? this.iconName : 'mdiAlienOutline';
+    this.selected = this.selected ? this.selected : '<nothing selected>';
     this.items = this.items ? this.items : new Array(this.selected);
     this.isDeletable =
       this.isDeletable && this.elementId ? this.isDeletable : false;
@@ -153,10 +153,10 @@ export class SciFiDropdown extends BaseForm {
   render() {
     return html`
       <div class="row dropdown-group">
-        ${this.noPicture ? "" : this.renderPicture()}
+        ${this.noPicture ? '' : this.renderPicture()}
         <div class="dropdown">
           <button
-            class="dropdown-toggle ${this.noPicture ? "no-picture" : ""}"
+            class="dropdown-toggle ${this.noPicture ? 'no-picture' : ''}"
             @click="${this._showHideDropDown}"
           >
             ${this.selected}
@@ -172,7 +172,7 @@ export class SciFiDropdown extends BaseForm {
             })}
           </div>
         </div>
-        ${this.hideDeletable ? "" : this.renderDelete()}
+        ${this.hideDeletable ? '' : this.renderDelete()}
       </div>
     `;
   }
@@ -185,13 +185,13 @@ export class SciFiDropdown extends BaseForm {
     e.preventDefault();
     e.stopPropagation();
     this.dispatchEvent(
-      new CustomEvent("dropdown-delete", {
+      new CustomEvent('dropdown-delete', {
         bubbles: true,
         composed: true,
         detail: {
           elementId: this.elementId,
         },
-      }),
+      })
     );
   }
 
@@ -200,7 +200,7 @@ export class SciFiDropdown extends BaseForm {
     e.stopPropagation();
     this._showHideDropDown();
     this.dispatchEvent(
-      new CustomEvent("dropdown-select", {
+      new CustomEvent('dropdown-select', {
         bubbles: true,
         composed: true,
         detail: {
@@ -208,30 +208,30 @@ export class SciFiDropdown extends BaseForm {
           dropdownIdSelected: idx,
           value: newValue,
         },
-      }),
+      })
     );
   }
 
   _showHideDropDown() {
-    this.shadowRoot.querySelector(".dropdown-menu").classList.toggle("show");
+    this.shadowRoot.querySelector('.dropdown-menu').classList.toggle('show');
   }
 }
 
 export class SciFiDropdownIcon extends SciFiDropdown {
   static get properties() {
     return {
-      elementId: { type: String, attribute: "element-id" },
-      iconName: { type: String, attribute: "icon-name" },
-      noPicture: { type: Boolean, attribute: "no-picture" },
-      selected: { type: String },
-      isDeletable: { type: Boolean, attribute: "is-deletable" },
-      hideDeletable: { type: Boolean, attribute: "hide-deletable" },
+      elementId: {type: String, attribute: 'element-id'},
+      iconName: {type: String, attribute: 'icon-name'},
+      noPicture: {type: Boolean, attribute: 'no-picture'},
+      selected: {type: String},
+      isDeletable: {type: Boolean, attribute: 'is-deletable'},
+      hideDeletable: {type: Boolean, attribute: 'hide-deletable'},
     };
   }
 
   constructor() {
     super();
-    this.selected = this.selected ? this.selected : "mdiAlienOutline";
+    this.selected = this.selected ? this.selected : 'mdiAlienOutline';
     this.items = Object.keys(SVG_ICONS);
     this.items.sort();
   }
@@ -244,7 +244,7 @@ export class SciFiDropdownIcon extends SciFiDropdown {
   }
 }
 
-window.customElements.get("sci-fi-dropdown") ||
-  window.customElements.define("sci-fi-dropdown", SciFiDropdown);
-window.customElements.get("sci-fi-dropdown-icon") ||
-  window.customElements.define("sci-fi-dropdown-icon", SciFiDropdownIcon);
+window.customElements.get('sci-fi-dropdown') ||
+  window.customElements.define('sci-fi-dropdown', SciFiDropdown);
+window.customElements.get('sci-fi-dropdown-icon') ||
+  window.customElements.define('sci-fi-dropdown-icon', SciFiDropdownIcon);

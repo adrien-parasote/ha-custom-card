@@ -1,15 +1,15 @@
-import { css, html } from "lit";
+import {css, html} from 'lit';
 
-import common_styles from "../styles/common-styles.js";
-import { getIcon } from "../styles/icon-svg.js";
-import { BaseEntity } from "./base-entity.js";
+import common_styles from '../styles/common-styles.js';
+import {getIcon} from '../styles/icon-svg.js';
+import {BaseEntity} from './base-entity.js';
 // Constantes
-import { STOVE_COOL, STOVE_HEAT, STOVE_OFF } from "./const.js";
+import {STOVE_COOL, STOVE_HEAT, STOVE_OFF} from './const.js';
 
 var RENDER_ICONS = {};
-RENDER_ICONS[STOVE_OFF] = "stoveOff";
-RENDER_ICONS[STOVE_HEAT] = "stoveHeat";
-RENDER_ICONS[STOVE_COOL] = "stoveCool";
+RENDER_ICONS[STOVE_OFF] = 'stoveOff';
+RENDER_ICONS[STOVE_HEAT] = 'stoveHeat';
+RENDER_ICONS[STOVE_COOL] = 'stoveCool';
 
 export class SciFiStoveInfo extends BaseEntity {
   static get styles() {
@@ -63,9 +63,9 @@ export class SciFiStoveInfo extends BaseEntity {
   }
 
   __getLabelColor() {
-    return this.state == STOVE_OFF ? "blue" : "orange";
+    return this.state == STOVE_OFF ? 'blue' : 'orange';
   }
 }
 
-window.customElements.get("sci-fi-stove-info") ||
-  window.customElements.define("sci-fi-stove-info", SciFiStoveInfo);
+window.customElements.get('sci-fi-stove-info') ||
+  window.customElements.define('sci-fi-stove-info', SciFiStoveInfo);

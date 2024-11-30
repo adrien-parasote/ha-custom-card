@@ -1,7 +1,7 @@
-import { LitElement, html } from "lit";
+import {LitElement, html} from 'lit';
 
-import styles from "../../helpers/styles/common-styles.js";
-import editorStyles from "../../helpers/styles/editor-styles.js";
+import styles from '../../helpers/styles/common-styles.js';
+import editorStyles from '../../helpers/styles/editor-styles.js';
 
 export class BaseEditor extends LitElement {
   static get styles() {
@@ -10,7 +10,7 @@ export class BaseEditor extends LitElement {
 
   static get properties() {
     return {
-      _config: { type: Object },
+      _config: {type: Object},
     };
   }
 
@@ -34,11 +34,11 @@ export class BaseEditor extends LitElement {
 
   dispatchChange(newConfig) {
     this.dispatchEvent(
-      new CustomEvent("config-changed", {
-        detail: { config: newConfig },
+      new CustomEvent('config-changed', {
+        detail: {config: newConfig},
         bubbles: true,
         composed: true,
-      }),
+      })
     );
   }
 }

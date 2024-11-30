@@ -1,15 +1,15 @@
-import { html } from "lit";
+import {html} from 'lit';
 
-import { BaseElement } from "../../helpers/cards/base-element.js";
-import common_styles from "../../helpers/styles/common-styles.js";
-import "./../../helpers/entities/error.js";
-import "./../../helpers/entities/light.js";
-import "./../../helpers/entities/stove.js";
-import "./../../helpers/entities/vacuum.js";
-import { PACKAGE } from "./const.js";
-import { InfoCardEditor } from "./editor.js";
-import "./editor.js";
-import styles from "./styles.js";
+import {BaseElement} from '../../helpers/cards/base-element.js';
+import common_styles from '../../helpers/styles/common-styles.js';
+import './../../helpers/entities/error.js';
+import './../../helpers/entities/light.js';
+import './../../helpers/entities/stove.js';
+import './../../helpers/entities/vacuum.js';
+import {PACKAGE} from './const.js';
+import {InfoCardEditor} from './editor.js';
+import './editor.js';
+import styles from './styles.js';
 
 export class InfoCard extends BaseElement {
   /**** DEFINE CARD ELEMENTS ****/
@@ -21,17 +21,17 @@ export class InfoCard extends BaseElement {
   }
   setConfig(config) {
     if (!config.info) {
-      throw new Error("You need to define an info entity list entry");
+      throw new Error('You need to define an info entity list entry');
     }
     config.info.map((info) => {
       if (!info.entity) {
-        throw new Error("You need to define a entity to show");
+        throw new Error('You need to define a entity to show');
       }
       if (!info.type) {
-        info.type = info.entity.split(".")[0];
+        info.type = info.entity.split('.')[0];
         console.info(
-          "[sci-fi-info-card] No entity type selected, use default : " +
-            info.type,
+          '[sci-fi-info-card] No entity type selected, use default : ' +
+            info.type
         );
       }
     });
@@ -40,10 +40,10 @@ export class InfoCard extends BaseElement {
 
   /**** DEFINE CARD EDITOR ELEMENTS ****/
   static getConfigElement() {
-    return document.createElement(PACKAGE + "-editor");
+    return document.createElement(PACKAGE + '-editor');
   }
   static getStubConfig() {
-    return { info: [{ entity: "light.entity", type: "light" }] };
+    return {info: [{entity: 'light.entity', type: 'light'}]};
   }
 
   /**** RENDER CARD ****/
@@ -64,7 +64,7 @@ export class InfoCard extends BaseElement {
 
   __renderError(info) {
     console.info(
-      `[sci-fi-info-card] Entity ${info.entity} with type ${info.type} cannot be render.`,
+      `[sci-fi-info-card] Entity ${info.entity} with type ${info.type} cannot be render.`
     );
     return html`<sci-fi-error-info></sci-fi-error-info>`;
   }
@@ -74,7 +74,7 @@ export class InfoCard extends BaseElement {
     var render = html``;
     if (!entity) return this.__renderError(info);
     switch (info.type) {
-      case "stove":
+      case 'stove':
         render = html`
           <sci-fi-stove-info
             state="${entity.state}"
@@ -84,7 +84,7 @@ export class InfoCard extends BaseElement {
           </sci-fi-stove-info>
         `;
         break;
-      case "light":
+      case 'light':
         render = html`
           <sci-fi-light-info
             state="${entity.state}"
@@ -94,7 +94,7 @@ export class InfoCard extends BaseElement {
           </sci-fi-light-info>
         `;
         break;
-      case "vacuum":
+      case 'vacuum':
         render = html`
           <sci-fi-vacuum-info
             state="${entity.state}"
@@ -113,12 +113,12 @@ export class InfoCard extends BaseElement {
 
 window.customElements.get(PACKAGE) ||
   window.customElements.define(PACKAGE, InfoCard);
-window.customElements.get(PACKAGE + "-editor") ||
-  window.customElements.define(PACKAGE + "-editor", InfoCardEditor);
+window.customElements.get(PACKAGE + '-editor') ||
+  window.customElements.define(PACKAGE + '-editor', InfoCardEditor);
 
 window.customCards = window.customCards || [];
 window.customCards.push({
   type: PACKAGE,
-  name: "Render sci-fi info card",
-  description: "Render sci-fi info",
+  name: 'Render sci-fi info card',
+  description: 'Render sci-fi info',
 });

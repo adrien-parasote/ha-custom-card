@@ -1,6 +1,6 @@
-import { LitElement, html } from "lit";
+import {LitElement, html} from 'lit';
 
-import { getIcon } from "../styles/icon-svg.js";
+import {getIcon} from '../styles/icon-svg.js';
 
 export class BaseForm extends LitElement {
   renderPicture() {
@@ -17,7 +17,7 @@ export class BaseForm extends LitElement {
     return html`
       <div class="delete">
         <sci-fi-button
-          class="${!this.isDeletable ? "hide" : ""}"
+          class="${!this.isDeletable ? 'hide' : ''}"
           icon-name="mdiDelete"
           @button-click="${this._delete}"
         ></sci-fi-button>
