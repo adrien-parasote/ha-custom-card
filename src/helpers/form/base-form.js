@@ -1,4 +1,5 @@
-import { html, LitElement } from "lit";
+import { LitElement, html } from "lit";
+
 import { getIcon } from "../styles/icon-svg.js";
 
 export class BaseForm extends LitElement {

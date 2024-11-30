@@ -2,16 +2,14 @@ import { html } from "lit";
 
 import { BaseElement } from "../../helpers/cards/base-element.js";
 import common_styles from "../../helpers/styles/common-styles.js";
-import { InfoCardEditor } from "./editor.js";
-
-import { PACKAGE } from "./const.js";
-import styles from "./styles.js";
-
-import "./../../helpers/entities/stove.js";
 import "./../../helpers/entities/error.js";
-import "./../../helpers/entities/vacuum.js";
 import "./../../helpers/entities/light.js";
+import "./../../helpers/entities/stove.js";
+import "./../../helpers/entities/vacuum.js";
+import { PACKAGE } from "./const.js";
+import { InfoCardEditor } from "./editor.js";
 import "./editor.js";
+import styles from "./styles.js";
 
 export class InfoCard extends BaseElement {
   /**** DEFINE CARD ELEMENTS ****/

@@ -1,4 +1,5 @@
-import { LitElement, html, css } from "lit";
+import { LitElement, css, html } from "lit";
+
 import styles from "../styles/common-styles.js";
 import { getIcon } from "../styles/icon-svg.js";
 

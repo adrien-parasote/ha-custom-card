@@ -1,15 +1,15 @@
-import { html, css } from "lit";
-import { getIcon } from "../styles/icon-svg.js";
-import common_styles from "../styles/common-styles.js";
-import { BaseEntity } from "./base-entity.js";
+import { css, html } from "lit";
 
+import common_styles from "../styles/common-styles.js";
+import { getIcon } from "../styles/icon-svg.js";
+import { BaseEntity } from "./base-entity.js";
 // Constantes
 import {
   VACUUM_CLEANING,
   VACUUM_DOCKED,
-  VACUUM_RETURNING,
   VACUUM_ERROR,
   VACUUM_IDLE,
+  VACUUM_RETURNING,
 } from "./const.js";
 
 var RENDER_ICONS = {};

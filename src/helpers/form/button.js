@@ -1,6 +1,7 @@
-import { html, css, LitElement } from "lit";
-import { getIcon } from "../styles/icon-svg.js";
+import { LitElement, css, html } from "lit";
+
 import common_styles from "../styles/common-styles.js";
+import { getIcon } from "../styles/icon-svg.js";
 
 export class SciFiButton extends LitElement {
   static get styles() {

@@ -1,11 +1,10 @@
-import { html, css } from "lit";
-import { getIcon } from "../styles/icon-svg.js";
+import { css, html } from "lit";
+
 import common_styles from "../styles/common-styles.js";
-
+import { getIcon } from "../styles/icon-svg.js";
 import { BaseEntity } from "./base-entity.js";
-
 // Constantes
-import { STATE_ON, STATE_OFF } from "./const.js";
+import { STATE_OFF, STATE_ON } from "./const.js";
 
 var RENDER_ICONS = {};
 RENDER_ICONS[STATE_ON] = "mdiLightbulbGroup";

@@ -1,8 +1,8 @@
-import { BaseEditor } from "../../helpers/cards/base-editor.js";
 import { html } from "lit";
 
-import "../../helpers/form/dropdown.js";
+import { BaseEditor } from "../../helpers/cards/base-editor.js";
 import "../../helpers/form/button.js";
+import "../../helpers/form/dropdown.js";
 
 export class PeopleCardEditor extends BaseEditor {
   static get properties() {

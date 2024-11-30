@@ -1,8 +1,9 @@
-import { html, css } from "lit";
-import { SVG_ICONS, getIcon } from "../styles/icon-svg.js";
+import { css, html } from "lit";
+
 import common_styles from "../styles/common-styles.js";
-import "./button.js";
+import { SVG_ICONS, getIcon } from "../styles/icon-svg.js";
 import { BaseForm } from "./base-form.js";
+import "./button.js";
 
 export class SciFiDropdown extends BaseForm {
   static get styles() {

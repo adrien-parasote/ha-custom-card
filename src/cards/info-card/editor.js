@@ -1,11 +1,11 @@
-import { BaseEditor } from "../../helpers/cards/base-editor.js";
-import styles from "../../helpers/styles/common-styles.js";
-import editorStyles from "../../helpers/styles/editor-styles.js";
-import { html, css } from "lit";
+import { css, html } from "lit";
 
+import { BaseEditor } from "../../helpers/cards/base-editor.js";
+import "../../helpers/form/button.js";
 import "../../helpers/form/dropdown.js";
 import "../../helpers/form/input.js";
-import "../../helpers/form/button.js";
+import styles from "../../helpers/styles/common-styles.js";
+import editorStyles from "../../helpers/styles/editor-styles.js";
 
 export class InfoCardEditor extends BaseEditor {
   static get styles() {

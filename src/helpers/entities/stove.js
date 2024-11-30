@@ -1,10 +1,10 @@
-import { html, css } from "lit";
-import { BaseEntity } from "./base-entity.js";
-import { getIcon } from "../styles/icon-svg.js";
-import common_styles from "../styles/common-styles.js";
+import { css, html } from "lit";
 
+import common_styles from "../styles/common-styles.js";
+import { getIcon } from "../styles/icon-svg.js";
+import { BaseEntity } from "./base-entity.js";
 // Constantes
-import { STOVE_OFF, STOVE_HEAT, STOVE_COOL } from "./const.js";
+import { STOVE_COOL, STOVE_HEAT, STOVE_OFF } from "./const.js";
 
 var RENDER_ICONS = {};
 RENDER_ICONS[STOVE_OFF] = "stoveOff";

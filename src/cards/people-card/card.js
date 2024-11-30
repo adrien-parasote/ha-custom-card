@@ -2,13 +2,11 @@ import { html } from "lit";
 
 import { BaseElement } from "../../helpers/cards/base-element.js";
 import common_styles from "../../helpers/styles/common-styles.js";
-import { PeopleCardEditor } from "./editor.js";
-
-import { PACKAGE } from "./const.js";
-import styles from "./styles.js";
-
 import "./../../helpers/entities/person.js";
+import { PACKAGE } from "./const.js";
+import { PeopleCardEditor } from "./editor.js";
 import "./editor.js";
+import styles from "./styles.js";
 
 export class PeopleCard extends BaseElement {
   /**** DEFINE CARD ELEMENTS ****/

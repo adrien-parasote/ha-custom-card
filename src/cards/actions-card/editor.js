@@ -1,15 +1,15 @@
-import { BaseEditor } from "../../helpers/cards/base-editor.js";
-import styles from "../../helpers/styles/common-styles.js";
-import editorStyles from "../../helpers/styles/editor-styles.js";
-import { html, css } from "lit";
-import { getIcon } from "../../helpers/styles/icon-svg.js";
+import { css, html } from "lit";
 import { parse, stringify } from "yaml";
 
+import { BaseEditor } from "../../helpers/cards/base-editor.js";
+import "../../helpers/form/button.js";
+import "../../helpers/form/checkbox.js";
 import "../../helpers/form/dropdown.js";
 import "../../helpers/form/input.js";
 import "../../helpers/form/textarea.js";
-import "../../helpers/form/button.js";
-import "../../helpers/form/checkbox.js";
+import styles from "../../helpers/styles/common-styles.js";
+import editorStyles from "../../helpers/styles/editor-styles.js";
+import { getIcon } from "../../helpers/styles/icon-svg.js";
 
 export class ActionsCardEditor extends BaseEditor {
   static get styles() {

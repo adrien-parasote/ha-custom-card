@@ -1,15 +1,13 @@
 import { html } from "lit";
 
 import { BaseElement } from "../../helpers/cards/base-element.js";
+import "../../helpers/cards/toast-card.js";
 import common_styles from "../../helpers/styles/common-styles.js";
 import { getIcon } from "../../helpers/styles/icon-svg.js";
-import { ActionsCardEditor } from "./editor.js";
-import "../../helpers/cards/toast-card.js";
-
 import { PACKAGE } from "./const.js";
-import styles from "./styles.js";
-
+import { ActionsCardEditor } from "./editor.js";
 import "./editor.js";
+import styles from "./styles.js";
 
 export class ActionsCard extends BaseElement {
   /**** DEFINE CARD ELEMENTS ****/
